@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8ece8"/>
+      <stop offset=".55" stop-color="#f2dcd8"/>
+      <stop offset="1" stop-color="#e7c7c4"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 .16 0 0 0 0 .1 0 0 0 0 .09 0 0 0 .4 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="800" height="1000" fill="url(#paper)"/>
+  <g stroke="#6f4c4a" stroke-width="7" fill="none" stroke-linecap="round" opacity=".8">
+    <path d="M120 940 C220 760 320 620 470 470 C560 384 646 336 760 300"/>
+    <path d="M430 512 C400 440 390 370 404 296"/>
+    <path d="M560 390 C596 342 640 312 700 296"/>
+    <path d="M300 640 C250 590 220 540 214 486"/>
+  </g>
+  <g>
+    <g fill="#fdf7f2" opacity=".95">
+      <circle cx="404" cy="288" r="46"/>
+      <circle cx="352" cy="342" r="38"/>
+      <circle cx="470" cy="330" r="34"/>
+      <circle cx="548" cy="344" r="40"/>
+      <circle cx="614" cy="330" r="34"/>
+      <circle cx="682" cy="300" r="38"/>
+      <circle cx="704" cy="250" r="28"/>
+      <circle cx="250" cy="560" r="34"/>
+      <circle cx="300" cy="620" r="38"/>
+      <circle cx="222" cy="640" r="28"/>
+      <circle cx="454" cy="424" r="32"/>
+      <circle cx="522" cy="450" r="26"/>
+    </g>
+    <g fill="#e8a7a2" opacity=".9">
+      <circle cx="404" cy="288" r="26"/>
+      <circle cx="352" cy="342" r="20"/>
+      <circle cx="470" cy="330" r="19"/>
+      <circle cx="548" cy="344" r="22"/>
+      <circle cx="614" cy="330" r="19"/>
+      <circle cx="682" cy="300" r="21"/>
+      <circle cx="704" cy="250" r="15"/>
+      <circle cx="250" cy="560" r="19"/>
+      <circle cx="300" cy="620" r="21"/>
+      <circle cx="222" cy="640" r="15"/>
+      <circle cx="454" cy="424" r="18"/>
+      <circle cx="522" cy="450" r="14"/>
+    </g>
+    <g fill="#b96f6c" opacity=".8">
+      <circle cx="404" cy="288" r="6"/>
+      <circle cx="548" cy="344" r="5"/>
+      <circle cx="682" cy="300" r="5"/>
+      <circle cx="300" cy="620" r="5"/>
+      <circle cx="470" cy="330" r="4"/>
+    </g>
+  </g>
+  <g fill="#f3cdc8" opacity=".8">
+    <path d="M0 960 q110 -70 220 -20 t210 6 t210 -14 t160 20 v48 H0Z"/>
+  </g>
+  <rect width="800" height="1000" filter="url(#grain)" opacity=".15"/>
+</svg>
