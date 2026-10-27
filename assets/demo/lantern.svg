@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d1413"/>
+      <stop offset=".55" stop-color="#6d2320"/>
+      <stop offset="1" stop-color="#a13a2c"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe7a8"/>
+      <stop offset=".55" stop-color="#f2b555"/>
+      <stop offset="1" stop-color="#c46a2c" stop-opacity=".15"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffd489" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ffd489" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 .1 0 0 0 0 .05 0 0 0 0 .03 0 0 0 .5 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#red)"/>
+  <g>
+    <circle cx="330" cy="300" r="230" fill="url(#halo)"/>
+    <circle cx="880" cy="340" r="260" fill="url(#halo)"/>
+    <circle cx="330" cy="300" r="104" fill="url(#lamp)"/>
+    <circle cx="330" cy="300" r="72" fill="#ffdf9a" opacity=".55"/>
+    <circle cx="880" cy="340" r="122" fill="url(#lamp)"/>
+    <circle cx="880" cy="340" r="84" fill="#ffdf9a" opacity=".5"/>
+    <path d="M330 196 q30 -60 66 -88 M330 404 q24 60 58 92" stroke="#f8c778" stroke-width="4" fill="none" opacity=".7"/>
+    <path d="M880 218 q40 -64 82 -92 M880 462 q30 60 70 94" stroke="#f8c778" stroke-width="4" fill="none" opacity=".7"/>
+    <g stroke="#e9b566" stroke-width="2" fill="none" opacity=".4">
+      <path d="M0 60 q200 40 400 10 t400 -6 t400 18"/>
+      <path d="M0 92 q200 40 400 10 t400 -6 t400 18"/>
+    </g>
+    <g fill="#f3c477" opacity=".8">
+      <circle cx="190" cy="200" r="7"/>
+      <circle cx="520" cy="160" r="5"/>
+      <circle cx="690" cy="230" r="6"/>
+      <circle cx="1050" cy="210" r="7"/>
+      <circle cx="1120" cy="520" r="5"/>
+      <circle cx="470" cy="560" r="6"/>
+      <circle cx="240" cy="580" r="5"/>
+    </g>
+  </g>
+  <path d="M0 700 q120 -46 260 -18 t280 4 t300 -12 t360 18 v108 H0Z" fill="#2c1211" opacity=".8"/>
+  <rect width="1200" height="800" filter="url(#grain)" opacity=".26"/>
+</svg>
