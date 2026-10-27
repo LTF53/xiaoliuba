@@ -1,197 +1,690 @@
 {
   "version": 1,
-  "createdAt": "2026-10-27T00:00:00.000Z",
+  "createdAt": "2026-02-28T16:28:58.630Z",
   "settings": {
-    "theme": "light",
+    "theme": "auto",
     "accent": "vermilion"
   },
   "profile": {
     "name": "小刘",
-    "tagline": "记录者 / 生活收藏家",
-    "birthday": "1998-12-09",
-    "city": "杭州",
-    "since": "2023-09-01",
-    "bio": "喜欢把普通日子收好，照片、心情、没做完的小事，都放在这里。",
-    "avatar": ""
+    "tagline": "好久不见",
+    "birthday": "2005-05-03",
+    "city": "上海",
+    "since": "2026-10-26",
+    "bio": "喜欢在傍晚看夕阳",
+    "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAFAAUADASIAAhEBAxEB/8QAHQAAAgEFAQEAAAAAAAAAAAAAAAECAwQFBgcICf/EAEsQAAEDAwIDBgIGBwMLAgcAAAEAAgMEBREGIQcSMRNBUWFxgQgiFDJCUpGhFSNicoKSsTNDohYkJTRTY7LB0eHwF3NEZHSDk8Lx/8QAGwEAAgMBAQEAAAAAAAAAAAAAAAECAwQFBgf/xAAqEQACAgEEAgICAgEFAAAAAAAAAQIRAwQSITEFQRMyIlFCYRQGFSNScf/aAAwDAQACEQMRAD8A3KS30r8c1PCQDkAsBSNFSkkmnhJP7AVckqJJXk9zPSlE0dLjanh/kH/RUzTwNHK2GMDwDBurkk4VF5StsRbOoaVxyaWmP70QJUfoNMDtTQD0YP8Aoq+UnOTQFF0EDB8sLB6NH/RU3sb91v4Kq926pOKkBSLG/db+ChyN72t/BSe4hRD/AB6KQFtQtjfTR/KNmju8lOqlpKSB89Q+KGJgy57yGgD1K1LVGvaDRlvEbnNqa97RyU7HDI83eA/quKaq1peNWTtkr6k9k36kDNo2eg7z5lbNPo5ZOXwjJm1UYcLs6lqHjba7aXwWWhFwf07eT5I/YdT+XqtEufFnVVyB5auCjaeraaFrc+5yfzWjuJJT5yF1YaaEOkc6eonJ22ZuXV2oJmvY+817mP8ArN7Z2D+axTnueS5xLifFUecoBJCvjFIpbsmXeaMqCakRHzjzT5sqPL5FHRAA4qGcFSO6qGFrW5dsT4O/7JgUuZA6qqIAH4cHEDfbdLkZnYn0KAECjmU+xJI3G/iVHs3H7JPogBcwWQt+pLtaY3R0FxqqeN2xYx5A/BY90bmjJaQOm4UMpPoaMjLqC7TkmW51rydzmZxVWk1Zfbe8OpbtWx43x2pI9x0KxXckVBRByZ1LT/GeZgbDfKOOVuf9YgaA4eZb0PthdItN8t19g7e3VcVQwdQ07t9R1C8zB26urfdKy1VbKqiqHwzM6OaVmy6SMujVi1k4cPlHp48v3QkMZ6Bc90bxQhuzmUN4EdPUloayYHDJD5+B/L0XQGOBXKyYJY7TR1ceaORWjStb4/ys0lkAj6U7b+Ji3B2/VajrQc2rNJf/AFTv+Ji25+ytyP8AGKI4l+TI4H3B/KlysP2Gn1ASMijzZVJcMtj+638Aqb2MP2W/gFJzlTJCAOkA5SKg1+yfMsYCcRhUXHKm9wwrd7wigJZUHFQL1Tc/zToZJzt1TLgouduo8yaEKRc/4h8SYdMQuobdLHNcnt3wQRACOp899h7qtxN4hR6XojRUErH3OZuwBB7FuPrEePgvPss8lRK+aaRz5HuLnOcckkrqaTSbvzkYdVqtv4x7KtTVS1sz6ieV8srzlz3nJcfFUTuhC69Uclvm2RLUcpOw3KyunNNXTVd0itloo5aqplIGGDZoz1cejR5leoeH/wAPundL00c96p4bzcyMvMzeaCM+DWnY48T+AVeTNHGrZfh088rqJ5IDSd8J4wvXHE/gVZdV2yWrsdJT2y8QMJiELAyOoI6NcBsD+1/y6eTaqmmpKiSnnjdHLE4sexwwWuBwQUYs0citBn08sTplFZrSOpBpa+QXJ9vo7lCz5ZaWribIyRhxkbg4OBse5YYhRVjKD21aNG8PdU2ejulJpmyS01VE2WMx0zG4yOhwOoOx8woXHgjw+uTA2TTNLFjcOp3OiP8AhIXMPhW1ZPLLctK1EuYI2fTaYE7tOQ17R65aceRPivROcLk5nKEqs7+mUMsE2jSKngvoCoozSf5MUMbCPrs5myD+MOytBvHwsWirqzJbL7V0dO7+5lhExb6Oy3b1XdCfJGVUtRNey2WlxS7R57qPhN5gTT6sIONg+i/6PWh8SuCc/Di1tr6nUdtqRI4MjgDXMlkORnlbv0ByTn+q9Yagv9Bpiz1N3uk7YKSmYXvc49fBo8SegHevFHEXXty4g6ilutcQyNv6ungacthj7mj+pPiVt008k+X0c7V4sWNVHs18kcpxjmztk7IB6H29f/CqBfsN0g4jG66BzC55jgu7Qk4wQVTDWuBBO4xt7Kn2hz4rOaR0ldtc3uK12inMk0m75CCGRN73OPcP69BkpNpK2OKbdIwwaCcYwk+E9xG3VemHfCpY3Uzc6huLagD5ntiYWE+Teo9OY+q0y/fDFqqi7SS01lFc4QflYXdlK4eh+X/EqFqcd1Zpejy1dHGhTu5Q7xSc3k3JBHkszfdL3vStS2C822poZHZIE0eA/wAeU9CPRYh5zjfIAV3atGZxcXTICTBBA6LqPDLXr3SR2W6S5BHLTTOO4P3Ce8Hu/DvXK1ON5jcHMcWuByCDghQyY1ONMniyODtHctX5frDSrAPmFQ52P4o1tsp2K5lYdRv1PdtLyzuBq6SSRk5PV31cOPrj+q6RI4nO65maG2kzsaaW5ORSLyjPeoIzss20vG4qJOVF5OQoFyaiB0NsmykJFbNkUu0WGiVk3ybK3keh8myoufumkInnPeolLmSLsJ0OxkLAaz1XBpGyT18oa+UjkgjJ/tHnp7DqfILN9p5ri3HarM1zt1NHO2QQxOc5jTuxzj3+oAWnS4lknyZ9RkcYOjmtfXVFzrJq2rldLPM4ve49SSrXvU8FXFFbqq51cVJRU0tTUSuDY4omlznHwAC9AmkjiU2/7LddM4X8ELvr3kuNW82yzB3+sPZl82+4jaevqdvXoui8L/hwhomQ3nWLWzVIIfHbQcsZ4doR1PkNtt8rvEMMcETYomMjjYOVrGjAaPADuWTPqlHiPZ0NNoXLmfRgNG6Eseg7eKGyUvZAnMkzyHSyu8XOwM+mwHgthTKS5kpubtnXx41BUgBwcrzb8SfDeO31LNY29vLFVyCGtYB0lI+V/wDFy4Pn6r0krS62qivlvnttxpmVNJUMLJInjZwP9D4HuV2ny7GQ1OH5Y17PADhsqZ6reuK3DWt4d6glpuSWW2TEvo6kjZ7fuk/eHQ/j3rRyN+i7EXatHnJwcJbZG/cCa91BxSsJa8tE8roHYPUPY4Y/Ehe0Ac7rxlwIsFTfeJVpdDG50NC/6ZO4fZazpn1cWj3Xs0DAwuZrvsjr+NtwdgUk1Z3mrlt9orqyni7aanp5JY4x9tzWkge5GFhSt0dCTpHmX4lOIDr1qEaXoZmmhtbv1/J/eT43B/d+rjxyuKu6q5q6iatqZamoeZJpXuke9xyXOJySVbkLv4obYpI8zlyPJNyZFCkGlxwBkrs/Cz4eq/Uj4btqZk1vtYw5tORyzVG/h9lnn18PFOc1HsePFKfEUabw34U3ziFXNNPE+ltjH8s9fIz5GeIH3neQ91680XoqzaFs0dss9MI2gZlmcB2kzvvPcBuf6dyylttdFZ6CGgt9NFS0kDQ2OKMYa0BYu7a80tYnmO5agttPKOsTp2l/8o3/ACXOzZpZOEdnT6aGFbpdmcPVAG+VpTuMWi+bDLlUyecdBUO/oxV6bixouoe1hvsVO53T6VFJB7Ze0BZvjn+jV8sP2X2u9D2zX+n57RcG8jnDMFQGgup5O548fAjO4yF431xoS8aCvL7bdYMdXQzsz2c7M45mn+o6jvXuGhuVFcohNQ1lPVxH7cEjZG/iCVjNX6Ns+ubS+1XmmEsZBMcjTiSF+MBzXdxH4HvV+nzvG6l0Y9Rpo5Fuh2eDcJYXUeJnA286FmdVUEc11s5GRUMjy+HxEgHT97p6HZcyI36LpxmpK0cecJQdMyFjvNRYrhDXUxHPEc8p6OHgV2vTupaTUlCKmndyvbtJE760Z8D4jzXF7fpm83O11l1orfPPQ0IBqJ2j5Y8/188dBuVCxXursVe2rpX4c3ZzSdnjvB8lTmxKaNGnzvHw+md+ykTssRYdRU1+oG1UBwc8r2Hqx3gsmZMhc6UXF0zqxkmrQy5QJUXOPco8yRI3wFBcoAocVgoYOdkKk4oc5UXPCaQyoXpF2VSLkwU0CRj7/dTabeZIozNVTOEFNCOssrjhrR7/AJBbZQ8IrBWaVdar9Strqyqf9Jq6wfLIZyNyx3cB9UDpgdFgNF29up9eSVckbnUWnmYYQPlfVSA5z4hrPzcuttbgbLZF/H0RjBT+xxw/CzpHtS4XS99nnPKZIz+fIugaQ4d6b0NAGWa3RRS4w6peOeZ47wXnfHkNvJbLgpgpSzzkuWShp4RdpEAMJhUa+4UdrpZauvqoaSmiGZJpnBrWjzJ2Wnu1xeNRYGjLA6rgd9W53MmnpT5sB+eQegHqlGDkWyyRjwbujC0c6I1Jd2u/T+uboO0HzQWiNlLGz9kOwXkeZOVOPg9pLlaZoLjUzgYNRNcZzI73Dx+Sl8cV2yG+T6RuuELSG8LKejk57TqjVVtHdHFcTJGP4ZA7KKr/ANQNMtD6d1Fq2jZkmORopawDwaW5Y7+UFG2L6Y/ka7RtN4slt1Bb5KC60UNbSyDBjmaCPUeB8xuuI3/4VqCrqu1sV9koYSd4KqLteX91wI/Me661pfXlm1XJJS0z5aS5wf29trG9nUQkdctPUeYyOi2EsIUlOeN0VSx483aNJ4ZcKrTw0oZW0k8lZX1IaJ6p7QMgfZaPst8sn1W7590gMJ5VOSbk7ZdjgoKkPKThzNLSAQRjcZRlCgibVnkXibwQv+mr9UyWS2Vlys8hMsUtPGZDC0n6jsb5Hj3/AIga7p7hFrXU1QI6Ow1cLOYNfPVMMMbPMl259gT5L27hI58zlb466SVUc5+Ohd2cl4a/DvZ9IzQ3O9SMu10jPOzAxBCe7DSMuI8TtuNshbxqLW9Bp+oba6aGW73yUDsrbS7yOz3vOMMb3kn2ysNe9bXG93WXTOijHNVNPJW3Ujmgt46Hfo+Twb0ys9pXSFu0jSPio+0nqqh3aVVbUO5p6mT7znf8hsPzVc5bnuyFuLEo/jAw3+SWotUMd/lVfZaOmdj/AEXZ3GJmPuvmOXv22OOUbLOWfRWm9PRMZa7Hb6blGOdsILz6vOXH3KzQbjogqDyekaI4l7AOI6beioVVLBWROhqYY543jDmSsDg71BVbCMKve/2WbF+jTrlwp0vWTiro6OWy1g/+JtUppn/4flPuFbSjX2k3CSPsdXWtvy9kQILgwdx5h8kmO/YE5C3nlUhspLK+mVyxp9GB05rCz6uhkNBM5tTAeSpo528k9O7pyvYenQjwKxN24P6FvdWaut07SGd27nQl0Qd5kMIH5K61PoKlvlZHeaCodab9TD9RcIW5JAz8kjej2b9D/wD1aR1nJeZ6izXqlFt1DRNDqilzlkrCdpYjn5mH35ehU/VxKqj1kRl6HTdpt1lfZKG309Nb3sdGYI2ANIcMOz4k+JXh7Vun5tK6muVmqHfrKOd8WfvNB+V3uMH3XvMdV5T+J2xC3a/iucbCI7lSskJ7jIz5SPwDD7q/STdtMyeRwpQUo+jnOmNRz6fuTZW5dA/DZWD7Tc52812ejrYq+ljqKeQSRSDLXDvXn/IW9cOtUCjf+iap4EUjswuP2XHq33V+oxbluXZk0mdxltl0dLLlBz0i/KgXLBR1uzfWuQ526pteovfusJOhudgq3L91Nz1QLgmMmZFQr6+K30M9XOcRQsL3egGU3vCxd3ozfKq1WCPLjcq6NkrR/sWnnkPphv5qzHG5IhJ0jpPCaxPs2jqeon/1u6PdcagfddLuG+zeUey3LCTGtY0Na0Na0YAAwAPBNWzkm3RbCNIFq2q9bG0Vcdks1I66ahqWF0NGw4bG3/ayu+ywbHxPd1ylrbVVTbOxsljhbV6huIIpoT9WBo6zyeDG93iRhV9I6PpdKQzSNllrblWEPra+c5kqH7/ytGTgD/upRVcsi3u4RjLZw9NfVRXTWdd+nri087YN20VMe4RxdCevzOyT4Du3RoDWhrQA0bABPAKMBRlkbZKONC700u9PlSssaEjvQmFBMKNW1hoSk1R2VfBM+3XykPPSXKAASROA2Dvvs7i09yhonV1Tc5Kmw36KGj1Db9poWbMnj+zPFnqx35HY4W2LVNd6VqLvBDeLJJ9G1FasyUM7ftjcuhfvux3THcffOiMty2yM84OMt0Ta0lidLX6HUtipLnCOTto/njPWJ4JD2HzDgR7LLKlqnTLk7VoEBCAlRIktI1be7jfLw3Rmm5THUvaH3Ovb0oYCDsD/ALV/Ro7uvmM5rDUsWlLBPcHN7aoOIqSnbu6ondsyMDzP5A+CtdD6YOmbY41c30m710hqbjUncyzu6gfst6ADGwVsKitzM+RtvajJ2DTds0ra4rZaqcQU8YGw3Lzjdzj3uPeVkOil9bpusPqDVth0rS/Sb3dKahjxlvaO+Z/7rRufYKP5TdllxguTL5SXKq34l9BUspZFJcqsffhpsD/GWlSo/iT0DUuw+e50ze901KSB/IXKxYJ/oh/k4+rOqIWv2DiDpTU/KLRfqGpe7YRdpySfyOw78lsDhg4PXwVcscl2i1ZIyXDBCQ6pqCRKgWq650g6/R09ztj/AKLfrbmaiqR3nYmJ/ix3QrakwpwdMhkgpIwGjtTxarszK0QupqqJxgrKV4w+mnbs9hH9PEYWjfEhpcX3h++4RsBqbRIKgO7+zdhrx/wn+FZ/U7BozUtLqmBvLQ18jKO7gdBnaKfHcWuPKT4O8lsOsLc66aUvNC1vM6oopowPElhA/wCSvhxkUl0ZZxcsbizwOpxvdG8PaSHA5B8CokFpIPcgdV1vRwDsmlL2b3Z455MCZhMcmPEd/wCBCy5IxsuT6KvRtN3jZI4Np6g8j89Ae4/iuqcwwufmx7WdnS5d0aN7DsBU3P3S5lTc7dcqja2NzyqZKC5U3FNIVg85Vfh/AblxQEhJMdrtr3+kkrg0f4Q5W5PyrP8ABam7Wo1Ndy05mrm0jXH7sLB08svK0Y+E2QatpHT+9Y3Ud+o9M2Sru1c/lhpoy4jvcegaPMkgD1WSWh6khGsdd26wF/PbbOwXG4MHR0xOII3e4c4jwRCFsuySpcF5oGx1kcc+o740m+XfEkwcSfo0X93A3PQNHXxJOei2/vRjCETlY4RpBhGyTnBjS5xAAGST0C4Nxb+IZttkfZtGzxyztJbNcAA5rCD9WPOxP7XTw8UY8Lm+CGbPHErZ2e96ks2moPpF5udJQREZBnlDS70HU+2VqE/H/hzA/l/T/PtvyU0pH48q8fXK6115q5Ky41c9VUSHLpZXlzifUq1O/kuhHRRrk5WTyUm/xPZdPx84dVL+Vt/DD4yU0rR+PKtvs2pbLqKIy2i60VewAF30eZry31AOR7rx/U8Pn0nBuk1vI35qu7upGHPSIRnB93tcP4Vp9tu9bZ62Ost9VNSVMR5mSxPLXNPqEpaKPphDyUl2j6B9Etuq8+8JviIlraqKy6zmjBk+WG44DcuJ6SY2/i/HxXoFhDmggggjIOVjniljfJ1MOeOVcGl6cjfp/iDf7CwYoa+Fl5pm/ce53JMAe/LuV2O7JW7AbKzmtdJPc6e5vi/zunifDHJzHZjy0uGM4O7R18FeA4CrnJN2WQjtVAQjon1USd1AmaI8DVvFLsnFz7fpaBr+UfVdWzDbPjyxj2JW9OIZ1IGOpJwra32mitj6p9JTshfVzGonc3rJIQAXHz2C4x8SHEyWxUTNJWuUMqa2PtKuVjvmjiOwZ5F2+e/H7y0Qj8klH0jLOawxc2UeKnxFQW3tbPpB0dRUDLZa9wyyN2ekY+0f2jt4ZXna73i436ufXXStnrKl/wBaWZ5c7Hhv3eSss5Ka6mLFGHRwcueeR22LHcum6R4duquDutNbVUTgKcU9JRczdiTPEZHj0BDfd3gtO0XpO4a41Rb9P2wD6TWShnM76sbernnyDQT7L2vxL0Xb9LfD1e9N22N30Sgtp5PvOLHB5cfMuBJ9VcVHg5j3RuDmP5SDkEHcFda4WcfbtpOrioNRVFRdLM4huXu5paYeLSdyP2T7YXIR6qQOFGUFJUycMkoO4s+g1ur6S7UFPcKGdlRSVMYlilZ9V7SM5/7K4Xmz4ZeIktLXyaOuE7nU1QHSUHN0jlG7mZ7g4ZPqPMr0muLmx7JUei02b5YJ+wKYKCMqJ2VKZosx2prRDqCwXG2Ts5mVVO+P90kbEeYOCFY6Bust70ZZ62ckyvpmMlLtyZGjkfn+Jrln8rHaeskOn7W23wPc9glmlDjtvJI55HoObHsrYz4KnHk8f8ZtGu0bryvpmhv0WrcaumI2xG8n5fYgj2WhHYr1h8TWl23jREV7jDBUWiYOc49TFIQ0j+bkPsV5PPVdfTz3ws4GqxfHkaG1xDgcrrWlbr+lbPFK5wMrB2cnqP8AsuRgLZtE3d1Bc20z3fqaj5DnoHdxRnhuQabJskehC8KmXqPMouK4NHcZIvBUeYKKi5NICUjgBv0W78F4yNDxz5BFVWVVQMDuMzgP+Fc9udS2kt9RUSHDIo3OJ9l1LhhROt3D6wwSMLHmkZI4EYILvmOf5lfHiDFFXNG0ucGMc9xwGguJ8lpPCynfVWmu1LUHNTf6ySs3GC2IEsib6Brc/wAS2LU0NdUaducFsjElbLSyxwNLg0F7mkDc9Nyp6dtn6FsFutny5pKaKA8vQlrACfyUU6iXNXMyCfuB6pKE80dNBJPKcRxNMjj5AZKguyUuFZwz4jeKEtpjdo+0VBjqZ4w6vlbsWMO7Ywe4nqcd2B3leaS495yVldSXmq1TqKvusrXvmrZ3SYG5GTsB6DAVSi0Pqq5Y+h6bvNRnp2dFI7P4NXcw41CJ5nUZnkm2YYNzusppnT1ZqvUFvsdvZzVVdO2Bm2Q3J3cfIDJPkCtus3w/cTr08Ng0lWwNO/NWFtOP8ZBXpT4e+AEvDZ8191H2E18mYYoo4jztpYz9Yc3e53eR0G2dyrCgfH3RlHYPh3ls1ujxT2f6KY9sE8sgaXHzPMSfUrxN6r6RcUNOyar4e6gssDcz1VFI2EeMgHMz/EAvm9Ix0b3Mc0tcDgg9xTQCDiMYXpn4auI9TeYJtI3OaSaWjiM1JK45JiBALCfIkY8sjuC8zBbfwmvsunuIVkq4pCxr6lsEu+xY88rgfY/kqc8FKLRo0uRwyI9voCCMHCFwz048pIQmkFDyAMk4XijUTLnxV19c6y3mmdNV1LhBDUVUULnMGzGjncMnlA2Xs+tz9EnP+7d/Qr5/PIEryDg866GiS5ZyPJtpJHSWfDTxTe4AaZ6nH+uQbf41mbX8JfEuvkY2pprZboz1fUVYdj2ZzFYTh98QGttATQxx3F90tcfymgrXl7Q3wY4/MzywceS9b8L+OeleKEAio5jQ3VjQZbfUOHP5mM/baPEYPiAugclIsOCXAm38J6WeqnqI7je6kcktUGYYyPr2bAegzuT1OB4Le9Z2eTUOkb1Z4uXtK6hnp2Z6czmED8yswhMdHy9rKSagqpqSoidFPC8xyMcMFrgcEH3CpL3xxK+HnR3EZ81c+nNqvEhDjX0gALz+2w/K712PmvN+q/hR1/p/t57fDT3ulZlzHUjw2Vze7MbsHPkC73QKjkloulTZbnSXKkkdHPSysmjc3qHNII/ove9qr4rtbKO4U55oauBk7DjHyuaCP6rwRcrRcbPUOpblQ1NFUMPzRVEZjcPYgFe3uHLXw6B05HIDzNttOD/+Nq52uiqTOn42T3NGyJOTScuajsoSkooTsDTeM1DLcuGOoKeCMySfRxIGgZJDHtefyaV4jcvoXLGyaN0UjGvY8FrmuGQQRgj814e4oaVbo3XF0tETS2njl54Af9k8czR7Agey6einxRx/JY3akaqFUjkMb2vaSHNOQR3KkgLe6OVZ6gDlFzsKDZAkXAnqvOqJ6UmHq2r7rRWyDt6yoZEzuz1cfADqfZUaUXXUVxfaNN0kdTUR71FTMcU9KP2yOrv2Rk7rpelOFtq07IK6ue683YnmNbUtHyeUbNwwem/mrowS5Ylb6NIsegbxrh8VVd45LXYCQ76Mdqisb1GR9hh/E/gu1Ma1jGtY0Ma0YDWjAA8FEkAAeCBIAlKV8F+OHsqZQSqJmCXbAqBdsK2Vj9TnOmbwACT9Bnxj/wBtyuw8FE0TJ4ZIpBmORpa4eIIwU4/ZFeSP4s8Iac1dftH3AVtiulVb52kHML8B2PvDo4eRBXoLh/8AGLWwvZSa6oBVRkgCuoWBr2jvL4+jv4cehXnbUFolsN9r7XNntKSd8JJ7+UkZVgu/HlHk5qpNH0w0xqizattcV0sVfBXUkvSSI9D4EdQfI7rMt2GBsF89OC/Ey5cONZ0VTFVSNtdROyKvp85ZJGTgux95oOQRvtjoSvoVG8PaHN3B3CTEhlu2F524vfClR6orqm+6QqordcKhzpZqKcfqJXHclhAywnfbBGT3Lp/EfjRpLhe6GG+Vcr6ucczKWlYJJeX7xGQAPMn/AJ44re/jWa2pkZZdHl9OP7Oasq+VzvMsa0genMUBR571bw+1Poap+j6hstVQk/Vkc3mjf+69uWn2KtdIUrq3VVnp2HDpK2FoI83gLs1y+MPUl0ppKWp0npmenfsY6mKSZp9QXgFY7hDEeJPFGC+DT1ps1NammqmbbYXRxOf0YOVzi0HO+wH1SoZJVFtlmGN5Ej1C85eSOmSkkBgJriSXs9UlSBCRRlQsYntD2uaehBBz3rwNqaz1On9QXC1VbOSalndG4eh6+/X3XvpcD+JHhlJWxjWNppw58MfLcWNHzOA6S+eBsfIA9xW3R5EpNHN8jhc4qS9HnB2SFXt1xrLRXU9fQVEtNVU7xJFLE7lcxw6EFUUAbhdOzhX+z6Q8NdTu1poOx395BlraVr5eUYHaD5XgD94OWl8bePlt4UNZbqanbcr5URdoyn58MgbuA6QjfcjZowTjqFjOBGp6PSPw30V+uUhbS0DKuR2Op/ziTDR5kkAeq8fav1RXa01HcL/cnZqa2UyOaOjB0a0eQAAHomOzoN6+KjifdXvEF3prbE7oyjpWDA8nODnfmtQq+Lmv617nz6yvzi7ritkaPYAgD2WpEYRhA7Nntcuo+I+o7XZ6u6XC5STztjZ9KnfKIwT8zvmJwAMk+i9xwwR00UdPEA2KJoYxoGA0DoFwr4auHM1rpZNXXOAMkrI+zomvb8zIyd5PLmwAPLPiu8bLl6zJue07Pj8DjHc/Y0j1RzI6rCjpUCEITGC8w/FXZjT6rtt3azEdZSdkT4vjdv8Ak9q9PLkfxOUAq+HDKjka51JXRSc3e0EOafzc1adLKsiMWujeJnkxMJIC7J51npQdVTttpuOuLlJaLTI+CjhdyXC4Af2IP92zxeRn0CtaptXc6ymsVpd/pSvdyMP+xZ9qR3gAM+67lpbTVDpCxU1mt4/VQN+aQj5pXn6z3HxJ3XEpRVs9MlfBKwWC26XtUFrtVO2CmiHTq57u9zj3uPeVkHS4GFGTbvVrJJjoq5zs148bKrpQFSfNnoraSYq3+kAuLQckdRnoq2zVHEXvbE96O1I71j5KhsbS5zg0DvJwmKjmAOUWXfGZJs4HUqs2bPesT9IAIBcASdgT1V1FLkdU1Lkqni4OHfEdw0mmkOs7XHzt5Qy4RtABbjZsvn3A+gPecee+i9+EMnY6KVjZGPBa5rhkOBG4IXBuJPw4VFRVyXTRwg7N+XPtz38vK7/dk7Y8iRjxXT02pVVI87rdDJPdE8+g4IIz7L6BV3FGg0lwXtus6zMzprZTvhiccOmmfGMN/HOT4ArwbedPXbTtWaO72+popgfqzRlufMdx9lt3EPiTPqrS2kdMwdrHRWO3sikY47Sz4wXegaAB7+K3WmrOQ4tM1fVOqrnrO+1d8u9QZ6yrfzvcegHc1o7mgYAHcsWgDG2M+GQt00dwh1drRzJKG2OgpCR/nVVmOLHrjJ9gUnJJcjWOUuEajb7bVXWugoaKB89TUPEccbBkucegXtXhZoGDh7pWG2/I+ulxLWTs/vJPAZ7gNh+PesXwz4M2bh2wVbj+kLs9vK6qcMNYD1axvcPM7n8l0MLnajUKX4o7Gj0bg90gQhCxNnUEUYTQoMBYUZImSsdHIxr2OGHNcMhw8CFNCE66IuKapnA+J3w4ivmmuujexhkdl0lteeVrnE5/VHo3qPlO3gQMAcAvNgu2nat1JdrfU0UzT9WaMtz5g948wvfRGVRrKCkuEJgraaGqiPVkzA9p9it2LWOKqSs52bx0Z/V0eNL5xBlqOFenNDUrnsgppZ6yswcdpI6V/I0+QG/q4eC0cdF7bqOFGhZzl+lrWD1+SLl/phFHww0Vb5Wy0+mLW17DzNc6APIP8WVetdH9Gf8A2qd9njqxaQv2qJ+xs9qqqw97o2Hkb+87oPcrt/Df4c3W+vhumr5IJhGA9lviPMOfqO0d0OPujIPjjY93ZHHTwtihY2NjejWDAA9AqT5gCqcmtb+qN2DxUVzIuYnNjjDGhrWtGGtaMADwGO5S7TzVg6oHio9v5rA232dZYa6MiJPNSEyxomHipNn36oB4WZJsnipBwKs45c96rNdlMqcKLhajxbtbbxw21DTObzFtG6Zo8HR4eD/hW2tOQsVq1zG6VvHaRySsdRTNMcQJc/LCOUAdSc4VmJ1JMzZo3Bo8EsifNI2ONhe9xw1rRkknuC7vw5+GiquAhuWr53UdM4E/QYv7Z3hzu6N9Bk/ulbrwT4KUulKeLUF9pmTXmVofDE8ZFICPD7++57sbd67ACemVtz6v1E5mm0P8pmh8J9HyWK1OvF0hAvFzAllz1gi+xF5YG58z5LenbBTJ3UHbhYpzs6kIUihKVYTO+Uq9lBIVnJGTsqjZiZi62pdGGsj+aV+Wsbjb38lGFghbjJJ73HqT4lVI6d7ZpZZQC9x5WgdGtHT8eqctL27DGSWh2zvMd4TNsWqLJv8ApCRr8f5vGcsz9t3j6eCuHvbBC57tgwK7ZTANAGAB3JPomSFpeObldzD1Sok5osaOB/aGom/tHj6p+wPBXVHUSVNQ7k/sY8tc77zvL0/5q4+jjwVakpGQRNjjaGtaMABFFcpqitAFeN2AVCJmFcNGU0Ycj5IVdBSXOIRV1LBVRD7E8YePwKw0vDXRVRKZJdK2Zzj/APKMH/JbA1SyrVkklVmaWKDd0Yqi0hp63coo7Ha6cN6dnSMaR74WWIGRgYAGAAlkoyk5N+wWKK6QFCEKDJoimEYTSGCEIQAIQllIBpFATQBTcqMhwFXcrafPKmWRLWaR3qsZUV7jMKenAdJsZHHpGP8AqfBXNe6VkBMIzJ0GenqVZQ04p4+QFzt8lzurj4lBuxxVFxz5G+c+qoVNYKYMGOd7zhrQdz5+ijUzinic/cu6Na3q4noAqFPTOY90szg+Z4GcHZo+6P8AzdIu2l6ybPl7qp2gyN/zVpNOKeEyOycdABkk9wVKCOYPdNO487vsj6sY8B4+qAcTNQzDxV1HKsHFVtdUCnjaZHgZeR0YPM+PksnHkEIRkyQMmx6qg7YVvDuFcAbJmOSQBMIQEyAEZSLdk0dyGS9FF7Mqi+JXRGVEsykSjKjHvgI7spCDbor1zECMnvSLVkLLsSFJsO6vBCUxEnQPIWnY+qqsZgKv2SfIiiDnZTYzZVQxNrcKWylRXYgMJoQgAQhCTYAhCFGwBCEIAEIQgASwmhACTQhCAi4bK3kGQrpUnMypUSi6Zj5IuZW0kCyro/JUXQqPJojkMS+ibJK17hks+r5eaZpiOiyRp89yToAEi1ZzGfQg8tLh9U5HqpSUrnMeGuDS7oeXOPZZDshjon2IQP5iwpKJlLE2OMYAyST1JPUk95V7FEVUbD5KvHHhCKp5LHEC1XDTsoNapqaVmWQ0IQmRBCCkUIPQu9CApKLGR5fJMADuUkk0hWCXemhSSCwQhCYWCEwhJgJCZSRQwQhCgwBCEJACEIQAISKAgBoQhAAhCEIAUVJCk2BHlyomMKohSQ0UjHthIxeJVZJRYWyl2Ywo8nkq+EYCEh2U2s8lNrcKSE6QrDCEIQhAhCaBNiKXeml0KQx4QkTsjmSAeUbIS3UlYh4SJ3TzhRJQ2BJLKYKWErAYKMpJp2MMoQhFgCEIUWwBCSMpANQlkZDG6SRzWMYMuc44AHiSnJJHEx0ksjI42Aue95wGgdST4LncEVTxZrTPUsmp9G078RREljrtIPtuxg9iMHAzv1PgLYY93LKpzp0jK0vECS/XNtNpmxVV3oWyBk10MogpW74JY5wJkx+yPdbh3qEFPDSU8dPBFHFDE0MYxjQ0NA2AACqYUZ1/EeNSr8gQhLKgWDQkmgASymlhFgNCEKS6ECEISYwQhCaYAhCEUAIQhNACMoQnQgCD1WB0PqqHWWmKO8RMEb5QWTRj+6lbs5v49PIhZ5JxoUZWrIlLBU0JEgQhCYCKRTKAogATQrO63aislBNX3GqipaWEZfLK7AHgPMnuHemlboTaXZeKPO37w8Oq0enq9W667WSkdJpexk8sUr4s19S3b5gDtC052OC5XcHCLRxgLKq1OrJH/XnqKiR8rz48+cg9+2FasaT5ZS8rf1Rt6Fo9JVVPDy6w2e41c9Vp6rPJQVlQ4udRy52glefsH7LjuMYPcVuk9RBSU76mplZBBGOZ0kh5WtHiSeico10OM/2TG6ffhaPU6/uN+nNFoW0tue7muutUXR0MRBxs7GZSD3M/Eps4fXW5HtdQ61vtS527qe3yCjgHlho5j682VFY/+wvmviKs3Y9ElpU/DqotMRn0nqG70FYzdsVZVOqaaU+D2PyQD4ggjzVKp4jSM0XJXNpOTUPbfo39H9THXE8ob+79sHvapLFfQvma+yojfp3cQtQSaRo53sstEOa9VER/tjn5aVrhnBPV+N8DG263yCGOlhZBCxscUbQ1jGjAaANgB3LC6M03HpTTtLbWnnnAMtTNnJmndu95J8T+QHgs4lknX4oeKD+zByB0SKSosvJKKEIAYTSCaABCEIAEJICAGhCE0AIQhS2iYIWFu2tNNWJzmXK+UFNI0ZMTpQZP5Rv+S066cdLNGOWy2y53aQ9D2XYR/wAz9/yUtjGlKX1VnS0Lh9dxb1pcWuZR0Vrs4J/tCTUSD06Nz6gqnY+Kuq7BII7uDqCic/LpGsEdRGO/lA+Vw8jv5p7TR/h6jbu2OjuiFqdl4o6SveI47tHSVHfBXDsJAfDDuvsStrYQ9gewhzT0cDsUUzNf7PN3D3XMugbwRUOe+xVrv86YN+wfjAlaPwB8R6L0dTVMFbTx1NLKyaCVodHIw5a9p6EFeTnNDgQRkFbTw64iVOhK2O310zn6clJ5g4Fxo3no4fsE4yO7cjvV0o7jJCbjwejEKEFTBWQR1FNMyaGVoeyRhy17T0IKmsslRqjKwSTSUbJCTCSfvhAi3uVypLRQT19fOynpadhfLK/o1o/8/wDMrSrDbazXNbFqfUNI6GhidzWi2S/Yaf7+Zp6vO3KD9UeZyCqP/qPql9uAedN2OYGrP2K+rG4i82R9XDvOFvuMq/iC/sz18kr9A0kjJ6pg46JJqFmhItrlb6S70M1DX08dTSzsLJInjIcCtUZwj0zzwmqbcK+KEh0VNXVss0EZHT5CcHHnlbohNZGuhPGn2UoYIqaJkMMbI442hrGtaAGgdAAOgVQIwhVttjUUugXO4LRSXfjPV11LFmC00MZq8Pwx1a4ODHcve4REjPdkLoq0rhVEKmyXK+ufzyXm6VVVnvDBIWNb7BgV2J0mynLG2kbqhCFS3ZcgSKaEhkVJLCaABCEIoAQreuuFJbaaSqraiKmgiGXyyuDWtHmStCufHHT1K58dtpLhdnN2D4IwyJx/feRt5gFNRYJN9KzoiCQ0ZJAHidlx2q43agmLm0OlKaEZw11RW834hrR/Varer3qXVgcL7dZG0xOfoVJ+qhHkcbv9yVNQS7NMNFnyOlE7pU6z0zRTup6nUNogmb9aOSsja4eWCVrd/wCM+mLUOzt8773V90NBh4HmX/VH5lcfhstuhbyMpIcebQVdxwRxN5I42sb4NGEbo/o6MfCZP5SNor+MGr68gW612m2RnoZ3Onk/LlH5Fa5cbxqK/lxvN/rZg7Yw07vo8WPDlZjPuVAbHKRKPlOjj8Rp4dqyypbNQUbg6GkhY4dHcuXfid1eloIwQCgJqtzbOhjw48f1QkJoUaotfJRqaOnrI+zqII5WjoHtzhFt+n2LH6FvFxtzW7tjimLogfNjstP4KrlGVJZGujJk0eHJ9omtk4VKQtcSCAe5VHKi7qtp87Nm4f8AEev0DUCnqBLW2F7supm7vpiftR+I8W59F6Hsd+tmpKCOvtVZDVQSDIcw7jyI6g+q8oKlBWVOnqttwtFfU22t6Nkpicv8i3o4exQ4qXZOEpJ8Kz2HjCWFxvSPHKqho44tXWioikAA+m0sfMJPN8Y3afTI8gum6c1fYtWQuls1ygqwwfO1pIez1acELPPHRqW7+Soy+Fq/EDUdRYrMyntvz3i5TNoqBn+9d9s+TR83sFtWFi6rTlDW6gor7UdpJU0EMkVOwkdnGX45ngY+tgAZz0/FLHw+SM02qQacsNJpez09po8uZA35pD9aV53c9x7yTufVZPonjwSPRKTt2OKpULKaimFEkNCEIGCEIRtYNgDg+aw2kNPjStgprO2f6Q2AyHtOXlzzPc7p/Fj2ReNY6d0+15ul6oaRzOrHyjn9mjc/gtQm496Qa9zKSO71xB+tT0hx/iIU4wlXRCrfB0hGCuRV/G+6VT3tsWlyyMDLZ7lOGE//AG25/wCJYCq4i8Q7i8EXS2Wxve2kpQ8j3kyUPH/Zpx6XPP6xZ3zB8FaVl2t9uaX1tfS0rRuTNK1n9SvP9VeNS1zCyu1VeJ2u+syKUQtPswBYmLT9t7QOdSte7vLyXE+uU0or2bYeI1EvtSO51/FnRVvHzX6mqHb4ZSh0xP8AICtcq+PFBzltu03eK0jo6QNgafTJJ/ELnzKeKEBsUbI2joGgABVPdDcTVDwb/lI2W5cZdV1/K212Chtje99ZOZnewby/msJUay15WOzUaofA3ubSUsTAPfBJVq71UDhL5K6NePw2CPfJQrYKi7TNlu9zuF0ew8zRVzFzGnxDeg/BV2N5RhowPAJKbVCU2zfh0mPF9EINwh3RNIqP/poSoAmkjKQxZQkhADCMpIQA8oykhADKSEJAay56pE5VE1sIldBI/sZmnBjlHI4ex3TmlMbQGNL5XnljYOriulsZ8ujJSdRG5z3yMggYJJ3/AFW9w8z5LOWyzRW/9a8mWqePnld3eTfAKpZrU23Qc8nz1UgzJIf6DyWQIzuqJzo9n4zxccaWTJ2IDCpuo2GVtVTvlo6tow2opnmOQe4O6qJ5IVDk7s7E8GOaqUS/pNW62twDaXVEsrPu1lOyY/zYz+azNBxg1XQhza+12q5D7LoZXU7vcEOH9Fq/MUjl3UlNZGYZ+I08vVG9R8dqlrg2p0fVNb9p0NYyQ+wIGfxV8OPenmsAmsuo4n/d+isd+YeubgYRgZypfIv0ZZ+Cg/rJnQn8fbOT+o05qSQftU0bf/3VN/HaNwzBpO8O/wDcMbc/4itC5ijKPkS6RFeBj7mzb6jjpfJSRR6MjiHc6orwfyDQsbLxX19O48sdgpWnoGxSPI9y7CwWSjJ8Unk/otj4PCvs2zIT661/VnEmpYqdh+s2moo2kehIJWJrG19yz+kb5ea5p6smrH8v4DCrZRko+VmqHitNH+JZ09mt1K8vho4g8/aIyfzV6BgJZKMlR3yNcMGOH1iNCWUZUHbLgKSEIAEIQgAQhCABCEIAEIQgAQhCABCYTwgCKE0kACEIQAIQhAHoK62G0X2HsbrbKSujxjE8TXkehI2WiXbgNpioqXVtmfU2WrA/VmIiWJvj+rfnr5ELpKCcBencE+GfEI5JRdpnBrxoPVmm4+0lpYr1TtBLpreD2jQO90bt/wCXKwdNVw1kfaQP52glp23B8CO4+S9KFmc5yPFcJ4g19ju2smSWFrHvgiey41cO0c8hxyNz0cW4OXeeO5c3VaeKTkj2ng/N6jJkjhyK0YZCELlnukCEIQMEIQkAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEANPmUUIAaSE8IASEIQAIQhAHQTx2onZEWlr8SB9tsTR+POrGu4zX2pYW2rT9LRHfEtfMZCPMMZj8ytMTC3vXZGeXx/6U0sXbbZXu1/1NqQcl5v1RJBgg0tI36PE4HucG7u9yrSCGOmhbDDEyKNowGtGAFVJUVmyZpT7O3pvH6fTr/ijQIRjzTAVRt9CQrOCV/6XqoXPLmmKNzRnYdQVeBNorhNS6BCeElEmCEITsYIQhIAQhCABCEIAEIQgAQhCABCEIAEIQgAQhCABCEIAEIQgAQhCAGDhPm8lFCABCEIAEIQgB4R0QgoQBlJCEAPKAknhFguzHuIhvzc5xUU5a0+bTn+hWQbusZdX9hXWyYj+/MZ/iBCy2AOinLoyaZ1KcSJ2UVIlRUDWCEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIVrU3COkqY4pmmOOTYTE/JzeB8PdXXoQQd8hNoqhljNuK9AhCEi0//2Q=="
   },
   "photos": [
     {
-      "id": "sample-photo-1",
-      "src": "assets/demo/dusk.svg",
-      "caption": "下班路上遇到的晚霞",
+      "id": "c644ca3c-0ff7-4840-bf71-6d018b5e3cc8",
+      "src": "shared/photos/c644ca3c-0ff7-4840-bf71-6d018b5e3cc8.jpg",
+      "caption": "OIF-C",
       "tag": "日常",
-      "date": "2026-10-26",
-      "w": 4,
-      "h": 3
+      "date": "2026-10-27",
+      "w": 474,
+      "h": 474
     },
     {
-      "id": "sample-photo-2",
-      "src": "assets/demo/mist.svg",
-      "caption": "山里的雾慢慢散开",
-      "tag": "旅行",
-      "date": "2026-10-20",
-      "w": 4,
-      "h": 3
-    },
-    {
-      "id": "sample-photo-3",
-      "src": "assets/demo/sea.svg",
-      "caption": "海边的风很大",
-      "tag": "旅行",
-      "date": "2026-10-18",
-      "w": 4,
-      "h": 3
-    },
-    {
-      "id": "sample-photo-4",
-      "src": "assets/demo/window.svg",
-      "caption": "窗边的下午",
+      "id": "74e8d5e1-7dc6-449d-9112-72aa1c8d6dbe",
+      "src": "shared/photos/74e8d5e1-7dc6-449d-9112-72aa1c8d6dbe.jpg",
+      "caption": "38aecb759b16a8cae95fdae82f7d524d",
       "tag": "日常",
-      "date": "2026-10-15",
-      "w": 4,
-      "h": 3
+      "date": "2026-10-27",
+      "w": 500,
+      "h": 500
     },
     {
-      "id": "sample-photo-5",
-      "src": "assets/demo/blossom.svg",
-      "caption": "楼下开花了",
+      "id": "98abd18a-3d9e-45db-a9eb-e86624d6c990",
+      "src": "shared/photos/98abd18a-3d9e-45db-a9eb-e86624d6c990.jpg",
+      "caption": "a919b42f88737d5553ffd3a61804fdc0",
       "tag": "日常",
-      "date": "2026-10-12",
-      "w": 4,
-      "h": 3
+      "date": "2026-10-27",
+      "w": 1080,
+      "h": 1080
     },
     {
-      "id": "sample-photo-6",
-      "src": "assets/demo/lantern.svg",
-      "caption": "巷子里的灯",
+      "id": "f8365f68-338c-4238-a55e-638f1b22f9d1",
+      "src": "shared/photos/f8365f68-338c-4238-a55e-638f1b22f9d1.jpg",
+      "caption": "03ff5ca50be44d1effe24cd7c3fb1404",
       "tag": "日常",
-      "date": "2026-10-08",
-      "w": 4,
-      "h": 3
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
     },
     {
-      "id": "sample-photo-7",
-      "src": "assets/demo/moon.svg",
-      "caption": "很安静的晚上",
+      "id": "c287c48e-33b5-4d7d-8574-12cf9a23d4b4",
+      "src": "shared/photos/c287c48e-33b5-4d7d-8574-12cf9a23d4b4.jpg",
+      "caption": "06d6e6199bdad38dbb545df73e0f2d9c",
       "tag": "日常",
-      "date": "2026-10-03",
-      "w": 4,
-      "h": 3
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
     },
     {
-      "id": "sample-photo-8",
-      "src": "assets/demo/film.svg",
-      "caption": "旧胶片里的夏天",
-      "tag": "朋友",
-      "date": "2026-09-28",
-      "w": 4,
-      "h": 3
+      "id": "821259d7-b49a-4ff6-9e49-6aba96e6a8be",
+      "src": "shared/photos/821259d7-b49a-4ff6-9e49-6aba96e6a8be.jpg",
+      "caption": "8cda65e53a0e197df70c461a41ffde9d",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 961
+    },
+    {
+      "id": "a1357b56-16e7-4f47-8cd2-4027cff26da5",
+      "src": "shared/photos/a1357b56-16e7-4f47-8cd2-4027cff26da5.jpg",
+      "caption": "9aa453fee223b01382f95690a22c2089",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 961
+    },
+    {
+      "id": "4379fc9e-80e5-4a8e-b5ee-9900b5f76e98",
+      "src": "shared/photos/4379fc9e-80e5-4a8e-b5ee-9900b5f76e98.jpg",
+      "caption": "92611e7b6bbb4e5ea0d8dfe89cda81af",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "id": "d5f4fc36-3cab-4b4f-959e-30450298ee67",
+      "src": "shared/photos/d5f4fc36-3cab-4b4f-959e-30450298ee67.jpg",
+      "caption": "ee4bb5bad943ea474d99bb689860a5cd",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "id": "c7ff3c7f-ea2d-475b-a4da-184af729bcb6",
+      "src": "shared/photos/c7ff3c7f-ea2d-475b-a4da-184af729bcb6.jpg",
+      "caption": "微信图片_20261027194744_73_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "97e7a3f4-1532-447c-a7cf-9be5454b2361",
+      "src": "shared/photos/97e7a3f4-1532-447c-a7cf-9be5454b2361.jpg",
+      "caption": "微信图片_20261027194748_74_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "f1964434-11bb-4974-b681-69d75053b6f7",
+      "src": "shared/photos/f1964434-11bb-4974-b681-69d75053b6f7.jpg",
+      "caption": "微信图片_20261027194750_75_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "f385809f-8452-41b3-a711-de7d825b6474",
+      "src": "shared/photos/f385809f-8452-41b3-a711-de7d825b6474.jpg",
+      "caption": "微信图片_20261027194823_76_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "c3d7a54b-0fe7-4554-b0b3-451b7ab414e0",
+      "src": "shared/photos/c3d7a54b-0fe7-4554-b0b3-451b7ab414e0.jpg",
+      "caption": "微信图片_20261027194824_77_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1077,
+      "h": 1280
+    },
+    {
+      "id": "3c95bd9d-a2a6-46dd-82bc-a35bea429b1c",
+      "src": "shared/photos/3c95bd9d-a2a6-46dd-82bc-a35bea429b1c.jpg",
+      "caption": "微信图片_20261027194825_78_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1077,
+      "h": 1280
+    },
+    {
+      "id": "c9d4e32d-1ca9-4b0f-bc13-43003670c4cc",
+      "src": "shared/photos/c9d4e32d-1ca9-4b0f-bc13-43003670c4cc.jpg",
+      "caption": "微信图片_20261027194826_79_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1077,
+      "h": 1280
+    },
+    {
+      "id": "ed229ed3-d85b-4d44-9649-4939151abbbd",
+      "src": "shared/photos/ed229ed3-d85b-4d44-9649-4939151abbbd.jpg",
+      "caption": "微信图片_20261027194828_80_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1077,
+      "h": 1280
+    },
+    {
+      "id": "289969d1-afb1-4e81-97e5-b09ba967fcff",
+      "src": "shared/photos/289969d1-afb1-4e81-97e5-b09ba967fcff.jpg",
+      "caption": "微信图片_20261027194830_81_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "0856e698-0bda-40ac-ae77-a39ced6bda8b",
+      "src": "shared/photos/0856e698-0bda-40ac-ae77-a39ced6bda8b.jpg",
+      "caption": "微信图片_20261027194832_82_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "0f1021f1-7dbe-464a-b19f-93e084e153d0",
+      "src": "shared/photos/0f1021f1-7dbe-464a-b19f-93e084e153d0.jpg",
+      "caption": "微信图片_20261027194841_86_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "a1142c36-041a-4183-8d26-c4f5ebea935f",
+      "src": "shared/photos/a1142c36-041a-4183-8d26-c4f5ebea935f.jpg",
+      "caption": "微信图片_20261027194846_87_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "023fa27c-0e44-41fc-849d-4fe4661f6fd3",
+      "src": "shared/photos/023fa27c-0e44-41fc-849d-4fe4661f6fd3.jpg",
+      "caption": "微信图片_20261027194835_83_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "f8d83f5a-d41f-4f87-a54b-6e06c2869cb4",
+      "src": "shared/photos/f8d83f5a-d41f-4f87-a54b-6e06c2869cb4.jpg",
+      "caption": "微信图片_20261027194837_84_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "1504339e-e72d-46e6-8d08-8796973d3159",
+      "src": "shared/photos/1504339e-e72d-46e6-8d08-8796973d3159.jpg",
+      "caption": "微信图片_20261027194839_85_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "4ab8b711-d637-49d5-b5e8-ae7b897696f1",
+      "src": "shared/photos/4ab8b711-d637-49d5-b5e8-ae7b897696f1.jpg",
+      "caption": "微信图片_20261027194900_93_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "7b473e8a-d863-4ab2-bb50-e2ab31a0e91b",
+      "src": "shared/photos/7b473e8a-d863-4ab2-bb50-e2ab31a0e91b.jpg",
+      "caption": "微信图片_20261027194901_94_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "faf7d347-ba39-4ae6-ae4b-70ba867049b2",
+      "src": "shared/photos/faf7d347-ba39-4ae6-ae4b-70ba867049b2.jpg",
+      "caption": "微信图片_20261027194903_95_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "760dd909-13bd-485e-a616-30d4866fd5bc",
+      "src": "shared/photos/760dd909-13bd-485e-a616-30d4866fd5bc.jpg",
+      "caption": "微信图片_20261027194905_96_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "b1337540-7d56-4b96-b061-d4c9d381ff3e",
+      "src": "shared/photos/b1337540-7d56-4b96-b061-d4c9d381ff3e.jpg",
+      "caption": "微信图片_20261027194907_97_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "a2ddccd6-721a-4208-a6a3-2d857bd8eeaa",
+      "src": "shared/photos/a2ddccd6-721a-4208-a6a3-2d857bd8eeaa.jpg",
+      "caption": "微信图片_20261027194908_98_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "32291f3e-4791-4558-aab3-f9d0442846f4",
+      "src": "shared/photos/32291f3e-4791-4558-aab3-f9d0442846f4.jpg",
+      "caption": "微信图片_20261027194910_99_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1197,
+      "h": 1202
+    },
+    {
+      "id": "0a911068-ff69-4f9e-88e8-3a822ded612f",
+      "src": "shared/photos/0a911068-ff69-4f9e-88e8-3a822ded612f.jpg",
+      "caption": "微信图片_20261027194912_100_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "81138156-5a67-4b22-a862-411bd1d02cf1",
+      "src": "shared/photos/81138156-5a67-4b22-a862-411bd1d02cf1.jpg",
+      "caption": "微信图片_20261027194914_101_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "a854e63d-496f-433b-88f4-07989489a31c",
+      "src": "shared/photos/a854e63d-496f-433b-88f4-07989489a31c.jpg",
+      "caption": "微信图片_20261027194923_102_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "5509d31d-b01f-4740-8484-db09fd865296",
+      "src": "shared/photos/5509d31d-b01f-4740-8484-db09fd865296.jpg",
+      "caption": "微信图片_20261027194925_103_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "c7cc5886-2651-480b-9e02-43ebd712ad86",
+      "src": "shared/photos/c7cc5886-2651-480b-9e02-43ebd712ad86.jpg",
+      "caption": "微信图片_20261027195007_104_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "4814da56-f87c-44ca-a650-31acf112d79f",
+      "src": "shared/photos/4814da56-f87c-44ca-a650-31acf112d79f.jpg",
+      "caption": "微信图片_20261027195011_105_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 576,
+      "h": 1280
+    },
+    {
+      "id": "0e58d066-1857-44dc-a35a-c58a19803d1d",
+      "src": "shared/photos/0e58d066-1857-44dc-a35a-c58a19803d1d.jpg",
+      "caption": "微信图片_20261027195013_106_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "id": "5cb44559-fca7-4194-8040-db3c334a3925",
+      "src": "shared/photos/5cb44559-fca7-4194-8040-db3c334a3925.jpg",
+      "caption": "微信图片_20261027195015_107_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "id": "1f2699e3-d97a-4232-b90d-4b34186d8605",
+      "src": "shared/photos/1f2699e3-d97a-4232-b90d-4b34186d8605.jpg",
+      "caption": "微信图片_20261027195017_108_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "id": "994aa5ae-036a-4907-a804-7d5d75aaf319",
+      "src": "shared/photos/994aa5ae-036a-4907-a804-7d5d75aaf319.jpg",
+      "caption": "微信图片_20261027195018_109_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "dbba9fd0-6814-479f-99ae-1a990a56af48",
+      "src": "shared/photos/dbba9fd0-6814-479f-99ae-1a990a56af48.jpg",
+      "caption": "微信图片_20261027195019_110_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "722561b5-8976-44bf-85d6-95aee1962fa5",
+      "src": "shared/photos/722561b5-8976-44bf-85d6-95aee1962fa5.jpg",
+      "caption": "微信图片_20261027195020_111_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "610caf82-c2fe-4ec1-8779-ce2b8938a463",
+      "src": "shared/photos/610caf82-c2fe-4ec1-8779-ce2b8938a463.jpg",
+      "caption": "微信图片_20261027195022_112_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "d2bf70f6-c0e1-47eb-8ad1-ea1757aa0a14",
+      "src": "shared/photos/d2bf70f6-c0e1-47eb-8ad1-ea1757aa0a14.jpg",
+      "caption": "微信图片_20261027195023_113_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "6bb544e5-299d-4d63-80e4-f562cbbedd09",
+      "src": "shared/photos/6bb544e5-299d-4d63-80e4-f562cbbedd09.jpg",
+      "caption": "微信图片_20261027195024_114_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "d49c8352-36a0-4b9d-b217-908003b8cc4d",
+      "src": "shared/photos/d49c8352-36a0-4b9d-b217-908003b8cc4d.jpg",
+      "caption": "微信图片_20261027195025_115_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "e32ea817-0d17-4336-9fba-aa0ed750f0dc",
+      "src": "shared/photos/e32ea817-0d17-4336-9fba-aa0ed750f0dc.jpg",
+      "caption": "微信图片_20261027195027_116_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "id": "cc4ebf2d-6a04-49f2-98be-0d4b9685d140",
+      "src": "shared/photos/cc4ebf2d-6a04-49f2-98be-0d4b9685d140.jpg",
+      "caption": "微信图片_20261027195028_117_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 576,
+      "h": 1280
+    },
+    {
+      "id": "864dfe3b-dc53-441f-b080-55c6c6326ae5",
+      "src": "shared/photos/864dfe3b-dc53-441f-b080-55c6c6326ae5.jpg",
+      "caption": "微信图片_20261027195030_118_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 576,
+      "h": 1280
+    },
+    {
+      "id": "34652c17-2916-4387-b420-3683e101f0bb",
+      "src": "shared/photos/34652c17-2916-4387-b420-3683e101f0bb.jpg",
+      "caption": "微信图片_20261027195031_119_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 720
+    },
+    {
+      "id": "0ad1fd65-3d35-4e5d-b46d-a7e45e12360d",
+      "src": "shared/photos/0ad1fd65-3d35-4e5d-b46d-a7e45e12360d.jpg",
+      "caption": "微信图片_20261027195032_120_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 720
+    },
+    {
+      "id": "b21e2a68-c30d-4197-acde-cc47535d917f",
+      "src": "shared/photos/b21e2a68-c30d-4197-acde-cc47535d917f.jpg",
+      "caption": "微信图片_20261027195034_121_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "ca80e164-491c-40d9-ba3b-6a5571b632ba",
+      "src": "shared/photos/ca80e164-491c-40d9-ba3b-6a5571b632ba.jpg",
+      "caption": "微信图片_20261027195035_122_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 1280,
+      "h": 576
+    },
+    {
+      "id": "f6273b04-5216-4a62-9c2b-0469f49c4259",
+      "src": "shared/photos/f6273b04-5216-4a62-9c2b-0469f49c4259.jpg",
+      "caption": "微信图片_20261027195037_123_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "12f1c97c-083e-447e-9f86-4938dd3a94c1",
+      "src": "shared/photos/12f1c97c-083e-447e-9f86-4938dd3a94c1.jpg",
+      "caption": "微信图片_20261027195039_124_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "0a5b54db-04df-4ffb-8551-b9f2b296feb7",
+      "src": "shared/photos/0a5b54db-04df-4ffb-8551-b9f2b296feb7.jpg",
+      "caption": "微信图片_20261027195041_125_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "80a534fd-4c95-462a-a4ba-2b50145e3379",
+      "src": "shared/photos/80a534fd-4c95-462a-a4ba-2b50145e3379.jpg",
+      "caption": "微信图片_20261027195043_126_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "89637a1e-74b7-4353-9978-d6c4acff3d0e",
+      "src": "shared/photos/89637a1e-74b7-4353-9978-d6c4acff3d0e.jpg",
+      "caption": "微信图片_20261027195046_127_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "15996eba-ff73-443c-9632-25aa49bd9c67",
+      "src": "shared/photos/15996eba-ff73-443c-9632-25aa49bd9c67.jpg",
+      "caption": "微信图片_20261027195048_128_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "0a090714-532c-4b5a-b68c-f343c0774809",
+      "src": "shared/photos/0a090714-532c-4b5a-b68c-f343c0774809.jpg",
+      "caption": "微信图片_20261027195051_129_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "id": "af2d1993-6f0f-4478-8699-d5695ec095a6",
+      "src": "shared/photos/af2d1993-6f0f-4478-8699-d5695ec095a6.jpg",
+      "caption": "微信图片_20261027195054_130_4",
+      "tag": "日常",
+      "date": "2026-10-27",
+      "w": 960,
+      "h": 1280
     }
   ],
   "events": [
     {
-      "id": "sample-event-1",
-      "title": "和阿岚在一起的第 4 年",
-      "date": "2026-11-11",
-      "type": "anniversary",
-      "repeat": true,
-      "note": "提前订好那家一直想吃的餐厅。",
-      "color": "vermilion"
-    },
-    {
-      "id": "sample-event-2",
+      "id": "ev-anniversary",
       "title": "小刘的生日",
-      "date": "2026-12-09",
+      "date": "2005-05-03",
       "type": "birthday",
       "repeat": true,
-      "note": "今年想安静地过。",
-      "color": "amber"
+      "note": "好好吃饭",
+      "color": "pine"
     },
     {
-      "id": "sample-event-3",
-      "title": "搬进这个小家",
-      "date": "2026-03-21",
-      "type": "anniversary",
-      "repeat": true,
-      "note": "阳台的绿萝还活着。",
-      "color": "sage"
+      "id": "ev-spring",
+      "title": "春节回家",
+      "date": "2027-02-06",
+      "type": "normal",
+      "repeat": false,
+      "note": "该抢票了。",
+      "color": "ochre"
     }
   ],
   "diaries": [
     {
-      "id": "sample-diary-1",
+      "id": "750a7a2c-3818-4cf2-b9c4-5358df651347",
+      "date": "2026-10-20",
+      "title": "好日子",
+      "mood": "充实",
+      "weather": "晴",
+      "content": "2026年10月20日（周二）· 小桌宠的观察日记\n心情：满足😌 · 今天陪你 1 小时 52 分\n今天你都干了啥\n21:00–22:00 和AI一起干活 10 分钟\n22:00–23:00 玩杀戮尖塔2 37 分钟、逛Steam 7 分钟、和AI一起干活 5 分钟\n23:00–00:00 玩杀戮尖塔2 28 分钟、整理文件 9 分钟、刷抖音 6 分钟\n最长的一段是 22:16 开始的「玩杀戮尖塔2」，大约 37 分钟\n我的心情\n满足😌，今天过得挺平稳～不过你今天好像很少中途休息，记得活动一下。\n想对主人说\n平平淡淡也很好呀。今天「游戏」花的时间最多，我都有好好看着你哦。明天也要按时吃饭、早点休息，我会一直在桌面上等你",
+      "createdAt": "2026-10-27T11:30:46.771Z",
+      "updatedAt": "2026-10-27T11:30:46.771Z"
+    },
+    {
+      "id": "a340db5f-7943-493b-aea9-2522b776c681",
+      "date": "2026-10-21",
+      "title": "大日子",
+      "mood": "充实",
+      "weather": "晴",
+      "content": "2026年10月21日（周三）· 小桌宠的观察日记\n心情：兴奋😆 · 今天陪你 8 小时 13 分\n今天你都干了啥\n12:00–13:00 刷抖音 40 分钟\n15:00–16:00 Folia 4 分钟\n16:00–17:00 和AI一起干活 27 分钟、玩杀戮尖塔2 15 分钟、命令行 9 分钟\n17:00–18:00 玩杀戮尖塔2 31 分钟、刷抖音 15 分钟\n18:00–19:00 玩杀戮尖塔2 53 分钟、刷抖音 3 分钟\n19:00–20:00 玩杀戮尖塔2 60 分钟\n20:00–21:00 玩杀戮尖塔2 60 分钟\n21:00–22:00 玩杀戮尖塔2 59 分钟\n22:00–23:00 玩杀戮尖塔2 38 分钟、整理文件 5 分钟\n23:00–00:00 字幕：** “但中国经济展现出巨大的韧性、潜力和回旋余地。它像一个不断进化的‘盲 15 分钟、和AI一起干活 15 分钟、刷抖音 6 分钟\n最长的一段是 18:29 开始的「玩杀戮尖塔2」，大约 1 小时 23 分。\n你在 23:30 之后还用了 28 分钟 的电脑。\n我的心情\n今天我的心情是兴奋😆，因为你打了好久的游戏。\n不过你今天中途休息了 2 次，我觉得这样挺好的。\n想对主人说\n玩得开心也要记得起来走两步。\n今天你在「游戏」上花的时间最多，我都有好好看着你哦。\n明天也要记得按时吃饭、早点休息，我会一直在桌面上等你。",
+      "createdAt": "2026-10-27T11:32:08.802Z",
+      "updatedAt": "2026-10-27T11:32:08.802Z"
+    },
+    {
+      "id": "5f48989c-42d5-43ed-9a3c-b2546453a35e",
       "date": "2026-10-27",
-      "title": "把阳台收拾干净了",
+      "title": "好日子",
       "mood": "平静",
       "weather": "晴",
-      "content": "把阳台的旧纸箱都搬下楼，绿萝换了个更大的盆。擦玻璃的时候看到楼下有人在遛狗，阳光把它的影子拉得很长。傍晚坐在干净的地板上喝了一杯冰水，觉得生活好像也被整理了一遍。",
-      "createdAt": "2026-10-27T12:30:00.000Z",
-      "updatedAt": "2026-10-27T12:30:00.000Z"
+      "content": "2026年10月22日（周四）· 小桌宠的观察日记\n心情：兴奋😆 · 今天陪你 6 小时 59 分\n今天你都干了啥\n12:00–13:00 刷抖音 46 分钟\n15:00–16:00 整理文件 7 分钟、刷抖音 5 分钟\n16:00–17:00 刷抖音 59 分钟\n17:00–18:00 整理文件 9 分钟、豆包 4 分钟\n18:00–19:00 刷抖音 15 分钟、和AI一起干活 15 分钟、整理文件 6 分钟\n19:00–20:00 玩杀戮尖塔 60 分钟\n20:00–21:00 玩杀戮尖塔 19 分钟、桌面端直播间 4 分钟\n21:00–22:00 玩杀戮尖塔 59 分钟\n22:00–23:00 玩杀戮尖塔 44 分钟、玩杀戮尖塔2 15 分钟\n23:00–00:00 玩杀戮尖塔2 20 分钟、和AI一起干活 4 分钟、豆包 3 分钟\n最长的一段是 18:55 开始的「玩杀戮尖塔」，大约 1 小时 19 分。\n我的心情\n今天我的心情是兴奋😆，因为你打了好久的游戏。\n不过你今天中途休息了 5 次，我觉得这样挺好的。\n想对主人说\n玩得开心也要记得起来走两步。\n今天你在「游戏」上花的时间最多，我都有好好看着你哦。\n明天也要记得按时吃饭、早点休息，我会一直在桌面上等你。",
+      "createdAt": "2026-10-27T11:33:18.274Z",
+      "updatedAt": "2026-10-27T11:33:18.274Z"
     },
     {
-      "id": "sample-diary-2",
-      "date": "2026-10-25",
-      "title": "一场没有目的的散步",
+      "id": "9fb8edca-5742-4073-b973-7758c6d193ab",
+      "date": "2026-10-23",
+      "title": "平凡的一天",
       "mood": "开心",
-      "weather": "多云",
-      "content": "没有带耳机，沿着运河一直走。路过一家很小的旧书店，老板在门口晒太阳。买了一本二手的散文集，回来的时候天已经暗了。",
-      "createdAt": "2026-10-25T11:20:00.000Z",
-      "updatedAt": "2026-10-25T11:20:00.000Z"
+      "weather": "晴",
+      "content": "2026年10月23日（周五）· 小桌宠的观察日记\n心情：兴奋😆 · 今天陪你 9 小时 13 分\n今天你都干了啥\n13:00–14:00 刷抖音 36 分钟、和平精英模拟器 3 分钟\n14:00–15:00 和平精英模拟器高清版 36 分钟、刷抖音 10 分钟、和平精英模拟器 3 分钟\n15:00–16:00 和平精英模拟器高清版 53 分钟、设置 5 分钟\n16:00–17:00 玩杀戮尖塔2 54 分钟\n17:00–18:00 玩杀戮尖塔2 60 分钟\n18:00–19:00 玩杀戮尖塔2 60 分钟\n19:00–20:00 玩杀戮尖塔2 52 分钟、整理文件 3 分钟\n20:00–21:00 刷抖音 17 分钟\n21:00–22:00 刷抖音 44 分钟、查资料 5 分钟\n22:00–23:00 玩杀戮尖塔2 34 分钟、刷抖音 14 分钟、Folia 5 分钟\n23:00–00:00 玩杀戮尖塔2 46 分钟\n最长的一段是 16:05 开始的「玩杀戮尖塔2」，大约 3 小时 46 分。\n你在 23:30 之后还用了 19 分钟 的电脑。\n我的心情\n今天我的心情是兴奋😆，因为你打了好久的游戏。\n不过你今天中途休息了 2 次，我觉得这样挺好的。\n想对主人说\n玩得开心也要记得起来走两步。\n今天你在「游戏」上花的时间最多，我都有好好看着你哦。\n明天也要记得按时吃饭、早点休息，我会一直在桌面上等你。",
+      "createdAt": "2026-10-27T11:34:06.055Z",
+      "updatedAt": "2026-10-27T11:34:06.055Z"
     },
     {
-      "id": "sample-diary-3",
-      "date": "2026-10-21",
-      "title": "今天什么都没做",
-      "mood": "疲惫",
-      "weather": "小雨",
-      "content": "睡到自然醒，煮了一碗面，把没看完的剧看完了。没有完成待办，也没有关系。",
-      "createdAt": "2026-10-21T13:00:00.000Z",
-      "updatedAt": "2026-10-21T13:00:00.000Z"
+      "id": "715a2136-29ad-48d0-b776-76753dc9f56c",
+      "date": "2026-10-24",
+      "title": "平凡的一天",
+      "mood": "平静",
+      "weather": "晴",
+      "content": "2026年10月24日（周六）· 小桌宠的观察日记\n心情：兴奋😆 · 今天陪你 6 小时 42 分\n今天你都干了啥\n15:00–16:00 玩杀戮尖塔2 22 分钟、Folia 12 分钟\n16:00–17:00 玩杀戮尖塔2 60 分钟\n17:00–18:00 玩杀戮尖塔2 58 分钟\n18:00–19:00 Folia 6 分钟\n19:00–20:00 刷抖音 35 分钟\n20:00–21:00 刷抖音 47 分钟\n21:00–22:00 刷抖音 60 分钟\n22:00–23:00 刷抖音 49 分钟、玩杀戮尖塔 5 分钟\n23:00–00:00 玩杀戮尖塔 42 分钟、整理文件 3 分钟\n最长的一段是 20:21 开始的「刷抖音」，大约 2 小时 27 分。\n你在 23:30 之后还用了 16 分钟 的电脑。\n我的心情\n今天我的心情是兴奋😆，因为你打了好久的游戏。\n不过你今天中途休息了 3 次，我觉得这样挺好的。\n想对主人说\n玩得开心也要记得起来走两步。\n今天你在「娱乐」上花的时间最多，我都有好好看着你哦。\n明天也要记得按时吃饭、早点休息，我会一直在桌面上等你。",
+      "createdAt": "2026-10-27T11:34:52.233Z",
+      "updatedAt": "2026-10-27T11:34:52.233Z"
+    },
+    {
+      "id": "6b887f0d-b60d-471d-8345-219d641af864",
+      "date": "2026-10-25",
+      "title": "未命名的一天",
+      "mood": "平静",
+      "weather": "晴",
+      "content": "2026年10月25日（周日）· 小桌宠的观察日记\n心情：满足😌 · 今天陪你 6 小时 57 分\n今天你都干了啥\n13:00–14:00 命令行 24 分钟\n14:00–15:00 和AI一起干活 32 分钟、命令行 8 分钟\n15:00–16:00 和AI一起干活 32 分钟、浏览网页 16 分钟、整理文件 5 分钟\n16:00–17:00 浏览网页 21 分钟、Agent 6 分钟、整理文件 5 分钟\n17:00–18:00 Agent 22 分钟、浏览网页 16 分钟、整理文件 3 分钟\n18:00–19:00 玩杀戮尖塔2 23 分钟、浏览网页 18 分钟\n20:00–21:00 玩杀戮尖塔2 20 分钟、豆包 3 分钟\n21:00–22:00 项目策划书与汇报稿制作 - 豆包 30 分钟、办公文档 16 分钟、豆包 5 分钟\n22:00–23:00 玩杀戮尖塔2 16 分钟、办公文档 14 分钟、用微信 6 分钟\n23:00–00:00 玩杀戮尖塔2 60 分钟\n最长的一段是 22:44 开始的「玩杀戮尖塔2」，大约 1 小时 15 分。\n你在 23:30 之后还用了 29 分钟 的电脑。\n我的心情\n今天我的心情是满足😌，因为今天过得挺平稳。\n不过你今天中途休息了 3 次，我觉得这样挺好的。\n想对主人说\n平平淡淡也很好呀。\n今天你在「其他」上花的时间最多，我都有好好看着你哦。\n明天也要记得按时吃饭、早点休息，我会一直在桌面上等你。",
+      "createdAt": "2026-10-27T11:36:03.823Z",
+      "updatedAt": "2026-10-27T11:36:03.823Z"
+    },
+    {
+      "id": "37c8d5b1-25c9-416c-aa8c-dcd3a178a949",
+      "date": "2026-10-26",
+      "title": "未命名的一天",
+      "mood": "平静",
+      "weather": "晴",
+      "content": "2026年10月26日（周一）· 小桌宠的观察日记\n心情：担心😟 · 今天陪你 4 小时 11 分\n今天你都干了啥\n00:00–01:00 玩杀戮尖塔2 14 分钟\n19:00–20:00 玩杀戮尖塔2 13 分钟\n20:00–21:00 玩杀戮尖塔2 51 分钟、刷抖音 9 分钟\n21:00–22:00 玩杀戮尖塔2 60 分钟\n22:00–23:00 命令行 13 分钟、和AI一起干活 13 分钟、刷抖音 12 分钟\n23:00–00:00 玩杀戮尖塔2 30 分钟、刷抖音 27 分钟\n最长的一段是 20:43 开始的「玩杀戮尖塔2」，大约 1 小时 19 分。\n你在 23:30 之后还用了 43 分钟 的电脑。\n我的心情\n今天我的心情是担心😟，因为你在深夜还在用电脑。\n不过你今天中途休息了 2 次，我觉得这样挺好的。\n想对主人说\n早点睡吧，我明天还想见到你。\n今天你在「游戏」上花的时间最多，我都有好好看着你哦。\n明天也要记得按时吃饭、早点休息，我会一直在桌面上等你",
+      "createdAt": "2026-10-27T11:36:28.916Z",
+      "updatedAt": "2026-10-27T11:36:28.916Z"
     }
   ],
   "todos": [
     {
-      "id": "sample-todo-1",
-      "text": "整理上个月的照片，挑九张洗出来",
-      "done": false,
-      "createdAt": "2026-10-26T09:00:00.000Z"
-    },
-    {
-      "id": "sample-todo-2",
-      "text": "读完《山茶文具店》最后两章",
-      "done": false,
-      "createdAt": "2026-10-25T09:00:00.000Z"
-    },
-    {
-      "id": "sample-todo-3",
-      "text": "预约周末的牙科检查",
-      "done": false,
-      "createdAt": "2026-10-24T09:00:00.000Z"
-    },
-    {
-      "id": "sample-todo-4",
-      "text": "买牛奶、咖啡豆和一瓶酱油",
-      "done": false,
-      "createdAt": "2026-10-23T09:00:00.000Z"
-    },
-    {
-      "id": "sample-todo-5",
-      "text": "给阳台的绿萝换盆",
+      "id": "1dfe4c11-8e24-4332-93a2-c35c73023beb",
+      "text": "刷抖音玩手机",
       "done": true,
-      "createdAt": "2026-10-22T09:00:00.000Z"
+      "createdAt": "2026-10-27T11:37:57.381Z"
     },
     {
-      "id": "sample-todo-6",
-      "text": "给妈妈回个视频电话",
+      "id": "b0b10f3b-5553-47b9-98d0-886214e19656",
+      "text": "玩杀戮尖塔",
       "done": true,
-      "createdAt": "2026-10-21T09:00:00.000Z"
+      "createdAt": "2026-10-27T11:37:32.028Z"
     }
   ],
   "meta": {
-    "lastExport": "2026-10-27",
-    "updatedAt": "2026-10-27T15:12:41.230Z",
+    "lastExport": "2026-10-28",
+    "updatedAt": "2026-10-27T16:05:30.193Z",
     "sharedExport": true,
-    "sharedExportedAt": "2026-10-27T14:00:00.000Z",
-    "publishedAt": "2026-10-27T15:12:41.228Z"
+    "sharedExportedAt": "2026-10-27T16:02:02.937Z",
+    "publishedAt": "2026-10-27T16:05:30.190Z"
   }
 }

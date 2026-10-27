@@ -3222,6 +3222,16 @@
     showRecoveryBanner();
     if (recovery && !IS_SHARED) toast('本地数据读取失败，已保留原始内容（如有可能）。', 'error');
     if (IS_SHARED && state.meta.sharedLoaded) toast('共享只读模式：内容由小刘发布。', '');
+    if (!IS_SHARED && PAGE_PARAMS.get('export') === 'shared') {
+      setTimeout(() => {
+        exportSharedSnapshot();
+        try {
+          const clean = new URL(location.href);
+          clean.searchParams.delete('export');
+          history.replaceState(null, '', clean.pathname + (clean.search || '') + (clean.hash || ''));
+        } catch (err) { /* ignore */ }
+      }, 900);
+    }
   }
 
   init();
