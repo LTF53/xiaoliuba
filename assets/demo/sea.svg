@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123a52"/>
+      <stop offset=".5" stop-color="#2e7082"/>
+      <stop offset=".78" stop-color="#7ba6ac"/>
+      <stop offset="1" stop-color="#c6d2c6"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f3d4a"/>
+      <stop offset="1" stop-color="#155259"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe9bd" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#ffe9bd" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 .05 0 0 0 0 .07 0 0 0 0 .08 0 0 0 .45 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="640" cy="470" r="58" fill="#ffecc4" opacity=".95"/>
+  <rect x="0" y="480" width="1200" height="320" fill="url(#sea)"/>
+  <g opacity=".55" stroke="#f7edd6" stroke-width="2" fill="none">
+    <path d="M0 544 q60 -12 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0"/>
+    <path d="M0 596 q60 -12 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" opacity=".7"/>
+    <path d="M0 648 q60 -12 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" opacity=".45"/>
+  </g>
+  <rect x="628" y="488" width="24" height="250" fill="url(#glow)" opacity=".55"/>
+  <path d="M0 702 q80 -18 160 0 t160 0 t160 0 t160 0 t160 0 t160 0 t160 0 t160 0" stroke="#dbe5dc" stroke-width="2" fill="none" opacity=".25"/>
+  <rect width="1200" height="800" filter="url(#grain)" opacity=".2"/>
+</svg>
