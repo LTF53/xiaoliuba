@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-27T00:00:00.000Z",
+  "settings": {
+    "theme": "light",
+    "accent": "vermilion"
+  },
+  "profile": {
+    "name": "小刘",
+    "tagline": "记录者 / 生活收藏家",
+    "birthday": "1998-12-09",
+    "city": "杭州",
+    "since": "2023-09-01",
+    "bio": "喜欢把普通日子收好，照片、心情、没做完的小事，都放在这里。",
+    "avatar": ""
+  },
+  "photos": [
+    {
+      "id": "sample-photo-1",
+      "src": "assets/demo/dusk.svg",
+      "caption": "下班路上遇到的晚霞",
+      "tag": "日常",
+      "date": "2026-10-26",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-2",
+      "src": "assets/demo/mist.svg",
+      "caption": "山里的雾慢慢散开",
+      "tag": "旅行",
+      "date": "2026-10-20",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-3",
+      "src": "assets/demo/sea.svg",
+      "caption": "海边的风很大",
+      "tag": "旅行",
+      "date": "2026-10-18",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-4",
+      "src": "assets/demo/window.svg",
+      "caption": "窗边的下午",
+      "tag": "日常",
+      "date": "2026-10-15",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-5",
+      "src": "assets/demo/blossom.svg",
+      "caption": "楼下开花了",
+      "tag": "日常",
+      "date": "2026-10-12",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-6",
+      "src": "assets/demo/lantern.svg",
+      "caption": "巷子里的灯",
+      "tag": "日常",
+      "date": "2026-10-08",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-7",
+      "src": "assets/demo/moon.svg",
+      "caption": "很安静的晚上",
+      "tag": "日常",
+      "date": "2026-10-03",
+      "w": 4,
+      "h": 3
+    },
+    {
+      "id": "sample-photo-8",
+      "src": "assets/demo/film.svg",
+      "caption": "旧胶片里的夏天",
+      "tag": "朋友",
+      "date": "2026-09-28",
+      "w": 4,
+      "h": 3
+    }
+  ],
+  "events": [
+    {
+      "id": "sample-event-1",
+      "title": "和阿岚在一起的第 4 年",
+      "date": "2026-11-11",
+      "type": "anniversary",
+      "repeat": true,
+      "note": "提前订好那家一直想吃的餐厅。",
+      "color": "vermilion"
+    },
+    {
+      "id": "sample-event-2",
+      "title": "小刘的生日",
+      "date": "2026-12-09",
+      "type": "birthday",
+      "repeat": true,
+      "note": "今年想安静地过。",
+      "color": "amber"
+    },
+    {
+      "id": "sample-event-3",
+      "title": "搬进这个小家",
+      "date": "2026-03-21",
+      "type": "anniversary",
+      "repeat": true,
+      "note": "阳台的绿萝还活着。",
+      "color": "sage"
+    }
+  ],
+  "diaries": [
+    {
+      "id": "sample-diary-1",
+      "date": "2026-10-27",
+      "title": "把阳台收拾干净了",
+      "mood": "平静",
+      "weather": "晴",
+      "content": "把阳台的旧纸箱都搬下楼，绿萝换了个更大的盆。擦玻璃的时候看到楼下有人在遛狗，阳光把它的影子拉得很长。傍晚坐在干净的地板上喝了一杯冰水，觉得生活好像也被整理了一遍。",
+      "createdAt": "2026-10-27T12:30:00.000Z",
+      "updatedAt": "2026-10-27T12:30:00.000Z"
+    },
+    {
+      "id": "sample-diary-2",
+      "date": "2026-10-25",
+      "title": "一场没有目的的散步",
+      "mood": "开心",
+      "weather": "多云",
+      "content": "没有带耳机，沿着运河一直走。路过一家很小的旧书店，老板在门口晒太阳。买了一本二手的散文集，回来的时候天已经暗了。",
+      "createdAt": "2026-10-25T11:20:00.000Z",
+      "updatedAt": "2026-10-25T11:20:00.000Z"
+    },
+    {
+      "id": "sample-diary-3",
+      "date": "2026-10-21",
+      "title": "今天什么都没做",
+      "mood": "疲惫",
+      "weather": "小雨",
+      "content": "睡到自然醒，煮了一碗面，把没看完的剧看完了。没有完成待办，也没有关系。",
+      "createdAt": "2026-10-21T13:00:00.000Z",
+      "updatedAt": "2026-10-21T13:00:00.000Z"
+    }
+  ],
+  "todos": [
+    {
+      "id": "sample-todo-1",
+      "text": "整理上个月的照片，挑九张洗出来",
+      "done": false,
+      "createdAt": "2026-10-26T09:00:00.000Z"
+    },
+    {
+      "id": "sample-todo-2",
+      "text": "读完《山茶文具店》最后两章",
+      "done": false,
+      "createdAt": "2026-10-25T09:00:00.000Z"
+    },
+    {
+      "id": "sample-todo-3",
+      "text": "预约周末的牙科检查",
+      "done": false,
+      "createdAt": "2026-10-24T09:00:00.000Z"
+    },
+    {
+      "id": "sample-todo-4",
+      "text": "买牛奶、咖啡豆和一瓶酱油",
+      "done": false,
+      "createdAt": "2026-10-23T09:00:00.000Z"
+    },
+    {
+      "id": "sample-todo-5",
+      "text": "给阳台的绿萝换盆",
+      "done": true,
+      "createdAt": "2026-10-22T09:00:00.000Z"
+    },
+    {
+      "id": "sample-todo-6",
+      "text": "给妈妈回个视频电话",
+      "done": true,
+      "createdAt": "2026-10-21T09:00:00.000Z"
+    }
+  ],
+  "meta": {
+    "lastExport": "2026-10-27",
+    "updatedAt": "2026-10-27T15:12:41.230Z",
+    "sharedExport": true,
+    "sharedExportedAt": "2026-10-27T14:00:00.000Z",
+    "publishedAt": "2026-10-27T15:12:41.228Z"
+  }
+}

@@ -42,8 +42,14 @@
     const src = String(value || '');
     if (/^data:image\/(?:png|jpe?g|webp|gif|avif);base64,[a-z0-9+/=]+$/i.test(src)) return src;
     if (/^assets\/demo\/[a-z0-9._-]+\.svg$/i.test(src)) return src;
+    if (/^shared\/photos\/[a-z0-9._-]+\.(?:png|jpe?g|webp|gif)$/i.test(src)) return src;
     return '';
   }
+
+  /* 共享只读模式：GitHub Pages 上自动读取发布者上传的 shared/state.json，
+     本地开发/编辑模式不受影响；也可以用 ?shared=1 预览。 */
+  const PAGE_PARAMS = new URLSearchParams(window.location.search);
+  const IS_SHARED = /\.github\.io$/i.test(window.location.hostname) || PAGE_PARAMS.get('shared') === '1';
 
   /* ---------------------------------------------------------------------
      照片库：照片二进制存放在 IndexedDB，localStorage 只存文字元数据。
@@ -457,6 +463,16 @@
     };
   }
 
+  function emptySharedState() {
+    const shared = seedState();
+    shared.photos = [];
+    shared.events = [];
+    shared.diaries = [];
+    shared.todos = [];
+    shared.meta = { ...shared.meta, sharedLoaded: false };
+    return shared;
+  }
+
   /* ---------------------------------------------------------------------
      4. 数据加载 / 保存
      --------------------------------------------------------------------- */
@@ -591,13 +607,27 @@
     }
   }
 
-  let state = loadState();
+  async function loadSharedState() {
+    try {
+      const response = await fetch(`shared/state.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      state = normalizeState(data);
+      state.meta = { ...state.meta, sharedLoaded: true };
+    } catch (err) {
+      console.warn('[小刘吧] 共享数据读取失败。', err);
+      state.meta = { ...state.meta, sharedLoaded: false, sharedError: true };
+    }
+  }
+
+  let state = IS_SHARED ? emptySharedState() : loadState();
 
   function currentSize() {
     try { return serializeState().length; } catch (err) { return 0; }
   }
 
   function save(options = {}) {
+    if (IS_SHARED) return true; // 只读共享页不写回任何数据
     const quiet = !!options.quiet;
     state.meta.updatedAt = new Date().toISOString();
     try {
@@ -617,7 +647,7 @@
      --------------------------------------------------------------------- */
   const THEME_LABELS = { light: '浅色', dark: '深色', auto: '跟随系统' };
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-  const urlParams = new URLSearchParams(location.search);
+  const urlParams = PAGE_PARAMS;
   let previewTheme = ['light', 'dark', 'auto'].includes(urlParams.get('theme')) ? urlParams.get('theme') : null;
   let previewAccent = ACCENTS.some(([key]) => key === urlParams.get('accent')) ? urlParams.get('accent') : null;
 
@@ -1036,9 +1066,15 @@
     const count = state.photos.length;
     const sub = $('#gallerySub');
     if (sub) {
-      sub.textContent = count
-        ? `共 ${count} 张照片。照片保存在本机浏览器的照片库里（IndexedDB），可以随时删掉。`
-        : '把喜欢的瞬间贴在这里。';
+      if (IS_SHARED) {
+        sub.textContent = count
+          ? `共 ${count} 张照片 · 来自共享快照，只读展示。`
+          : '共享快照里还没有照片。';
+      } else {
+        sub.textContent = count
+          ? `共 ${count} 张照片。照片保存在本机浏览器的照片库里（IndexedDB），可以随时删掉。`
+          : '把喜欢的瞬间贴在这里。';
+      }
     }
     const tags = galleryTags();
     if (activeTag !== '全部' && !tags.some((item) => item.tag === activeTag)) activeTag = '全部';
@@ -2624,6 +2660,60 @@
     toast(skipped ? `备份已导出（${skipped} 张照片读取失败）` : '备份已导出', 'success');
   }
 
+  async function exportSharedSnapshot() {
+    toast('正在生成共享快照…');
+    const exportedPhotos = [];
+    let skipped = 0;
+    for (const photo of state.photos) {
+      const copy = { ...photo };
+      delete copy._objectUrl;
+      delete copy.bytes;
+      if (photo.mediaId) {
+        try {
+          const blob = await idbGet(photo.mediaId);
+          if (!blob) { skipped += 1; continue; }
+          copy.src = await blobToDataUrl(blob);
+        } catch (err) {
+          console.warn('[小刘吧] 共享快照读取照片失败', err);
+          skipped += 1;
+          continue;
+        }
+      }
+      if (!copy.src && !copy.mediaId) { skipped += 1; continue; }
+      delete copy.mediaId;
+      exportedPhotos.push(copy);
+    }
+    const now = new Date();
+    const timeStamp = `${todayISO()}-${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
+    const snapshot = {
+      ...state,
+      photos: exportedPhotos,
+      meta: {
+        ...state.meta,
+        sharedExport: true,
+        sharedExportedAt: new Date().toISOString(),
+        lastExport: todayISO()
+      }
+    };
+    state.meta.lastExport = todayISO();
+    save();
+    const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `xiaoliuba-shared-${timeStamp}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    toast(
+      skipped
+        ? `共享快照已导出（${skipped} 张照片读取失败），双击「发布共享数据.bat」发布`
+        : '共享快照已导出，双击「发布共享数据.bat」发布到 GitHub Pages',
+      'success'
+    );
+  }
+
   async function importData(file) {
     if (!file) return;
     try {
@@ -2863,6 +2953,7 @@
       case 'set-theme': setTheme(actionEl.dataset.theme || 'light'); break;
       case 'set-accent': setAccent(actionEl.dataset.accent || 'vermilion'); break;
       case 'export-data': exportData(); break;
+      case 'export-shared': exportSharedSnapshot(); break;
       case 'import-data': {
         const fileInput = $('#importFile');
         if (fileInput) fileInput.click();
@@ -3081,18 +3172,45 @@
     }
   }
 
+  function showSharedChrome() {
+    document.body.classList.add('is-shared');
+    const tools = $('.topbar-tools');
+    if (tools && !$('.shared-badge')) {
+      tools.insertAdjacentHTML('afterbegin', '<span class="shared-badge">只读共享</span>');
+    }
+    const foot = $('.site-foot p');
+    if (foot) foot.textContent = '小刘吧 · 共享只读页 · 内容由小刘发布';
+    if (state.meta.sharedLoaded) return;
+    const content = $('.content');
+    if (!content) return;
+    const banner = document.createElement('div');
+    banner.className = 'recovery-banner shared-empty-banner';
+    banner.innerHTML = `
+      <div>
+        <strong>共享数据还没有发布</strong>
+        <p>这个页面是只读共享模式，但仓库里还没有 <code>shared/state.json</code>。请从本地小刘吧导出一份共享快照，再运行“发布共享数据.bat”。</p>
+      </div>`;
+    content.insertBefore(banner, content.firstChild);
+  }
+
   async function init() {
     applyTheme();
     bindStaticEvents();
-    try {
-      if (!recovery) {
-        await hydrateMediaStore();
-        if (!save({ quiet: true })) toast('本地数据保存失败，请检查浏览器存储空间。', 'error');
-      } else {
-        await hydrateMediaStore({ cleanup: false });
+    if (IS_SHARED) {
+      await loadSharedState();
+      applyTheme();
+      showSharedChrome();
+    } else {
+      try {
+        if (!recovery) {
+          await hydrateMediaStore();
+          if (!save({ quiet: true })) toast('本地数据保存失败，请检查浏览器存储空间。', 'error');
+        } else {
+          await hydrateMediaStore({ cleanup: false });
+        }
+      } catch (err) {
+        console.warn('[小刘吧] 初始化照片库失败', err);
       }
-    } catch (err) {
-      console.warn('[小刘吧] 初始化照片库失败', err);
     }
     if (!location.hash) {
       try { history.replaceState(null, '', '#dashboard'); } catch (err) { /* ignore */ }
@@ -3100,9 +3218,10 @@
     route();
     tick();
     setInterval(tick, 1000);
-    refreshStorageQuota();
+    if (!IS_SHARED) refreshStorageQuota();
     showRecoveryBanner();
-    if (recovery) toast('本地数据读取失败，已保留原始内容（如有可能）。', 'error');
+    if (recovery && !IS_SHARED) toast('本地数据读取失败，已保留原始内容（如有可能）。', 'error');
+    if (IS_SHARED && state.meta.sharedLoaded) toast('共享只读模式：内容由小刘发布。', '');
   }
 
   init();

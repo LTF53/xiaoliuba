@@ -2336,7 +2336,55 @@ html[data-theme="dark"] .toast--error { background: #b85745; color: #1d1410; }
   .lb-figure img { max-height: calc(100dvh - 188px); }
 }
 
-/* ---------- 21. Reduced motion ---------- */
+/* ---------- 21. 共享只读模式 ---------- */
+.shared-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 9.5px;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+body.is-shared .about-card,
+body.is-shared .page-actions,
+body.is-shared .hero-actions,
+body.is-shared .shot-actions,
+body.is-shared .shot--add,
+body.is-shared .ev-actions,
+body.is-shared .quick-add,
+body.is-shared .todo-item .check,
+body.is-shared .mini-todo .check,
+body.is-shared .todo-item .todo-del,
+body.is-shared .todo-foot,
+body.is-shared .profile-top .btn,
+body.is-shared .data-actions,
+body.is-shared .appearance-card,
+body.is-shared .storage-chip,
+body.is-shared .storage-block,
+body.is-shared .side-theme,
+body.is-shared .lb-actions,
+body.is-shared .avatar-btn,
+body.is-shared .empty-state .btn,
+body.is-shared .entry-foot [data-action="edit-diary"],
+body.is-shared .entry-foot [data-action="delete-diary"],
+body.is-shared .reader-actions [data-action="edit-diary"],
+body.is-shared .reader-actions [data-action="delete-diary"] {
+  display: none !important;
+}
+body.is-shared .profile-grid > * { grid-column: span 12 !important; }
+body.is-shared .shared-empty-banner code {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  background: var(--paper-soft);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ---------- 22. Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

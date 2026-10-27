@@ -239,10 +239,12 @@
               <p class="about-copy">换电脑或清理浏览器之前，记得先导出一份备份。</p>
               <div class="data-actions">
                 <button class="btn btn--ghost" type="button" data-action="export-data">导出备份</button>
+                <button class="btn btn--ghost" type="button" data-action="export-shared">导出共享快照</button>
                 <button class="btn btn--ghost" type="button" data-action="import-data">导入备份</button>
                 <input type="file" id="importFile" accept="application/json,.json" hidden>
                 <button class="btn btn--danger" type="button" data-action="reset-data">恢复示例数据</button>
               </div>
+              <p class="fine-print">共享页：导出快照后双击「发布共享数据.bat」，GitHub Pages 会更新只读共享内容。</p>
               <p class="fine-print" id="finePrint"></p>
             </section>
           </div>
