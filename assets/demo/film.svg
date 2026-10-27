@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800">
+  <defs>
+    <linearGradient id="one" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e2b16c"/>
+      <stop offset="1" stop-color="#b97b43"/>
+    </linearGradient>
+    <linearGradient id="two" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8fa79b"/>
+      <stop offset="1" stop-color="#5f7d78"/>
+    </linearGradient>
+    <linearGradient id="three" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c47b62"/>
+      <stop offset="1" stop-color="#8f4c45"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 .08 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .55 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="800" fill="#191512"/>
+  <g>
+    <rect x="84" y="150" width="332" height="500" rx="10" fill="url(#one)"/>
+    <rect x="472" y="150" width="332" height="500" rx="10" fill="url(#two)"/>
+    <rect x="860" y="150" width="332" height="500" rx="10" fill="url(#three)"/>
+    <g fill="#f1e5cf" opacity=".82">
+      <rect x="84" y="92" width="30" height="44" rx="5"/><rect x="142" y="92" width="30" height="44" rx="5"/>
+      <rect x="200" y="92" width="30" height="44" rx="5"/><rect x="258" y="92" width="30" height="44" rx="5"/>
+      <rect x="316" y="92" width="30" height="44" rx="5"/><rect x="374" y="92" width="30" height="44" rx="5"/>
+      <rect x="472" y="92" width="30" height="44" rx="5"/><rect x="530" y="92" width="30" height="44" rx="5"/>
+      <rect x="588" y="92" width="30" height="44" rx="5"/><rect x="646" y="92" width="30" height="44" rx="5"/>
+      <rect x="704" y="92" width="30" height="44" rx="5"/><rect x="762" y="92" width="30" height="44" rx="5"/>
+      <rect x="860" y="92" width="30" height="44" rx="5"/><rect x="918" y="92" width="30" height="44" rx="5"/>
+      <rect x="976" y="92" width="30" height="44" rx="5"/><rect x="1034" y="92" width="30" height="44" rx="5"/>
+      <rect x="1092" y="92" width="30" height="44" rx="5"/><rect x="1150" y="92" width="30" height="44" rx="5"/>
+      <rect x="84" y="672" width="30" height="44" rx="5"/><rect x="142" y="672" width="30" height="44" rx="5"/>
+      <rect x="200" y="672" width="30" height="44" rx="5"/><rect x="258" y="672" width="30" height="44" rx="5"/>
+      <rect x="316" y="672" width="30" height="44" rx="5"/><rect x="374" y="672" width="30" height="44" rx="5"/>
+      <rect x="472" y="672" width="30" height="44" rx="5"/><rect x="530" y="672" width="30" height="44" rx="5"/>
+      <rect x="588" y="672" width="30" height="44" rx="5"/><rect x="646" y="672" width="30" height="44" rx="5"/>
+      <rect x="704" y="672" width="30" height="44" rx="5"/><rect x="762" y="672" width="30" height="44" rx="5"/>
+      <rect x="860" y="672" width="30" height="44" rx="5"/><rect x="918" y="672" width="30" height="44" rx="5"/>
+      <rect x="976" y="672" width="30" height="44" rx="5"/><rect x="1034" y="672" width="30" height="44" rx="5"/>
+      <rect x="1092" y="672" width="30" height="44" rx="5"/><rect x="1150" y="672" width="30" height="44" rx="5"/>
+    </g>
+    <g fill="#f7ecda" opacity=".16">
+      <rect x="84" y="150" width="332" height="500" rx="10"/>
+      <rect x="472" y="150" width="332" height="500" rx="10"/>
+      <rect x="860" y="150" width="332" height="500" rx="10"/>
+    </g>
+    <g fill="#221a15" opacity=".25">
+      <circle cx="250" cy="330" r="72"/>
+      <circle cx="638" cy="420" r="96"/>
+      <circle cx="1020" cy="300" r="60"/>
+    </g>
+  </g>
+  <rect width="1280" height="800" filter="url(#grain)" opacity=".3"/>
+</svg>
