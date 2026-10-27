@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8dcc8"/>
+      <stop offset="1" stop-color="#cdb99e"/>
+    </linearGradient>
+    <linearGradient id="view" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfdedd"/>
+      <stop offset=".6" stop-color="#e9e2cf"/>
+      <stop offset="1" stop-color="#f4e9d2"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7df" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff7df" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 .14 0 0 0 0 .12 0 0 0 0 .09 0 0 0 .4 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="800" height="1000" fill="url(#wall)"/>
+  <rect x="150" y="160" width="500" height="560" rx="6" fill="#8a745c"/>
+  <rect x="172" y="182" width="456" height="516" fill="url(#view)"/>
+  <path d="M400 182 V698 M172 440 H628" stroke="#8a745c" stroke-width="14"/>
+  <circle cx="330" cy="350" r="62" fill="#fdf3da" opacity=".75"/>
+  <path d="M172 560 q90 -40 170 0 t160 -6 t126 0 v118 H172Z" fill="#a8bfa8" opacity=".6"/>
+  <path d="M0 690 L420 1000 H0Z" fill="url(#beam)"/>
+  <g fill="#4f6651" opacity=".85">
+    <path d="M620 1000 C560 900 560 806 606 726 C636 790 654 872 646 960Z"/>
+    <path d="M660 1000 C640 906 664 826 724 770 C734 852 716 936 684 1000Z"/>
+    <path d="M570 1000 C520 942 498 878 508 812 C556 854 588 916 600 986Z"/>
+    <path d="M700 1000 C712 930 752 872 802 846 C794 918 760 970 730 1000Z"/>
+  </g>
+  <rect x="150" y="700" width="500" height="26" fill="#a48d70"/>
+  <rect width="800" height="1000" filter="url(#grain)" opacity=".16"/>
+</svg>
