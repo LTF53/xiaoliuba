@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-accent="vermilion">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="小刘吧 —— 一个安静的私人角落。收藏照片、倒数重要日子、写下心情，把普通的日子过得认真一点。">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7f4ee" id="themeColorMeta">
+  <title>小刘吧 · 把日子过成喜欢的样子</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23b8452c'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff7ee' font-family='Songti SC,SimSun,serif'%3E刘%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <noscript>
+    <div class="noscript">小刘吧需要开启 JavaScript 才能使用。请在浏览器设置中允许 JavaScript 后刷新页面。</div>
+  </noscript>
+
+  <div class="backdrop" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+    <span class="grain"></span>
+  </div>
+
+  <div class="shell">
+    <!-- ============ 侧边栏 ============ -->
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" data-nav="dashboard" aria-label="小刘吧 · 回到仪表盘">
+        <span class="brand-seal" aria-hidden="true">刘</span>
+        <span class="brand-text">
+          <strong>小刘吧</strong>
+          <small>XIAO LIU'S ROOM</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-link" href="#dashboard" data-nav="dashboard"><span class="nav-num">01</span><span class="nav-label">仪表盘</span></a>
+        <a class="nav-link" href="#gallery" data-nav="gallery"><span class="nav-num">02</span><span class="nav-label">照片墙</span></a>
+        <a class="nav-link" href="#countdown" data-nav="countdown"><span class="nav-num">03</span><span class="nav-label">倒计时</span></a>
+        <a class="nav-link" href="#diary" data-nav="diary"><span class="nav-num">04</span><span class="nav-label">日记</span></a>
+        <a class="nav-link" href="#todos" data-nav="todos"><span class="nav-num">05</span><span class="nav-label">待办</span></a>
+        <a class="nav-link" href="#profile" data-nav="profile"><span class="nav-num">06</span><span class="nav-label">我的</span></a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="storage-chip" id="storageChip">
+          <div class="storage-chip-top"><span>本地照片</span><b id="storagePercent">0%</b></div>
+          <div class="storage-track"><i id="storageBar"></i></div>
+        </div>
+        <button class="side-theme" id="sideThemeBtn" type="button">外观 · 浅色</button>
+        <p class="side-copy">把普通日子<br>过得认真一点</p>
+      </div>
+    </aside>
+
+    <!-- ============ 主区域 ============ -->
+    <div class="main">
+      <header class="topbar">
+        <div class="crumbs">
+          <span class="crumbs-brand">小刘吧</span>
+          <i>/</i>
+          <b id="crumbView">仪表盘</b>
+        </div>
+        <div class="topbar-tools">
+          <time class="clock" id="clock" aria-label="当前时间">--:--:--</time>
+          <button class="notify-btn" id="notifyBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="modal">提醒<span class="notify-dot" id="notifyCount" hidden>0</span></button>
+          <button class="avatar-btn" id="topAvatarBtn" type="button" data-action="edit-profile" aria-label="编辑个人资料">
+            <span class="avatar avatar--sm" id="topAvatar">刘</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <!-- ======== 仪表盘 ======== -->
+        <section class="view" id="view-dashboard" data-view="dashboard" aria-labelledby="heroTitle">
+          <div class="hero">
+            <div class="hero-copy">
+              <p class="eyebrow" id="heroEyebrow"></p>
+              <h1 class="hero-title" id="heroTitle">你好。</h1>
+              <p class="hero-sub" id="heroSub"></p>
+              <div class="hero-actions">
+                <button class="btn btn--solid" type="button" data-action="new-diary">写一篇日记</button>
+                <button class="btn btn--ghost" type="button" data-action="new-event">新建倒数日</button>
+              </div>
+              <p class="hero-meta" id="heroMeta"></p>
+            </div>
+            <div class="hero-mark" aria-hidden="true">記</div>
+          </div>
+
+          <div class="dash-grid">
+            <article class="card next-event span-5" id="nextEventCard" aria-live="polite"></article>
+            <article class="card profile-mini span-3" id="profileMini"></article>
+            <article class="card todo-mini span-4" id="todoMini"></article>
+            <article class="card photos-mini span-7" id="photosMini"></article>
+            <article class="card diary-mini span-5" id="diaryMini"></article>
+          </div>
+        </section>
+
+        <!-- ======== 照片墙 ======== -->
+        <section class="view" id="view-gallery" data-view="gallery" hidden>
+          <header class="page-head">
+            <div>
+              <p class="eyebrow">相册 · GALLERY</p>
+              <h1 class="page-title">照片墙</h1>
+              <p class="page-sub" id="gallerySub">把喜欢的瞬间贴在这里。</p>
+            </div>
+            <div class="page-actions">
+              <button class="btn btn--ghost" type="button" data-action="batch-import">批量导入</button>
+              <button class="btn btn--solid" type="button" data-action="upload-photo">上传照片</button>
+            </div>
+          </header>
+          <div class="chip-row" id="tagFilters" role="tablist" aria-label="照片分类"></div>
+          <div class="masonry" id="galleryGrid"></div>
+          <div class="empty-state" id="galleryEmpty" hidden></div>
+        </section>
+
+        <!-- ======== 倒计时 ======== -->
+        <section class="view" id="view-countdown" data-view="countdown" hidden>
+          <header class="page-head">
+            <div>
+              <p class="eyebrow">日子 · COUNTDOWN</p>
+              <h1 class="page-title">倒计时</h1>
+              <p class="page-sub" id="countdownSub"></p>
+            </div>
+            <div class="page-actions">
+              <button class="btn btn--solid" type="button" data-action="new-event">新建倒数日</button>
+            </div>
+          </header>
+          <div class="event-grid" id="eventGrid"></div>
+          <div class="empty-state" id="eventEmpty" hidden></div>
+        </section>
+
+        <!-- ======== 日记 ======== -->
+        <section class="view" id="view-diary" data-view="diary" hidden>
+          <header class="page-head">
+            <div>
+              <p class="eyebrow">手记 · JOURNAL</p>
+              <h1 class="page-title">日记</h1>
+              <p class="page-sub" id="diarySub"></p>
+            </div>
+            <div class="page-actions">
+              <button class="btn btn--solid" type="button" data-action="new-diary">写日记</button>
+            </div>
+          </header>
+          <div class="search-row">
+            <label class="search-box">
+              <span class="search-hint" aria-hidden="true">查找</span>
+              <input type="search" id="diarySearch" placeholder="标题或内容…" autocomplete="off" aria-label="搜索日记">
+            </label>
+            <span class="result-count" id="diaryCount"></span>
+          </div>
+          <div class="timeline" id="diaryList"></div>
+          <div class="empty-state" id="diaryEmpty" hidden></div>
+        </section>
+
+        <!-- ======== 待办 ======== -->
+        <section class="view" id="view-todos" data-view="todos" hidden>
+          <header class="page-head">
+            <div>
+              <p class="eyebrow">清单 · TO-DO</p>
+              <h1 class="page-title">待办</h1>
+              <p class="page-sub" id="todoSub"></p>
+            </div>
+          </header>
+          <div class="todo-wrap">
+            <section class="card todo-panel">
+              <div class="todo-top">
+                <div>
+                  <h2 class="card-title">手边的小事</h2>
+                  <p class="muted" id="todoProgressText">还没有待办。</p>
+                </div>
+                <div class="progress-ring" id="todoRing"></div>
+              </div>
+              <form class="quick-add" id="todoForm">
+                <input id="todoInput" type="text" maxlength="120" placeholder="添加一件小事，按回车确认" autocomplete="off" aria-label="新的待办">
+                <button class="btn btn--solid" type="submit">添加</button>
+              </form>
+              <div class="chip-row chip-row--sm" id="todoFilters" role="tablist" aria-label="待办筛选"></div>
+              <ul class="todo-list" id="todoList"></ul>
+              <div class="todo-foot">
+                <span class="muted" id="todoFootNote"></span>
+                <button class="text-btn" id="clearDone" type="button">清理已完成</button>
+              </div>
+            </section>
+            <aside class="todo-aside">
+              <section class="card">
+                <h3 class="card-title">今日一句</h3>
+                <p class="quote-block" id="todoQuote"></p>
+              </section>
+              <section class="card todo-note">
+                <h3 class="card-title">小提示</h3>
+                <p>清单不用很长，三件就够。完成一件，就轻轻划掉一件。</p>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <!-- ======== 我的 ======== -->
+        <section class="view" id="view-profile" data-view="profile" hidden>
+          <header class="page-head">
+            <div>
+              <p class="eyebrow">关于 · PROFILE</p>
+              <h1 class="page-title">我的</h1>
+              <p class="page-sub">资料、外观与数据，都在这里。</p>
+            </div>
+            <div class="page-actions">
+              <button class="btn btn--ghost" type="button" data-action="edit-profile">编辑资料</button>
+            </div>
+          </header>
+
+          <div class="profile-grid">
+            <section class="card profile-card span-7" id="profileCard"></section>
+
+            <section class="card appearance-card span-5">
+              <h2 class="card-title">外观</h2>
+              <p class="muted">换一种光线，换一种心情。</p>
+              <div class="setting-block">
+                <span class="setting-label">主题</span>
+                <div class="segmented" id="themeOptions" role="radiogroup" aria-label="主题模式"></div>
+              </div>
+              <div class="setting-block">
+                <span class="setting-label">主色</span>
+                <div class="swatches" id="accentOptions" role="radiogroup" aria-label="主色"></div>
+              </div>
+            </section>
+
+            <section class="card data-card span-7" id="dataCard">
+              <div class="card-head">
+                <h2 class="card-title">数据概览</h2>
+                <span class="muted" id="dataSince"></span>
+              </div>
+              <div class="stat-grid" id="profileStats"></div>
+              <div class="chart-wrap" id="activityChart"></div>
+              <div class="storage-block" id="storageBlock"></div>
+            </section>
+
+            <section class="card about-card span-5">
+              <h2 class="card-title">关于小刘吧</h2>
+              <p class="about-copy">这里是一个只属于你的小角落：照片、日子、心情，都被好好收着。没有账号、没有云端：照片存在浏览器本地照片库（IndexedDB）里，文字存在浏览器本地，容量比原来大很多。</p>
+              <p class="about-copy">换电脑或清理浏览器之前，记得先导出一份备份。</p>
+              <div class="data-actions">
+                <button class="btn btn--ghost" type="button" data-action="export-data">导出备份</button>
+                <button class="btn btn--ghost" type="button" data-action="import-data">导入备份</button>
+                <input type="file" id="importFile" accept="application/json,.json" hidden>
+                <button class="btn btn--danger" type="button" data-action="reset-data">恢复示例数据</button>
+              </div>
+              <p class="fine-print" id="finePrint"></p>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-foot">
+        <p>小刘吧 · 数据只保存在这台设备的浏览器里</p>
+        <span>© <span id="footYear">2026</span> Xiaoliu · 好好生活，慢慢记录</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ============ 移动端底部导航 ============ -->
+  <nav class="tabbar" aria-label="移动端导航">
+    <a class="tab-link" href="#dashboard" data-nav="dashboard"><span>01</span>仪表盘</a>
+    <a class="tab-link" href="#gallery" data-nav="gallery"><span>02</span>照片</a>
+    <a class="tab-link" href="#countdown" data-nav="countdown"><span>03</span>倒数</a>
+    <a class="tab-link" href="#diary" data-nav="diary"><span>04</span>日记</a>
+    <a class="tab-link" href="#todos" data-nav="todos"><span>05</span>待办</a>
+    <a class="tab-link" href="#profile" data-nav="profile"><span>06</span>我的</a>
+  </nav>
+
+  <!-- ============ 弹窗 ============ -->
+  <dialog class="modal" id="modal" aria-label="对话框">
+    <div class="modal-panel" id="modalPanel"></div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox" aria-label="查看照片">
+    <div class="lightbox-panel">
+      <button class="lb-close" id="lbClose" type="button" aria-label="关闭">×</button>
+      <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="上一张">←</button>
+      <figure class="lb-figure">
+        <img id="lbImg" src="" alt="">
+        <figcaption>
+          <p id="lbCaption"></p>
+          <span id="lbMeta"></span>
+          <div class="lb-actions">
+            <button class="lb-act" id="lbEdit" type="button" data-action="lb-edit">编辑说明</button>
+            <button class="lb-act" id="lbDelete" type="button" data-action="lb-delete">删除照片</button>
+          </div>
+        </figcaption>
+      </figure>
+      <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="下一张">→</button>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
