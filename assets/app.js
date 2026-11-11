@@ -1187,9 +1187,10 @@
             const [a1, a2, a3, a4] = item.palette;
             return `<article class="anime-card" style="--a1:${esc(a1)};--a2:${esc(a2)};--a3:${esc(a3)};--a4:${esc(a4)}">
               <div class="anime-poster">
+                <div class="anime-art">${collectionMotif(item.motif)}</div>
                 ${item.cover
-                  ? `<img class="anime-cover" src="${esc(item.cover)}" alt="${esc(item.title)} 动画封面" loading="lazy">`
-                  : `<div class="anime-art">${collectionMotif(item.motif)}</div>`}
+                  ? `<img class="anime-cover" src="${esc(item.cover)}" alt="${esc(item.title)} 动画封面" decoding="async">`
+                  : ''}
                 <span class="anime-no">${esc(item.no || String(index + 1).padStart(2, '0'))}</span>
                 <span class="anime-year">${esc(item.year)}</span>
                 <span class="anime-format">${esc(item.format)}</span>
