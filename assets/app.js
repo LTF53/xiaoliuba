@@ -940,7 +940,7 @@
       ${cards}
       <div class="memory-seal">${esc((profile.name || '刘').charAt(0))}</div>
       <span class="memory-caption">MEMORY<br>FRAGMENTS<br>${String(photos.length).padStart(2, '0')} / 03</span>
-      <span class="memory-index">A ROOM IN HANGZHOU<br>ARCHIVE ${String(daysSince(profile.since) + 1).padStart(3, '0')} / DAYS</span>`;
+      <span class="memory-index">A ROOM / PERSONAL ARCHIVE<br>ARCHIVE ${String(daysSince(profile.since) + 1).padStart(3, '0')} / DAYS</span>`;
 
     const ticker = $('#heroTicker');
     if (ticker) {
