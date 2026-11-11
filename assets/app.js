@@ -50,6 +50,8 @@
      本地开发/编辑模式不受影响；也可以用 ?shared=1 预览。 */
   const PAGE_PARAMS = new URLSearchParams(window.location.search);
   const IS_SHARED = /\.github\.io$/i.test(window.location.hostname) || PAGE_PARAMS.get('shared') === '1';
+  const MOTION_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const FINE_POINTER = window.matchMedia('(hover: hover) and (pointer: fine)');
 
   /* ---------------------------------------------------------------------
      照片库：照片二进制存放在 IndexedDB，localStorage 只存文字元数据。
@@ -1150,7 +1152,17 @@
         [data.anime.length, '部动画', 'ANIMATION'],
         [data.games.length, '款游戏', 'GAMES'],
         [data.music.length, '首歌', 'TRACKS']
-      ].map(([num, label, en]) => `<div class="collection-stat"><strong>${num}</strong><span>${label}</span><small>${en}</small></div>`).join('');
+      ].map(([num, label, en]) => `<div class="collection-stat"><strong data-count="${num}">${num}</strong><span>${label}</span><small>${en}</small></div>`).join('');
+    }
+
+    const marquee = $('#collectionMarquee');
+    if (marquee) {
+      const items = [
+        ...data.anime.map((item) => item.en),
+        ...data.games.map((game) => game.title),
+        ...data.music.map((track) => track.artist)
+      ].filter(Boolean);
+      marquee.innerHTML = `<div class="collection-marquee-track">${[...items, ...items].map((item) => `<span>${esc(item)}</span>`).join('')}</div>`;
     }
 
     const intro = $('#collectionIntro');
@@ -1798,6 +1810,7 @@
     }
     renderChrome();
     renderView(view);
+    applyMotion(view);
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -3237,6 +3250,7 @@
       case 'select-track':
         activeCollectionTrack = String(actionEl.dataset.trackId || '') || null;
         renderCollection();
+        setupPointerMotion($('#view-collection'));
         break;
       case 'reminder-action': {
         if (actionEl.dataset.export) { closeModal(); exportData(); break; }
@@ -3471,9 +3485,160 @@
     content.insertBefore(banner, content.firstChild);
   }
 
+  /* ---------------------------------------------------------------------
+     16. 动效系统：Split Text / Blur / Reveal / Spotlight / Specular / Tilt
+     灵感来自 MotionSites 的整页节奏、Pinterest 的材质与 React Bits 的交互原语。
+     --------------------------------------------------------------------- */
+  let motionObserver = null;
+  let motionRaf = 0;
+  const motionSeen = new WeakSet();
+  const pointerSeen = new WeakSet();
+
+  function initMotion() {
+    if (MOTION_REDUCED.matches) return;
+    document.body.classList.add('motion-ready');
+
+    const updateScroll = () => {
+      const progress = $('#scrollProgress');
+      if (progress) {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = `${max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0}%`;
+      }
+      const mark = $('.hero-mark');
+      if (mark) mark.style.setProperty('--hero-parallax', `${Math.min(56, window.scrollY * 0.055)}px`);
+    };
+    const onScroll = () => {
+      if (motionRaf) return;
+      motionRaf = requestAnimationFrame(() => {
+        motionRaf = 0;
+        updateScroll();
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateScroll();
+
+    if ('IntersectionObserver' in window) {
+      motionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            motionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    }
+  }
+
+  function splitTextElement(el) {
+    if (!el || MOTION_REDUCED.matches) return;
+    let source = el.dataset.splitSource;
+    if (!source) {
+      source = el.textContent || '';
+      el.dataset.splitSource = source;
+    }
+    if (!source || source.length > 90) return;
+    const chars = Array.from(source);
+    el.classList.add('split-text');
+    el.classList.remove('is-in');
+    el.setAttribute('aria-label', source);
+    el.innerHTML = chars.map((char, index) => {
+      if (char === ' ') return '<span class="split-space" aria-hidden="true">&nbsp;</span>';
+      return `<span class="split-char" aria-hidden="true" style="--i:${index}">${esc(char)}</span>`;
+    }).join('');
+    void el.offsetWidth;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => el.classList.add('is-in'));
+    });
+  }
+
+  function revealCurrentView(root) {
+    if (!root) return;
+    const selector = '.card, .collection-chapter, .anime-card, .game-card, .music-feature, .collection-mini, .entry, .shot, .profile-card, .data-card, .about-card, .next-event, .todo-panel';
+    root.querySelectorAll(selector).forEach((el, index) => {
+      if (motionSeen.has(el)) return;
+      motionSeen.add(el);
+      el.classList.add('motion-reveal');
+      el.style.setProperty('--reveal-delay', `${Math.min(index * 42, 300)}ms`);
+      if (motionObserver) motionObserver.observe(el);
+      else el.classList.add('is-in');
+    });
+  }
+
+  function animateCounters(root) {
+    if (!root) return;
+    root.querySelectorAll('[data-count]').forEach((el) => {
+      const target = Number(el.dataset.count);
+      if (!Number.isFinite(target)) return;
+      if (MOTION_REDUCED.matches) { el.textContent = String(target); return; }
+      const start = performance.now();
+      const duration = 760;
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      el.textContent = '0';
+      requestAnimationFrame(tick);
+    });
+  }
+
+  function setupPointerMotion(root) {
+    if (!root || !FINE_POINTER.matches || MOTION_REDUCED.matches) return;
+    root.querySelectorAll('.btn, .card, .anime-card, .game-card, .music-feature, .collection-mini, .collection-index-link, .shot').forEach((el) => {
+      if (pointerSeen.has(el)) return;
+      pointerSeen.add(el);
+      if (!el.matches('.btn')) el.classList.add('motion-spotlight');
+      if (el.matches('.btn')) el.classList.add('motion-specular');
+      if (el.matches('.anime-card, .game-card, .collection-mini')) el.classList.add('motion-tilt');
+
+      el.addEventListener('pointermove', (event) => {
+        const rect = el.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        el.style.setProperty('--mx', `${x}px`);
+        el.style.setProperty('--my', `${y}px`);
+        el.style.setProperty('--sx', `${x}px`);
+        el.style.setProperty('--sy', `${y}px`);
+        if (el.classList.contains('motion-tilt')) {
+          el.style.setProperty('--rx', `${((y / rect.height) - .5) * -3.6}deg`);
+          el.style.setProperty('--ry', `${((x / rect.width) - .5) * 3.6}deg`);
+        }
+        el.classList.add('is-pointer');
+      }, { passive: true });
+
+      el.addEventListener('pointerleave', () => {
+        el.classList.remove('is-pointer');
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
+
+  function applyMotion(view) {
+    const root = document.querySelector(`.view[data-view="${view}"]`);
+    if (!root) return;
+    if (MOTION_REDUCED.matches) {
+      root.querySelectorAll('[data-count]').forEach((el) => { el.textContent = el.dataset.count; });
+      return;
+    }
+    root.querySelectorAll('.page-title, .collection-title, .hero-title-main, .hero-title-sub').forEach(splitTextElement);
+    root.querySelectorAll('.page-sub, .collection-intro, .hero-sub, .collection-aside').forEach((el, index) => {
+      el.classList.remove('motion-blur-in');
+      void el.offsetWidth;
+      el.style.animationDelay = `${Math.min(index * 80, 220)}ms`;
+      el.classList.add('motion-blur-in');
+    });
+    revealCurrentView(root);
+    animateCounters(root);
+    setupPointerMotion(root);
+  }
+
   async function init() {
     applyTheme();
     bindStaticEvents();
+    initMotion();
     if (IS_SHARED) {
       await loadSharedState();
       applyTheme();

@@ -49,16 +49,20 @@ body.modal-open { overflow: hidden; }
   --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", "Times New Roman", Georgia, serif;
   --mono: "SFMono-Regular", "Cascadia Code", Consolas, "Liberation Mono", monospace;
 
-  --bg: #f6f2ea;
+  --bg: #f7f3ec;
   --bg-deep: #efe9dd;
-  --paper: #fffdf8;
+  --paper: #fffdf9;
   --paper-soft: #f4efe5;
-  --paper-veil: rgba(255, 253, 248, .72);
-  --ink: #241f19;
-  --ink-2: #5d5548;
-  --ink-3: #6b6355;
-  --line: rgba(36, 31, 25, .10);
-  --line-strong: rgba(36, 31, 25, .17);
+  --paper-veil: rgba(255, 253, 249, .72);
+  --ink: #211922;
+  --ink-2: #625d55;
+  --ink-3: #706a60;
+  --line: rgba(33, 25, 34, .10);
+  --line-strong: rgba(33, 25, 34, .17);
+  --sand: #e7e1d6;
+  --champagne: #cbb28c;
+  --plum: #211922;
+  --glass: rgba(255, 253, 249, .62);
 
   --accent: #b8452c;
   --accent-deep: #9c3622;
@@ -3021,6 +3025,183 @@ html[data-theme="dark"] .toast--error { background: #b85745; color: #1d1410; }
   .collection-foot { margin-top: 32px; }
 }
 
+/* ---------- 20.3 Motion / editorial system ---------- */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 90;
+  height: 2px;
+  pointer-events: none;
+  background: transparent;
+}
+.scroll-progress i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--champagne), var(--accent));
+  transition: width .08s linear;
+}
+
+.collection-marquee {
+  margin: 18px 0 8px;
+  padding: 9px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(241, 233, 221, .12);
+  border-bottom: 1px solid rgba(241, 233, 221, .12);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.collection-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 44px;
+  animation: collectionMarquee 38s linear infinite;
+}
+.collection-marquee span {
+  display: inline-flex;
+  align-items: center;
+  gap: 44px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .13em;
+  color: rgba(241, 233, 221, .42);
+  white-space: nowrap;
+}
+.collection-marquee span::after {
+  content: "·";
+  color: #d58b63;
+}
+@keyframes collectionMarquee {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+body.motion-ready .motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  filter: blur(7px);
+  transition:
+    opacity .9s var(--ease-out),
+    transform .9s var(--ease-out),
+    filter .9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+body.motion-ready .motion-reveal.is-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+.split-text { display: inline-block; }
+.page-title.split-text, .collection-title.split-text { display: block; }
+.split-text .split-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, .7em, 0) rotate(2deg);
+  filter: blur(8px);
+  transition:
+    opacity .72s var(--ease-out),
+    transform .72s var(--ease-out),
+    filter .72s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 24ms);
+}
+.split-text.is-in .split-char {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+.split-space { display: inline-block; width: .26em; }
+
+.motion-blur-in { animation: motionBlurIn .9s var(--ease-out) both; }
+@keyframes motionBlurIn {
+  from { opacity: 0; transform: translateY(12px); filter: blur(9px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+body.motion-ready .hero-title-main { animation: heroTitleIn 1s var(--ease-out) both; }
+body.motion-ready .hero-title-sub { animation: heroTitleIn 1.1s .12s var(--ease-out) both; }
+@keyframes heroTitleIn {
+  from { opacity: 0; transform: translateY(24px); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+.hero-mark {
+  transform: translate3d(0, var(--hero-parallax, 0px), 0) rotate(-2deg);
+  transition: transform .15s linear;
+  will-change: transform;
+}
+
+.motion-spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.motion-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), var(--spot-color, rgba(33, 25, 34, .08)), transparent 68%);
+  transition: opacity .35s var(--ease);
+}
+.motion-spotlight.is-pointer::after { opacity: 1; }
+.anime-card.motion-spotlight,
+.game-card.motion-spotlight,
+.music-feature.motion-spotlight,
+.collection-mini.motion-spotlight,
+.collection-index-link.motion-spotlight { --spot-color: rgba(255, 231, 205, .10); }
+
+.anime-card.motion-tilt,
+.game-card.motion-tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+  transition: transform .22s var(--ease-out), border-color .4s var(--ease), box-shadow .5s var(--ease);
+}
+.anime-card.motion-tilt:hover,
+.game-card.motion-tilt:hover { --lift: -6px; }
+body.motion-ready .anime-card.motion-tilt.is-in,
+body.motion-ready .game-card.motion-tilt.is-in {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(150px circle at var(--sx, 50%) var(--sy, 50%), rgba(255, 255, 255, .32), transparent 62%);
+  transition: opacity .32s var(--ease);
+}
+.btn.is-pointer::after { opacity: 1; }
+.btn--solid::after { background: radial-gradient(150px circle at var(--sx, 50%) var(--sy, 50%), rgba(255, 248, 238, .42), transparent 62%); }
+.btn--ghost::after { background: radial-gradient(150px circle at var(--sx, 50%) var(--sy, 50%), var(--accent-soft), transparent 64%); }
+
+.collection-shell .motion-spotlight::after { mix-blend-mode: screen; }
+
+/* subtle top-edge light on dark archive cards */
+.anime-card::before,
+.game-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, .12), transparent 22%, transparent 78%, rgba(255, 255, 255, .04));
+  opacity: .45;
+}
+.anime-card, .game-card { position: relative; }
+
+@keyframes magneticNudge {
+  from { transform: translateY(0); }
+  to { transform: translateY(-2px); }
+}
+
 /* ---------- 21. 共享只读模式 ---------- */
 .shared-badge {
   display: inline-flex;
@@ -3077,4 +3258,27 @@ body.is-shared .shared-empty-banner code {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+}
+
+/* ---------- 23. Motion accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress,
+  .collection-marquee { display: none !important; }
+  body.motion-ready .motion-reveal,
+  .motion-blur-in,
+  .split-text .split-char,
+  .hero-title-main,
+  .hero-title-sub {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .motion-spotlight::after,
+  .btn::after { display: none !important; }
+  .anime-card.motion-tilt,
+  .game-card.motion-tilt { transform: none !important; }
+  .hero-mark { transform: rotate(-2deg) !important; }
+  .collection-marquee-track { animation: none !important; }
 }
