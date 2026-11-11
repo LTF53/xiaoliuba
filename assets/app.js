@@ -349,7 +349,8 @@
     countdown: { name: '倒计时', title: '倒计时' },
     diary: { name: '日记', title: '日记' },
     todos: { name: '待办', title: '待办' },
-    profile: { name: '我的', title: '我的' }
+    profile: { name: '我的', title: '我的' },
+    collection: { name: '收藏', title: '收藏馆' }
   };
   const EVENT_TYPES = {
     birthday: '生日',
@@ -617,6 +618,23 @@
     } catch (err) {
       console.warn('[小刘吧] 共享数据读取失败。', err);
       state.meta = { ...state.meta, sharedLoaded: false, sharedError: true };
+    }
+  }
+
+  let petDiaryEntries = [];
+
+  async function loadPetDiaryFeed() {
+    try {
+      const response = await fetch(`shared/auto-diary.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const list = Array.isArray(data) ? data : (Array.isArray(data.entries) ? data.entries : []);
+      petDiaryEntries = list
+        .filter((item) => item && item.date && item.content)
+        .map((item) => ({ ...item }))
+        .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    } catch (err) {
+      petDiaryEntries = [];
     }
   }
 
@@ -894,6 +912,7 @@
     renderTodoMini();
     renderPhotosMini();
     renderDiaryMini();
+    renderCollectionMini();
   }
 
   function renderNextEventCard(item) {
@@ -1037,6 +1056,197 @@
         <p class="mini-diary-text">${esc(latest.content)}</p>
         <button class="text-link" type="button" data-action="read-diary" data-id="${esc(latest.id)}">继续读 <span>→</span></button>
       </div>`;
+  }
+
+  function renderCollectionMini() {
+    const root = $('#collectionMini');
+    if (!root) return;
+    const data = window.XLB_COLLECTION || { anime: [], games: [], music: [] };
+    const featured = data.music[0];
+    root.innerHTML = `
+      <div class="collection-mini-head">
+        <div>
+          <p class="eyebrow">收藏 · THE ARCHIVE</p>
+          <h3 class="collection-mini-title">喜欢的东西，放在这里。</h3>
+        </div>
+        <a class="text-link" href="#collection">进入收藏馆 <span>→</span></a>
+      </div>
+      <div class="collection-mini-row">
+        <div class="collection-mini-stat"><strong>${data.anime.length}</strong><span>动画</span></div>
+        <div class="collection-mini-stat"><strong>${data.games.length}</strong><span>游戏</span></div>
+        <div class="collection-mini-stat"><strong>${data.music.length}</strong><span>首歌</span></div>
+        <div class="collection-mini-covers">
+          ${data.games.slice(0, 3).map((game) => `<img src="${esc(game.cover)}" alt="${esc(game.title)}" loading="lazy">`).join('')}
+        </div>
+        <div class="collection-mini-now">
+          <span>NOW SPINNING</span>
+          <strong>${esc(featured ? featured.title : '—')}</strong>
+          <small>${esc(featured ? featured.artist : '')}</small>
+        </div>
+        <div class="collection-mini-anime">${data.anime.slice(0, 3).map((item) => `<span>${esc(item.title)}</span>`).join('')}</div>
+      </div>`;
+  }
+
+  /* ---------------------------------------------------------------------
+     8.1 收藏馆
+     --------------------------------------------------------------------- */
+  let activeCollectionTrack = null;
+
+  function collectionData() {
+    return window.XLB_COLLECTION || { anime: [], games: [], music: [] };
+  }
+
+  function collectionMotif(kind) {
+    const open = '<svg class="anime-motif" viewBox="0 0 320 400" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1">';
+    const close = '</svg>';
+    switch (kind) {
+      case 'orbit':
+        return `${open}<circle cx="160" cy="200" r="118"/><circle cx="160" cy="200" r="84" stroke-dasharray="2 7"/><circle cx="160" cy="200" r="46"/><path d="M160 18v364M18 200h284"/><circle cx="160" cy="200" r="6" fill="currentColor" stroke="none"/><circle cx="252" cy="113" r="4" fill="currentColor" stroke="none"/>${close}`;
+      case 'sun':
+        return `${open}<circle cx="160" cy="190" r="86"/><circle cx="160" cy="190" r="58" stroke-dasharray="1 10"/><path d="M160 20v44M160 316v44M18 190h44M258 190h44M60 90l32 32M228 258l32 32M260 90l-32 32M92 258l-32 32"/><path d="M40 330h240M56 350h208" opacity=".55"/>${close}`;
+      case 'cross':
+        return `${open}<path d="M40 60h240M40 120h240M40 180h240M40 240h240M40 300h240M40 360h240" opacity=".28"/><path d="M80 30v340M140 30v340M200 30v340M260 30v340" opacity=".28"/><path d="M160 62v276M54 200h212" stroke-width="2"/><circle cx="160" cy="200" r="44"/>${close}`;
+      case 'wave':
+        return `${open}<path d="M-20 132c56-38 108-38 164 0s108 38 196 0" stroke-width="2"/><path d="M-20 188c56-38 108-38 164 0s108 38 196 0"/><path d="M-20 244c56-38 108-38 164 0s108 38 196 0"/><path d="M-20 300c56-38 108-38 164 0s108 38 196 0" opacity=".5"/><path d="M52 354h216M86 374h148" opacity=".4"/>${close}`;
+      case 'eye':
+        return `${open}<path d="M28 200c56-78 106-112 132-112s76 34 132 112c-56 78-106 112-132 112S84 278 28 200Z" stroke-width="1.6"/><circle cx="160" cy="200" r="52"/><circle cx="160" cy="200" r="22" stroke-dasharray="2 6"/><path d="M160 48v42M160 310v42M56 74l30 30M234 296l30 30" opacity=".45"/>${close}`;
+      case 'forest':
+        return `${open}<path d="M52 342 110 132l58 210M138 342 206 84l68 258" stroke-width="1.6"/><path d="M78 342 166 220l88 122M0 342h320M0 362h320" opacity=".55"/><circle cx="84" cy="94" r="20" stroke-dasharray="2 7"/>${close}`;
+      case 'cloud':
+        return `${open}<path d="M44 270c-20-40 14-82 58-76 14-44 74-58 104-24 44-16 88 18 76 60 34 14 28 66-12 72H82c-24 0-38-14-38-32Z"/><path d="M20 322h280M52 344h216" opacity=".5"/><path d="M74 190c26-16 54-16 80 0" opacity=".7"/>${close}`;
+      case 'wall':
+        return `${open}<path d="M40 350V90h240v260" stroke-width="2"/><path d="M40 150h240M40 220h240M40 290h240" opacity=".4"/><path d="M92 90V58M160 90V38M228 90V58" stroke-width="2"/><path d="M20 350h280" stroke-width="2"/><circle cx="160" cy="172" r="9" fill="currentColor" stroke="none" opacity=".7"/>${close}`;
+      case 'star':
+        return `${open}<path d="M160 54l24 86 86 8-68 52 24 86-66-44-66 44 24-86-68-52 86-8Z" stroke-width="1.6"/><circle cx="160" cy="200" r="124" stroke-dasharray="2 8" opacity=".5"/><circle cx="160" cy="200" r="28" opacity=".7"/>${close}`;
+      case 'stripe':
+        return `${open}<path d="M-40 120 220 -40M-40 200 280 -40M-40 280 340 -40M-40 360 400 -40M-40 440 460 -40" opacity=".28"/><path d="M0 330 320 10" stroke-width="2"/><circle cx="160" cy="200" r="72"/><circle cx="160" cy="200" r="100" stroke-dasharray="2 7" opacity=".6"/>${close}`;
+      case 'eclipse':
+        return `${open}<circle cx="160" cy="200" r="96" stroke-width="1.6"/><circle cx="160" cy="200" r="74" stroke-dasharray="2 8"/><path d="M160 50v300" opacity=".35"/><path d="M26 200h268" opacity=".35"/><circle cx="160" cy="200" r="18" fill="currentColor" stroke="none" opacity=".75"/><circle cx="160" cy="96" r="4" fill="currentColor" stroke="none"/>${close}`;
+      default:
+        return `${open}<circle cx="160" cy="200" r="110"/><path d="M50 200h220M160 90v220"/>${close}`;
+    }
+  }
+
+  function collectionChapterHead(no, title, en, copy, count) {
+    return `<div class="chapter-head">
+      <span class="chapter-no">${esc(no)}</span>
+      <div class="chapter-copy">
+        <h2>${esc(title)} <span>${esc(en)}</span></h2>
+        <p>${esc(copy)}</p>
+      </div>
+      <span class="chapter-count">${count}</span>
+    </div>`;
+  }
+
+  function renderCollection() {
+    const data = collectionData();
+    if (!activeCollectionTrack || !data.music.some((track) => track.mid === activeCollectionTrack)) {
+      activeCollectionTrack = data.music[0] ? data.music[0].mid : null;
+    }
+
+    const stats = $('#collectionStats');
+    if (stats) {
+      stats.innerHTML = [
+        [data.anime.length, '部动画', 'ANIMATION'],
+        [data.games.length, '款游戏', 'GAMES'],
+        [data.music.length, '首歌', 'TRACKS']
+      ].map(([num, label, en]) => `<div class="collection-stat"><strong>${num}</strong><span>${label}</span><small>${en}</small></div>`).join('');
+    }
+
+    const index = $('#collectionIndex');
+    if (index) {
+      index.innerHTML = [
+        ['I', '动画', 'ANIMATION', 'collection-anime'],
+        ['II', '游戏', 'GAMES', 'collection-game'],
+        ['III', '音乐', 'MUSIC', 'collection-music']
+      ].map(([no, label, en, target]) => `<button type="button" class="collection-index-link" data-action="collection-jump" data-target="${target}"><span>${no}</span><b>${label}</b><small>${en}</small></button>`).join('');
+    }
+
+    const animeSection = $('#collection-anime');
+    if (animeSection) {
+      animeSection.innerHTML = `${collectionChapterHead('I', '动画', 'ANIMATION', '被反复打开的世界，和留在里面的自己。', `${data.anime.length} ENTRIES`)}
+        <div class="anime-grid">
+          ${data.anime.map((item, index) => {
+            const [a1, a2, a3, a4] = item.palette;
+            return `<article class="anime-card" style="--a1:${esc(a1)};--a2:${esc(a2)};--a3:${esc(a3)};--a4:${esc(a4)}">
+              <div class="anime-poster">
+                <div class="anime-art">${collectionMotif(item.motif)}</div>
+                <span class="anime-no">${esc(item.no || String(index + 1).padStart(2, '0'))}</span>
+                <span class="anime-year">${esc(item.year)}</span>
+                <span class="anime-format">${esc(item.format)}</span>
+                <span class="anime-jp" lang="ja">${esc(item.jp)}</span>
+                <div class="anime-title"><h3>${esc(item.title)}</h3><p>${esc(item.en)}</p></div>
+              </div>
+              <div class="anime-info">
+                <div class="anime-tags">${item.tags.map((tag) => `<span>${esc(tag)}</span>`).join('')}</div>
+                <p class="anime-maker">${esc(item.maker)}</p>
+                <p class="anime-note">${esc(item.note)}</p>
+              </div>
+            </article>`;
+          }).join('')}
+          <article class="anime-card archive-note-card">
+            <span class="archive-note-no">012</span>
+            <span class="archive-note-mark">藏</span>
+            <p>喜欢的东西不必有用。<br>它们负责在普通日子里，<br>留一扇门。</p>
+            <small>THE ARCHIVE IS A PLACE<br>YOU RETURN TO.</small>
+          </article>
+        </div>`;
+    }
+
+    const gameSection = $('#collection-game');
+    if (gameSection) {
+      gameSection.innerHTML = `${collectionChapterHead('II', '游戏', 'STEAM / MOST PLAYED', '按游玩时长排的四个入口，每一次打开都是一段时间。', `STEAM · ${data.games.reduce((sum, game) => sum + Number(game.hours || 0), 0).toFixed(1)} H`)}
+        <div class="game-shelf">
+          ${data.games.map((game) => `<a class="game-card" href="https://store.steampowered.com/app/${esc(game.appid)}/" target="_blank" rel="noopener">
+            <div class="game-cover">
+              <img src="${esc(game.cover)}" alt="${esc(game.title)}" loading="lazy">
+              <span class="game-rank">${esc(game.rank)}</span>
+              <span class="game-hours">${Number(game.hours).toFixed(1)} h</span>
+            </div>
+            <div class="game-info">
+              <p class="game-genre">${esc(game.genre)}</p>
+              <h3>${esc(game.title)}</h3>
+              <p class="game-zh">${esc(game.zh)}</p>
+              <p class="game-note">${esc(game.note)}</p>
+            </div>
+          </a>`).join('')}
+        </div>
+        <p class="collection-source">数据来自公开的 Steam 个人资料 · Thorfinn53 · 只展示最常玩的 4 款</p>`;
+    }
+
+    const musicSection = $('#collection-music');
+    if (musicSection) {
+      const active = data.music.find((track) => track.mid === activeCollectionTrack) || data.music[0];
+      if (!active) {
+        musicSection.innerHTML = collectionChapterHead('III', '音乐', 'MUSIC', '最近循环的声音。', '0 TRACKS');
+      } else {
+        musicSection.innerHTML = `${collectionChapterHead('III', '音乐', 'QQ MUSIC / 宝藏歌曲', '最近循环的 8 首，黑胶不转，但耳机里一直在转。', `${data.music.length} TRACKS`)}
+          <div class="music-stage">
+            <div class="music-feature">
+              <div class="record-wrap">
+                <div class="vinyl"><span></span></div>
+                <img class="music-cover" src="${esc(active.cover)}" alt="${esc(active.title)} 专辑封面">
+              </div>
+              <div class="music-now">
+                <p class="music-label">NOW SPINNING · ${esc(active.genre)}</p>
+                <h2>${esc(active.title)}</h2>
+                <p class="music-artist">${esc(active.artist)}</p>
+                <p class="music-album">${esc(active.album)}</p>
+                <p class="music-note">「${esc(active.note)}」</p>
+                <a class="music-link" href="https://y.qq.com/n/ryqq/songDetail/${esc(active.mid)}" target="_blank" rel="noopener">在 QQ 音乐打开 <span>↗</span></a>
+              </div>
+            </div>
+            <div class="tracklist" role="list">
+              ${data.music.map((track, index) => `<button type="button" class="track ${track.mid === active.mid ? 'is-active' : ''}" data-action="select-track" data-track-id="${esc(track.mid)}" role="listitem" aria-pressed="${track.mid === active.mid}">
+                <span class="track-no">${String(index + 1).padStart(2, '0')}</span>
+                <span class="track-main"><strong>${esc(track.title)}</strong><small>${esc(track.artist)} · ${esc(track.album)}</small></span>
+                <span class="track-cover"><img src="${esc(track.cover)}" alt="" loading="lazy"></span>
+              </button>`).join('')}
+            </div>
+          </div>
+          <p class="collection-source">来源：QQ 音乐 · 我的歌单「宝藏歌曲」 · 播放会跳转到 QQ 音乐</p>`;
+      }
+    }
   }
 
   /* ---------------------------------------------------------------------
@@ -1221,14 +1431,16 @@
       const latestLabel = lastUpdated
         ? fmtShort(isoOf(new Date(lastUpdated)))
         : (sortedDiaries()[0] ? fmtShort(sortedDiaries()[0].date) : '—');
+      const petSuffix = petDiaryEntries.length ? ` · 桌宠自动记录 ${petDiaryEntries.length} 篇` : '';
       sub.textContent = state.diaries.length
-        ? `一共 ${state.diaries.length} 篇，最近更新于 ${latestLabel}。`
-        : '写下今天，留给以后的自己。';
+        ? `一共 ${state.diaries.length} 篇，最近更新于 ${latestLabel}。${petSuffix}`
+        : (petDiaryEntries.length ? `还没有手写日记。${petSuffix.replace(' · ', '')}` : '写下今天，留给以后的自己。');
     }
     renderDiaryList();
   }
 
   function renderDiaryList() {
+    renderPetDiaryList();
     const input = $('#diarySearch');
     if (input && input.value !== diaryQuery) input.value = diaryQuery;
     const list = visibleDiaries();
@@ -1268,6 +1480,57 @@
       return `<section class="diary-group">
         <h3 class="month-label">${esc(year)} 年 ${esc(String(Number(month) || month))} 月<span>${items.length} 篇</span></h3>
         <div class="diary-entries">${items.map(entryHTML).join('')}</div>
+      </section>`;
+    }).join('');
+  }
+
+  function petEntryHTML(d) {
+    const dt = parseISO(d.date) || new Date();
+    return `<article class="diary-entry pet-diary-entry">
+      <div class="entry-date">
+        <span class="entry-day">${pad2(dt.getDate())}</span>
+        <span class="entry-week">${WEEK[dt.getDay()]} · ${pad2(dt.getMonth() + 1)} 月</span>
+      </div>
+      <div class="entry-body">
+        <div class="entry-head">
+          <h4 class="entry-title">${esc(d.title || '小桌宠的观察日记')}</h4>
+          <span class="mood">${esc(d.moodLabel || d.mood || '平静')}</span>
+          <span class="weather">${esc(d.weatherLabel || d.weather || '')}</span>
+        </div>
+        <p class="entry-text">${esc(d.content || '')}</p>
+        <div class="entry-foot">
+          <span class="entry-word">自动记录 · 桌宠</span>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function renderPetDiaryList() {
+    const section = $('#petDiarySection');
+    const root = $('#petDiaryList');
+    if (!section || !root) return;
+    const q = diaryQuery.trim().toLowerCase();
+    const list = petDiaryEntries.filter((d) => {
+      if (!q) return true;
+      return `${d.title || ''}\n${d.content || ''}`.toLowerCase().includes(q);
+    });
+    if (!list.length) {
+      section.hidden = true;
+      root.innerHTML = '';
+      return;
+    }
+    section.hidden = false;
+    const groups = new Map();
+    list.forEach((d) => {
+      const key = String(d.date || '').slice(0, 7) || '未知';
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(d);
+    });
+    root.innerHTML = Array.from(groups.entries()).map(([key, items]) => {
+      const [year, month] = key.split('-');
+      return `<section class="diary-group">
+        <h3 class="month-label">${esc(year)} 年 ${esc(String(Number(month) || month))} 月<span>桌宠 ${items.length} 篇</span></h3>
+        <div class="diary-entries">${items.map(petEntryHTML).join('')}</div>
       </section>`;
     }).join('');
   }
@@ -1540,6 +1803,7 @@
       case 'diary': renderDiary(); break;
       case 'todos': renderTodos(); break;
       case 'profile': renderProfile(); break;
+      case 'collection': renderCollection(); break;
       case 'dashboard':
       default: renderDashboard(); break;
     }
@@ -2960,6 +3224,15 @@
         break;
       }
       case 'reset-data': resetData(); break;
+      case 'collection-jump': {
+        const target = document.getElementById(String(actionEl.dataset.target || ''));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        break;
+      }
+      case 'select-track':
+        activeCollectionTrack = String(actionEl.dataset.trackId || '') || null;
+        renderCollection();
+        break;
       case 'reminder-action': {
         if (actionEl.dataset.export) { closeModal(); exportData(); break; }
         const target = String(actionEl.dataset.target || '');
@@ -3212,6 +3485,7 @@
         console.warn('[小刘吧] 初始化照片库失败', err);
       }
     }
+    await (IS_SHARED ? Promise.resolve() : loadPetDiaryFeed());
     if (!location.hash) {
       try { history.replaceState(null, '', '#dashboard'); } catch (err) { /* ignore */ }
     }

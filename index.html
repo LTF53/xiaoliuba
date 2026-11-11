@@ -40,6 +40,7 @@
         <a class="nav-link" href="#diary" data-nav="diary"><span class="nav-num">04</span><span class="nav-label">日记</span></a>
         <a class="nav-link" href="#todos" data-nav="todos"><span class="nav-num">05</span><span class="nav-label">待办</span></a>
         <a class="nav-link" href="#profile" data-nav="profile"><span class="nav-num">06</span><span class="nav-label">我的</span></a>
+        <a class="nav-link" href="#collection" data-nav="collection"><span class="nav-num">07</span><span class="nav-label">收藏</span></a>
       </nav>
 
       <div class="sidebar-foot">
@@ -92,6 +93,7 @@
             <article class="card todo-mini span-4" id="todoMini"></article>
             <article class="card photos-mini span-7" id="photosMini"></article>
             <article class="card diary-mini span-5" id="diaryMini"></article>
+            <article class="card collection-mini span-12" id="collectionMini"></article>
           </div>
         </section>
 
@@ -150,6 +152,18 @@
           </div>
           <div class="timeline" id="diaryList"></div>
           <div class="empty-state" id="diaryEmpty" hidden></div>
+
+          <section class="pet-diary-panel" id="petDiarySection" hidden>
+            <div class="pet-diary-head">
+              <div>
+                <p class="eyebrow">桌宠 · AUTO</p>
+                <h2 class="card-title">桌宠日记</h2>
+              </div>
+              <span class="pet-diary-badge">自动记录 · 只读</span>
+            </div>
+            <p class="pet-diary-sub">由「小桌宠」每周从电脑使用日记自动整理：心情、今天干了啥、天气。</p>
+            <div class="timeline pet-diary-timeline" id="petDiaryList"></div>
+          </section>
         </section>
 
         <!-- ======== 待办 ======== -->
@@ -249,6 +263,39 @@
             </section>
           </div>
         </section>
+
+        <!-- ======== 收藏馆 ======== -->
+        <section class="view collection-view" id="view-collection" data-view="collection" hidden>
+          <div class="collection-shell">
+            <header class="collection-hero">
+              <div class="collection-meta-row">
+                <span>07 / THE ARCHIVE</span>
+                <span>PRIVATE COLLECTION · SINCE 2026</span>
+              </div>
+              <div class="collection-title-row">
+                <div>
+                  <p class="collection-kicker">喜欢的，放在看得见的地方</p>
+                  <h1 class="collection-title">收藏馆</h1>
+                </div>
+                <p class="collection-aside">动画、游戏和音乐<br>组成了一个人的精神地形。</p>
+              </div>
+              <p class="collection-intro">这里没有排名，只有被反复打开过的作品。11 部动画、4 款最常玩的 Steam 游戏、8 首最近循环的歌。每一个条目都保留一点当时的空气。</p>
+              <div class="collection-stats" id="collectionStats"></div>
+              <nav class="collection-index" id="collectionIndex" aria-label="收藏馆章节"></nav>
+            </header>
+
+            <div class="collection-body" id="collectionBody">
+              <section class="collection-chapter" id="collection-anime" data-chapter="anime"></section>
+              <section class="collection-chapter" id="collection-game" data-chapter="game"></section>
+              <section class="collection-chapter" id="collection-music" data-chapter="music"></section>
+            </div>
+
+            <footer class="collection-foot">
+              <p>THE ARCHIVE IS NEVER FINISHED.</p>
+              <span>档案会继续长出来。</span>
+            </footer>
+          </div>
+        </section>
       </main>
 
       <footer class="site-foot">
@@ -266,6 +313,7 @@
     <a class="tab-link" href="#diary" data-nav="diary"><span>04</span>日记</a>
     <a class="tab-link" href="#todos" data-nav="todos"><span>05</span>待办</a>
     <a class="tab-link" href="#profile" data-nav="profile"><span>06</span>我的</a>
+    <a class="tab-link" href="#collection" data-nav="collection"><span>07</span>收藏</a>
   </nav>
 
   <!-- ============ 弹窗 ============ -->
@@ -294,6 +342,7 @@
 
   <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
 
+  <script src="assets/collection.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>
