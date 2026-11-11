@@ -1153,6 +1153,11 @@
       ].map(([num, label, en]) => `<div class="collection-stat"><strong>${num}</strong><span>${label}</span><small>${en}</small></div>`).join('');
     }
 
+    const intro = $('#collectionIntro');
+    if (intro) {
+      intro.textContent = `这里没有排名，只有被反复打开过的作品。${data.anime.length} 部动画、${data.games.length} 款游戏、${data.music.length} 首歌。每一个条目都保留一点当时的空气。`;
+    }
+
     const index = $('#collectionIndex');
     if (index) {
       index.innerHTML = [
@@ -1195,7 +1200,7 @@
 
     const gameSection = $('#collection-game');
     if (gameSection) {
-      gameSection.innerHTML = `${collectionChapterHead('II', '游戏', 'STEAM / MOST PLAYED', '按游玩时长排的四个入口，每一次打开都是一段时间。', `STEAM · ${data.games.reduce((sum, game) => sum + Number(game.hours || 0), 0).toFixed(1)} H`)}
+      gameSection.innerHTML = `${collectionChapterHead('II', '游戏', 'STEAM / TOTAL HOURS', '按总时长排的游戏墙，每一次打开都是一段时间。', `STEAM · ${data.games.reduce((sum, game) => sum + Number(game.hours || 0), 0).toFixed(1)} H`)}
         <div class="game-shelf">
           ${data.games.map((game) => `<a class="game-card" href="https://store.steampowered.com/app/${esc(game.appid)}/" target="_blank" rel="noopener">
             <div class="game-cover">
@@ -1211,7 +1216,7 @@
             </div>
           </a>`).join('')}
         </div>
-        <p class="collection-source">数据来自公开的 Steam 个人资料 · Thorfinn53 · 只展示最常玩的 4 款</p>`;
+        <p class="collection-source">来源：你的游戏墙截图 · Steam 总时长前 ${data.games.length} 款 · 封面来自 Steam / 游戏墙</p>`;
     }
 
     const musicSection = $('#collection-music');
@@ -1220,7 +1225,7 @@
       if (!active) {
         musicSection.innerHTML = collectionChapterHead('III', '音乐', 'MUSIC', '最近循环的声音。', '0 TRACKS');
       } else {
-        musicSection.innerHTML = `${collectionChapterHead('III', '音乐', 'QQ MUSIC / 宝藏歌曲', '最近循环的 8 首，黑胶不转，但耳机里一直在转。', `${data.music.length} TRACKS`)}
+        musicSection.innerHTML = `${collectionChapterHead('III', '音乐', 'QQ MUSIC / 我的收藏', `最近循环的 ${data.music.length} 首，黑胶不转，但耳机里一直在转。`, `${data.music.length} TRACKS`)}
           <div class="music-stage">
             <div class="music-feature">
               <div class="record-wrap">
@@ -1244,7 +1249,7 @@
               </button>`).join('')}
             </div>
           </div>
-          <p class="collection-source">来源：QQ 音乐 · 我的歌单「宝藏歌曲」 · 播放会跳转到 QQ 音乐</p>`;
+          <p class="collection-source">来源：QQ 音乐 · 我的收藏（446 首里选了 ${data.music.length} 首）· 播放会跳转到 QQ 音乐</p>`;
       }
     }
   }
