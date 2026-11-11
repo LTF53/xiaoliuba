@@ -74,7 +74,19 @@
       <main class="content">
         <!-- ======== 仪表盘 ======== -->
         <section class="view" id="view-dashboard" data-view="dashboard" aria-labelledby="heroTitle">
-          <div class="hero">
+          <div class="hero hero--stage">
+            <div class="hero-atmosphere" aria-hidden="true">
+              <span class="hero-aurora hero-aurora--a"></span>
+              <span class="hero-aurora hero-aurora--b"></span>
+              <span class="hero-grid"></span>
+              <div class="hero-mark">記</div>
+              <canvas class="hero-canvas" id="heroCanvas"></canvas>
+            </div>
+            <div class="hero-topline">
+              <span>PERSONAL ARCHIVE / 2026</span>
+              <span class="hero-topline-center">小刘吧 · XIAO LIU'S ROOM</span>
+              <span>01 / DASHBOARD</span>
+            </div>
             <div class="hero-copy">
               <p class="eyebrow" id="heroEyebrow"></p>
               <h1 class="hero-title" id="heroTitle">你好。</h1>
@@ -82,10 +94,17 @@
               <div class="hero-actions">
                 <button class="btn btn--solid" type="button" data-action="new-diary">写一篇日记</button>
                 <button class="btn btn--ghost" type="button" data-action="new-event">新建倒数日</button>
+                <a class="btn btn--ghost btn--glass" href="#collection" data-nav="collection">进入收藏馆</a>
               </div>
               <p class="hero-meta" id="heroMeta"></p>
             </div>
-            <div class="hero-mark" aria-hidden="true">記</div>
+            <div class="hero-stage" aria-hidden="true">
+              <div class="hero-memory" id="heroMemory"></div>
+            </div>
+            <div class="hero-foot">
+              <div class="hero-ticker" id="heroTicker"></div>
+              <span class="hero-scroll" aria-hidden="true"><span></span>SCROLL</span>
+            </div>
           </div>
 
           <div class="dash-grid">

@@ -909,12 +909,190 @@
       ];
       heroMeta.innerHTML = parts.map((t) => `<span>${esc(t)}</span>`).join('');
     }
+    renderHeroStage();
     renderNextEventCard(next);
     renderProfileMini();
     renderTodoMini();
     renderPhotosMini();
     renderDiaryMini();
     renderCollectionMini();
+  }
+
+  function renderHeroStage() {
+    const root = $('#heroMemory');
+    if (!root) return;
+    const profile = state.profile;
+    const photos = state.photos
+      .slice()
+      .sort((a, b) => String(b.createdAt || b.date || '').localeCompare(String(a.createdAt || a.date || '')))
+      .slice(0, 3);
+    const cards = photos.length
+      ? photos.map((photo, index) => `
+          <figure class="memory-card memory-card--${index + 1}">
+            <img src="${esc(photoSrc(photo))}" alt="${esc(photo.caption || '记忆碎片')}" loading="eager">
+            <figcaption>${esc(photo.caption || `FRAGMENT 0${index + 1}`)}</figcaption>
+          </figure>`).join('')
+      : [1, 2, 3].map((index) => `<figure class="memory-card memory-card--${index} memory-card--empty"></figure>`).join('');
+
+    root.innerHTML = `
+      <div class="memory-orb"></div>
+      <div class="memory-ring"><i></i></div>
+      ${cards}
+      <div class="memory-seal">${esc((profile.name || '刘').charAt(0))}</div>
+      <span class="memory-caption">MEMORY<br>FRAGMENTS<br>${String(photos.length).padStart(2, '0')} / 03</span>
+      <span class="memory-index">A ROOM IN HANGZHOU<br>ARCHIVE ${String(daysSince(profile.since) + 1).padStart(3, '0')} / DAYS</span>`;
+
+    const ticker = $('#heroTicker');
+    if (ticker) {
+      const items = [
+        "小刘吧 / XIAO LIU'S ROOM",
+        `${profile.city || '杭州'} · 记录第 ${daysSince(profile.since) + 1} 天`,
+        `${state.photos.length} 张照片`,
+        `${state.diaries.length} 篇日记`,
+        '喜欢的东西放在收藏馆',
+        '把普通日子过得认真一点',
+        '2026 / PERSONAL ARCHIVE',
+        'SCROLL TO REMEMBER'
+      ];
+      ticker.innerHTML = `<div class="hero-ticker-track">${[...items, ...items].map((item) => `<span>${esc(item)}</span>`).join('')}</div>`;
+    }
+    setupHeroStage();
+  }
+
+  let heroCanvasAnimation = null;
+
+  function initHeroCanvas() {
+    const canvas = $('#heroCanvas');
+    if (!canvas || MOTION_REDUCED.matches) return;
+    if (heroCanvasAnimation) {
+      heroCanvasAnimation.resize();
+      return;
+    }
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const orbit = canvas.closest('.hero--stage') || canvas.parentElement;
+    const dots = Array.from({ length: 32 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - .5) * .00022,
+      vy: (Math.random() - .5) * .00022,
+      r: .7 + Math.random() * 1.5,
+      warm: Math.random() > .72
+    }));
+    const pointer = { x: .5, y: .5, active: false };
+    const state = { w: 0, h: 0, dpr: 1 };
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      state.dpr = Math.min(2, window.devicePixelRatio || 1);
+      state.w = rect.width;
+      state.h = rect.height;
+      canvas.width = Math.round(rect.width * state.dpr);
+      canvas.height = Math.round(rect.height * state.dpr);
+      ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+    };
+
+    const draw = () => {
+      if (!state.w || !state.h) return;
+      ctx.clearRect(0, 0, state.w, state.h);
+      const px = pointer.x * state.w;
+      const py = pointer.y * state.h;
+      dots.forEach((dot) => {
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+        if (dot.x < .02) dot.x = .98;
+        if (dot.x > .98) dot.x = .02;
+        if (dot.y < .02) dot.y = .98;
+        if (dot.y > .98) dot.y = .02;
+
+        const x = dot.x * state.w;
+        const y = dot.y * state.h;
+        const pd = Math.hypot(x - px, y - py);
+        if (pointer.active && pd < 170) {
+          const pull = (1 - pd / 170) * .18;
+          dot.x += (px - x) / state.w * pull;
+          dot.y += (py - y) / state.h * pull;
+        }
+        ctx.beginPath();
+        ctx.arc(x, y, dot.r, 0, Math.PI * 2);
+        ctx.fillStyle = dot.warm ? 'rgba(235, 190, 166, .62)' : 'rgba(225, 208, 240, .52)';
+        ctx.fill();
+      });
+
+      for (let i = 0; i < dots.length; i += 1) {
+        for (let j = i + 1; j < dots.length; j += 1) {
+          const a = dots[i];
+          const b = dots[j];
+          const ax = a.x * state.w;
+          const ay = a.y * state.h;
+          const bx = b.x * state.w;
+          const by = b.y * state.h;
+          const dist = Math.hypot(ax - bx, ay - by);
+          if (dist < 94) {
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            ctx.strokeStyle = `rgba(215, 190, 226, ${(1 - dist / 94) * .10})`;
+            ctx.lineWidth = .6;
+            ctx.stroke();
+          }
+        }
+        if (pointer.active) {
+          const ax = dots[i].x * state.w;
+          const ay = dots[i].y * state.h;
+          const dist = Math.hypot(ax - px, ay - py);
+          if (dist < 145) {
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(px, py);
+            ctx.strokeStyle = `rgba(242, 198, 177, ${(1 - dist / 145) * .18})`;
+            ctx.lineWidth = .7;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    };
+
+    heroCanvasAnimation = { resize };
+    new ResizeObserver(resize).observe(orbit);
+    const hero = $('.hero--stage');
+    hero?.addEventListener('pointermove', (event) => {
+      const rect = hero.getBoundingClientRect();
+      pointer.x = (event.clientX - rect.left) / rect.width;
+      pointer.y = (event.clientY - rect.top) / rect.height;
+      pointer.active = true;
+    }, { passive: true });
+    hero?.addEventListener('pointerleave', () => { pointer.active = false; });
+
+    resize();
+    requestAnimationFrame(draw);
+  }
+
+  function setupHeroStage() {
+    const hero = $('.hero--stage');
+    if (!hero) return;
+    if (FINE_POINTER.matches && !MOTION_REDUCED.matches && !hero.dataset.stageBound) {
+      hero.dataset.stageBound = '1';
+      const memory = $('#heroMemory');
+      hero.addEventListener('pointermove', (event) => {
+        const rect = hero.getBoundingClientRect();
+        const nx = (event.clientX - rect.left) / rect.width - .5;
+        const ny = (event.clientY - rect.top) / rect.height - .5;
+        if (memory) {
+          memory.style.setProperty('--tx', `${nx * 16}px`);
+          memory.style.setProperty('--ty', `${ny * 12}px`);
+        }
+      }, { passive: true });
+      hero.addEventListener('pointerleave', () => {
+        if (memory) {
+          memory.style.setProperty('--tx', '0px');
+          memory.style.setProperty('--ty', '0px');
+        }
+      });
+    }
+    requestAnimationFrame(initHeroCanvas);
   }
 
   function renderNextEventCard(item) {
