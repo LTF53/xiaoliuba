@@ -1187,7 +1187,9 @@
             const [a1, a2, a3, a4] = item.palette;
             return `<article class="anime-card" style="--a1:${esc(a1)};--a2:${esc(a2)};--a3:${esc(a3)};--a4:${esc(a4)}">
               <div class="anime-poster">
-                <div class="anime-art">${collectionMotif(item.motif)}</div>
+                ${item.cover
+                  ? `<img class="anime-cover" src="${esc(item.cover)}" alt="${esc(item.title)} 动画封面" loading="lazy">`
+                  : `<div class="anime-art">${collectionMotif(item.motif)}</div>`}
                 <span class="anime-no">${esc(item.no || String(index + 1).padStart(2, '0'))}</span>
                 <span class="anime-year">${esc(item.year)}</span>
                 <span class="anime-format">${esc(item.format)}</span>
@@ -1207,7 +1209,8 @@
             <p>喜欢的东西不必有用。<br>它们负责在普通日子里，<br>留一扇门。</p>
             <small>THE ARCHIVE IS A PLACE<br>YOU RETURN TO.</small>
           </article>
-        </div>`;
+        </div>
+        <p class="collection-source">封面来源：AniList · 仅作个人收藏展示</p>`;
     }
 
     const gameSection = $('#collection-game');

@@ -5,6 +5,7 @@ window.XLB_COLLECTION = {
   anime: [
     {
       id: 'gits',
+      cover: 'assets/collection/anime/43.jpg',
       no: '01',
       title: '攻壳机动队',
       en: 'GHOST IN THE SHELL',
@@ -19,6 +20,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'akira',
+      cover: 'assets/collection/anime/47.jpg',
       no: '02',
       title: '阿基拉',
       en: 'AKIRA',
@@ -33,6 +35,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'eva',
+      cover: 'assets/collection/anime/30.jpg',
       no: '03',
       title: '新世纪福音战士',
       en: 'NEON GENESIS EVANGELION',
@@ -47,6 +50,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'vinland',
+      cover: 'assets/collection/anime/101348.jpg',
       no: '04',
       title: '冰海战记',
       en: 'VINLAND SAGA',
@@ -61,6 +65,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'monster',
+      cover: 'assets/collection/anime/19.jpg',
       no: '05',
       title: 'MONSTER',
       en: 'MONSTER',
@@ -75,6 +80,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'boonie',
+      cover: 'assets/collection/anime/148972.jpg',
       no: '06',
       title: '熊出没',
       en: 'BOONIE BEARS',
@@ -89,6 +95,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'goat',
+      cover: 'assets/collection/anime/107070.jpg',
       no: '07',
       title: '喜羊羊与灰太狼',
       en: 'PLEASANT GOAT & BIG BIG WOLF',
@@ -103,6 +110,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'titan',
+      cover: 'assets/collection/anime/16498.jpg',
       no: '08',
       title: '进击的巨人',
       en: 'ATTACK ON TITAN',
@@ -117,6 +125,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'ggbond',
+      cover: 'assets/collection/anime/103973.jpg',
       no: '09',
       title: '猪猪侠',
       en: 'GG BOND',
@@ -131,6 +140,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'champloo',
+      cover: 'assets/collection/anime/205.jpg',
       no: '10',
       title: '混沌武士',
       en: 'SAMURAI CHAMPLOO',
@@ -145,6 +155,7 @@ window.XLB_COLLECTION = {
     },
     {
       id: 'berserk',
+      cover: 'assets/collection/anime/33.jpg',
       no: '11',
       title: '剑风传奇',
       en: 'BERSERK',
