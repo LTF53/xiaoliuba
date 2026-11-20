@@ -1,7 +1,6 @@
-/* ============================================================================
-   小刘吧 · 一间房，一盏灯
-   一个私人档案馆：房间是暗的，页子是亮的。
-   1  tokens        2  base        3  rail       4  pagebar     5  masthead
+﻿/* ============================================================================
+   灏忓垬鍚?路 涓€闂存埧锛屼竴鐩忕伅
+   涓€涓浜烘。妗堥锛氭埧闂存槸鏆楃殑锛岄〉瀛愭槸浜殑銆?   1  tokens        2  base        3  rail       4  pagebar     5  masthead
    6  blocks        7  gallery     8  countdown  9  journal    10 todos
    11 profile       12 collection  13 dialogs   14 misc       15 motion
    16 responsive
@@ -41,7 +40,7 @@ html[data-accent="pine"] { --accent: #7fbfa2; --accent-soft: rgba(127, 191, 162,
 html[data-accent="plum"] { --accent: #c39ac4; --accent-soft: rgba(195, 154, 196, .14); }
 html[data-accent="ochre"] { --accent: #c9a06a; --accent-soft: rgba(201, 160, 106, .14); }
 
-/* 第二档灯：更暗的夜 */
+/* 绗簩妗ｇ伅锛氭洿鏆楃殑澶?*/
 html[data-theme="dark"] {
   --room: #080806;
   --room-2: #0c0b09;
@@ -1699,13 +1698,13 @@ html[data-theme="dark"] .pagebar { background: rgba(8, 8, 6, .74); }
 .anime-title h3 { font-family: var(--serif); font-size: 16px; font-weight: 500; line-height: 1.45; letter-spacing: .02em; }
 .anime-title p { display: flex; flex-wrap: wrap; gap: 2px 0; margin-top: 5px; font-family: var(--num); font-size: 9.5px; letter-spacing: .1em; color: var(--ink-3); }
 .anime-title p span:first-child { flex: 1 1 100%; opacity: .85; }
-.anime-title p span + span::before { content: "·"; margin: 0 6px; color: var(--ink-3); opacity: .6; }
+.anime-title p span + span::before { content: "路"; margin: 0 6px; color: var(--ink-3); opacity: .6; }
 .anime-title p span:nth-child(2)::before { content: none; }
 
 .anime-info { padding-top: 9px; }
 .anime-tags { display: flex; flex-wrap: wrap; gap: 4px 0; }
 .anime-tags span { font-size: 10.5px; letter-spacing: .04em; color: var(--ink-3); }
-.anime-tags span + span::before { content: "·"; margin: 0 7px; opacity: .55; }
+.anime-tags span + span::before { content: "路"; margin: 0 7px; opacity: .55; }
 .anime-maker { margin-top: 8px; font-size: 11px; color: var(--ink-3); }
 .anime-note { margin-top: 6px; font-size: 12px; line-height: 1.8; color: var(--ink-2); }
 
@@ -2207,7 +2206,7 @@ body:not(.no-vinyl) .vinyl { animation-play-state: running; }
   .rail { display: none; }
   .page { margin-left: 0; }
   .pagebar-crumb::before {
-    content: "刘";
+    content: "鍒?;
     display: grid;
     place-items: center;
     width: 22px;
@@ -2283,7 +2282,7 @@ body:not(.no-vinyl) .vinyl { animation-play-state: running; }
   .mast-greet { font-size: 26px; }
   .mast-meta { gap: 8px 14px; font-size: 12px; }
   .mast-actions .btn { flex: 1 1 auto; }
-  .mast-actions .btn--quiet { flex: 0 0 100%; }
+  .mast-actions .btn--quiet { flex: 0 0 auto; }
   .dash { grid-template-columns: minmax(0, 1fr); }
   #nextEventCard, #todoMini, #profileMini, #photosMini, #diaryMini, #collectionMini { grid-column: auto; }
   .mini-photos { grid-template-columns: repeat(2, 1fr); }
@@ -2326,7 +2325,7 @@ body:not(.no-vinyl) .vinyl { animation-play-state: running; }
   .mini-photo span { opacity: 1; transform: none; }
 }
 
-/* 分档灯：更暗的一档把画布压下去，保留纸页对比 */
+/* 鍒嗘。鐏細鏇存殫鐨勪竴妗ｆ妸鐢诲竷鍘嬩笅鍘伙紝淇濈暀绾搁〉瀵规瘮 */
 html[data-theme="dark"] .mast-strip img,
 html[data-theme="dark"] .shot img,
 html[data-theme="dark"] .anime-cover,
@@ -2349,4 +2348,22 @@ input[type="date"]:focus::-webkit-calendar-picker-indicator { filter: invert(1) 
 @media (max-width: 720px) {
   .anime-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archive-note-card { aspect-ratio: auto; }
+}
+
+/* 棣栧睆锛氭暟鎹埌浣嶅墠鍐呭鍖哄厛涓嶅嚭鐜帮紝閬垮厤瑙備紬鐪嬪埌绌哄３ */
+.content { transition: opacity .55s ease; }
+body.is-loading .content { opacity: 0; }
+body.is-loading .topbar-tools, body.is-loading .rail-foot { opacity: .5; }
+
+/* 倒数日块的类型标记与其他块的标题使用同一套字级，不再画成贴纸 */
+.tag--evt {
+  border: 0;
+  padding: 0;
+  background: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--ink-2);
+  white-space: nowrap;
 }

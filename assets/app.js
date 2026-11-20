@@ -3543,9 +3543,13 @@
   }
 
   async function init() {
+    document.body.classList.add('is-loading');
     applyTheme();
     bindStaticEvents();
     initMotion();
+    /* 先把时钟和日期点亮，等数据回来再让内容淡入 */
+    tickDay = todayISO();
+    tick();
     if (IS_SHARED) {
       await loadSharedState();
       applyTheme();
@@ -3583,7 +3587,10 @@
         } catch (err) { /* ignore */ }
       }, 900);
     }
+    requestAnimationFrame(() => document.body.classList.remove('is-loading'));
   }
+
+  setTimeout(() => document.body.classList.remove('is-loading'), 8000);
 
   init();
 })();
