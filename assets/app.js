@@ -339,20 +339,20 @@
     ['ochre', '赭金', '#a97a2f']
   ];
   const ACCENTS = [
-    ['vermilion', '朱砂', '#b8452c'],
-    ['indigo', '靛蓝', '#35538f'],
-    ['pine', '松绿', '#2f6b58'],
-    ['plum', '绛紫', '#74486e'],
-    ['ochre', '赭金', '#96661d']
+    ['vermilion', '琥珀', '#e0a44a'],
+    ['indigo', '月白', '#7fa7d6'],
+    ['pine', '松石', '#7fbfa2'],
+    ['plum', '藕荷', '#c39ac4'],
+    ['ochre', '赭石', '#c9a06a']
   ];
   const VIEW_META = {
-    dashboard: { name: '仪表盘', title: '仪表盘' },
-    gallery: { name: '照片墙', title: '照片墙' },
-    countdown: { name: '倒计时', title: '倒计时' },
-    diary: { name: '日记', title: '日记' },
-    todos: { name: '待办', title: '待办' },
+    dashboard: { name: '今天', title: '今天' },
+    gallery: { name: '照片', title: '照片' },
+    countdown: { name: '倒数', title: '倒数' },
+    diary: { name: '手记', title: '手记' },
+    todos: { name: '清单', title: '清单' },
     profile: { name: '我的', title: '我的' },
-    collection: { name: '收藏', title: '收藏馆' }
+    collection: { name: '收藏', title: '收藏' }
   };
   const EVENT_TYPES = {
     birthday: '生日',
@@ -665,7 +665,7 @@
   /* ---------------------------------------------------------------------
      5. 主题
      --------------------------------------------------------------------- */
-  const THEME_LABELS = { light: '浅色', dark: '深色', auto: '跟随系统' };
+  const THEME_LABELS = { light: '展厅', dark: '夜读', auto: '跟随' };
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
   const urlParams = PAGE_PARAMS;
   let previewTheme = ['light', 'dark', 'auto'].includes(urlParams.get('theme')) ? urlParams.get('theme') : null;
@@ -696,9 +696,9 @@
     document.documentElement.dataset.theme = theme;
     document.documentElement.dataset.accent = previewAccent || state.settings.accent || 'vermilion';
     const meta = $('#themeColorMeta');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#12100e' : '#f6f2ea');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#080806' : '#0e0d0b');
     const sideBtn = $('#sideThemeBtn');
-    if (sideBtn) sideBtn.textContent = `外观 · ${THEME_LABELS[state.settings.theme] || '浅色'}`;
+    if (sideBtn) sideBtn.textContent = `灯 · ${THEME_LABELS[state.settings.theme] || '展厅'}`;
     renderThemeControls();
   }
 
@@ -859,7 +859,7 @@
     const yearEl = $('#footYear');
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());
     const sideBtn = $('#sideThemeBtn');
-    if (sideBtn) sideBtn.textContent = `外观 · ${THEME_LABELS[state.settings.theme] || '浅色'}`;
+    if (sideBtn) sideBtn.textContent = `灯 · ${THEME_LABELS[state.settings.theme] || '展厅'}`;
   }
 
   function toast(message, tone = '') {
@@ -884,15 +884,14 @@
     const profile = state.profile;
     const next = nextUpcomingEvent();
     const name = profile.name || '小刘';
-    const heroEyebrow = $('#heroEyebrow');
-    if (heroEyebrow) {
-      const parts = [
-        fmtDateFull(today),
-        profile.city || '',
-        `记录第 ${daysSince(profile.since) + 1} 天`
-      ].filter(Boolean);
-      heroEyebrow.innerHTML = parts.map((part) => `<span class="eyebrow-item">${esc(part)}</span>`).join('');
-    }
+    const now = new Date();
+    const EN_MONTH = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const monthEl = $('#heroMonth');
+    if (monthEl) monthEl.textContent = `${now.getFullYear()} · ${EN_MONTH[now.getMonth()]}`;
+    const dayEl = $('#heroDay');
+    if (dayEl) dayEl.textContent = pad2(now.getDate());
+    const weekEl = $('#heroWeekday');
+    if (weekEl) weekEl.textContent = WEEK[now.getDay()];
     const heroTitle = $('#heroTitle');
     if (heroTitle) {
       heroTitle.innerHTML = `<span class="hero-title-main">${esc(greeting())}，${esc(name)}。</span><span class="hero-title-sub">今天也慢慢来。</span>`;
@@ -901,11 +900,11 @@
     if (heroSub) heroSub.textContent = `「${dailyQuote()}」`;
     const heroMeta = $('#heroMeta');
     if (heroMeta) {
-      const undone = state.todos.filter((t) => !t.done).length;
       const parts = [
-        state.photos.length ? `收藏了 ${state.photos.length} 张照片` : '还没有贴上一张照片',
-        state.diaries.length ? `写下 ${state.diaries.length} 篇日记` : '还没有写第一篇日记',
-        undone ? `${undone} 件小事待完成` : '清单已经清空'
+        profile.city || '杭州',
+        `记录第 ${daysSince(profile.since) + 1} 天`,
+        state.photos.length ? `${state.photos.length} 张照片` : '还没有照片',
+        state.diaries.length ? `${state.diaries.length} 篇手记` : '还没有手记'
       ];
       heroMeta.innerHTML = parts.map((t) => `<span>${esc(t)}</span>`).join('');
     }
@@ -919,198 +918,29 @@
   }
 
   function renderHeroStage() {
-    const root = $('#heroMemory');
-    if (!root) return;
-    const profile = state.profile;
-    const photos = state.photos
-      .slice()
-      .sort((a, b) => String(b.createdAt || b.date || '').localeCompare(String(a.createdAt || a.date || '')))
-      .slice(0, 3);
-    const cards = photos.length
-      ? photos.map((photo, index) => `
-          <figure class="memory-card memory-card--${index + 1}">
-            <img src="${esc(photoSrc(photo))}" alt="${esc(photo.caption || '记忆碎片')}" loading="eager">
-            <figcaption>${esc(photo.caption || `FRAGMENT 0${index + 1}`)}</figcaption>
-          </figure>`).join('')
-      : [1, 2, 3].map((index) => `<figure class="memory-card memory-card--${index} memory-card--empty"></figure>`).join('');
-
-    root.innerHTML = `
-      <div class="memory-orb"></div>
-      <div class="memory-ring"><i></i></div>
-      ${cards}
-      <div class="memory-seal">${esc((profile.name || '刘').charAt(0))}</div>
-      <span class="memory-caption">MEMORY<br>FRAGMENTS<br>${String(photos.length).padStart(2, '0')} / 03</span>
-      <span class="memory-index">A ROOM / PERSONAL ARCHIVE<br>ARCHIVE ${String(daysSince(profile.since) + 1).padStart(3, '0')} / DAYS</span>`;
-
-    const ticker = $('#heroTicker');
-    if (ticker) {
-      const items = [
-        "小刘吧 / XIAO LIU'S ROOM",
-        `${profile.city || '杭州'} · 记录第 ${daysSince(profile.since) + 1} 天`,
-        `${state.photos.length} 张照片`,
-        `${state.diaries.length} 篇日记`,
-        '喜欢的东西放在收藏馆',
-        '把普通日子过得认真一点',
-        '2026 / PERSONAL ARCHIVE',
-        'SCROLL TO REMEMBER'
-      ];
-      ticker.innerHTML = `<div class="hero-ticker-track">${[...items, ...items].map((item) => `<span>${esc(item)}</span>`).join('')}</div>`;
-    }
-    setupHeroStage();
-  }
-
-  let heroCanvasAnimation = null;
-
-  function initHeroCanvas() {
-    const canvas = $('#heroCanvas');
-    if (!canvas || MOTION_REDUCED.matches) return;
-    if (heroCanvasAnimation) {
-      heroCanvasAnimation.resize();
-      return;
-    }
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    const orbit = canvas.closest('.hero--stage') || canvas.parentElement;
-    const dots = Array.from({ length: 32 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      vx: (Math.random() - .5) * .00022,
-      vy: (Math.random() - .5) * .00022,
-      r: .7 + Math.random() * 1.5,
-      warm: Math.random() > .72
-    }));
-    const pointer = { x: .5, y: .5, active: false };
-    const state = { w: 0, h: 0, dpr: 1 };
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-      state.dpr = Math.min(2, window.devicePixelRatio || 1);
-      state.w = rect.width;
-      state.h = rect.height;
-      canvas.width = Math.round(rect.width * state.dpr);
-      canvas.height = Math.round(rect.height * state.dpr);
-      ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
-    };
-
-    const draw = () => {
-      if (!state.w || !state.h) return;
-      ctx.clearRect(0, 0, state.w, state.h);
-      const px = pointer.x * state.w;
-      const py = pointer.y * state.h;
-      dots.forEach((dot) => {
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-        if (dot.x < .02) dot.x = .98;
-        if (dot.x > .98) dot.x = .02;
-        if (dot.y < .02) dot.y = .98;
-        if (dot.y > .98) dot.y = .02;
-
-        const x = dot.x * state.w;
-        const y = dot.y * state.h;
-        const pd = Math.hypot(x - px, y - py);
-        if (pointer.active && pd < 170) {
-          const pull = (1 - pd / 170) * .18;
-          dot.x += (px - x) / state.w * pull;
-          dot.y += (py - y) / state.h * pull;
-        }
-        ctx.beginPath();
-        ctx.arc(x, y, dot.r, 0, Math.PI * 2);
-        ctx.fillStyle = dot.warm ? 'rgba(235, 190, 166, .62)' : 'rgba(225, 208, 240, .52)';
-        ctx.fill();
-      });
-
-      for (let i = 0; i < dots.length; i += 1) {
-        for (let j = i + 1; j < dots.length; j += 1) {
-          const a = dots[i];
-          const b = dots[j];
-          const ax = a.x * state.w;
-          const ay = a.y * state.h;
-          const bx = b.x * state.w;
-          const by = b.y * state.h;
-          const dist = Math.hypot(ax - bx, ay - by);
-          if (dist < 94) {
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
-            ctx.strokeStyle = `rgba(215, 190, 226, ${(1 - dist / 94) * .10})`;
-            ctx.lineWidth = .6;
-            ctx.stroke();
-          }
-        }
-        if (pointer.active) {
-          const ax = dots[i].x * state.w;
-          const ay = dots[i].y * state.h;
-          const dist = Math.hypot(ax - px, ay - py);
-          if (dist < 145) {
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(px, py);
-            ctx.strokeStyle = `rgba(242, 198, 177, ${(1 - dist / 145) * .18})`;
-            ctx.lineWidth = .7;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    };
-
-    heroCanvasAnimation = { resize };
-    new ResizeObserver(resize).observe(orbit);
-    const hero = $('.hero--stage');
-    hero?.addEventListener('pointermove', (event) => {
-      const rect = hero.getBoundingClientRect();
-      pointer.x = (event.clientX - rect.left) / rect.width;
-      pointer.y = (event.clientY - rect.top) / rect.height;
-      pointer.active = true;
-    }, { passive: true });
-    hero?.addEventListener('pointerleave', () => { pointer.active = false; });
-
-    resize();
-    requestAnimationFrame(draw);
-  }
-
-  function setupHeroStage() {
-    const hero = $('.hero--stage');
-    if (!hero) return;
-    if (FINE_POINTER.matches && !MOTION_REDUCED.matches && !hero.dataset.stageBound) {
-      hero.dataset.stageBound = '1';
-      const memory = $('#heroMemory');
-      hero.addEventListener('pointermove', (event) => {
-        const rect = hero.getBoundingClientRect();
-        const nx = (event.clientX - rect.left) / rect.width - .5;
-        const ny = (event.clientY - rect.top) / rect.height - .5;
-        if (memory) {
-          memory.style.setProperty('--tx', `${nx * 16}px`);
-          memory.style.setProperty('--ty', `${ny * 12}px`);
-        }
-      }, { passive: true });
-      hero.addEventListener('pointerleave', () => {
-        if (memory) {
-          memory.style.setProperty('--tx', '0px');
-          memory.style.setProperty('--ty', '0px');
-        }
-      });
-    }
-    requestAnimationFrame(initHeroCanvas);
+    const strip = $('#heroStrip');
+    if (!strip) return;
+    const photos = sortedPhotos().slice(0, 3);
+    strip.innerHTML = photos.length
+      ? photos.map((photo) => `<img src="${esc(photoSrc(photo))}" alt="${esc(photo.caption || '照片')}" decoding="async">`).join('')
+      : '<span class="is-blank"></span><span class="is-blank"></span><span class="is-blank"></span>';
   }
 
   function renderNextEventCard(item) {
     const card = $('#nextEventCard');
     if (!card) return;
     if (!item) {
-      card.className = 'card next-event span-5';
+      card.className = 'block block--event';
       card.innerHTML = `
         <div class="ne-top"><span class="tag">倒数日</span></div>
         <div class="ne-count"><strong class="ne-num">—</strong><span class="ne-unit">天</span></div>
         <p class="ne-name">还没有值得等待的日子</p>
         <p class="ne-note">新建一个倒数日，让某个日子被认真期待。</p>
-        <a class="text-link" href="#countdown">去新建 <span>→</span></a>`;
+        <a class="text-link" href="#countdown">去新建</a>`;
       return;
     }
     const { ev, info } = item;
-    const color = ev.color || 'vermilion';
-    card.className = `card next-event span-5 evt--${color}`;
+    card.className = 'block block--event';
     const dateLine = info.annual ? `${fmtCN(info.targetISO)} · 每年` : fmtDateFull(ev.date);
     const num = info.isToday
       ? '<strong class="ne-num ne-num--word">今天</strong>'
@@ -1125,7 +955,7 @@
       <p class="ne-live" data-live-target="${esc(info.targetISO)}">${liveFallback(info)}</p>
       <p class="ne-note">${esc(ev.note || '这个日子正在来的路上。')}</p>
       ${info.annual ? `<div class="ne-bar"><i style="width:${info.percent}%"></i></div>` : ''}
-      <a class="text-link" href="#countdown">查看全部倒数日 <span>→</span></a>`;
+      <a class="text-link" href="#countdown">查看全部倒数日</a>`;
   }
 
   function liveFallback(info) {
@@ -1166,7 +996,7 @@
         <div class="pm-stat"><strong>${state.diaries.length}</strong><span>日记</span></div>
         <div class="pm-stat"><strong>${state.events.length}</strong><span>倒数日</span></div>
       </div>
-      <a class="text-link" href="#profile">打开我的 <span>→</span></a>`;
+      <a class="text-link" href="#profile">打开我的</a>`;
   }
 
   function renderTodoMini() {
@@ -1190,7 +1020,7 @@
       </ul>
       ${undone.length === 0 ? `<p class="mini-empty">${total ? '全部完成了，去休息一下吧。' : '还没有待办，慢慢来。'}</p>` : ''}
       <div class="mini-progress"><i style="width:${percent}%"></i></div>
-      <a class="text-link" href="#todos">去清单 <span>→</span></a>`;
+      <a class="text-link" href="#todos">去清单</a>`;
   }
 
   function renderPhotosMini() {
@@ -1200,7 +1030,7 @@
     root.innerHTML = `
       <div class="card-head">
         <h3 class="card-title">最近的瞬间</h3>
-        <a class="text-link" href="#gallery">全部 →</a>
+        <a class="text-link" href="#gallery">全部</a>
       </div>
       <div class="mini-photos">
         ${photos.map((p) => `
@@ -1220,21 +1050,21 @@
       .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')) || String(b.createdAt || '').localeCompare(String(a.createdAt || '')))[0];
     if (!latest) {
       root.innerHTML = `
-        <div class="card-head"><h3 class="card-title">最近的手记</h3><a class="text-link" href="#diary">去写 →</a></div>
+        <div class="card-head"><h3 class="card-title">最近的手记</h3><a class="text-link" href="#diary">去写</a></div>
         <p class="mini-empty">还没有日记。<br>今天的心情，也值得被记下来。</p>
-        <a class="text-link" href="#diary">写下第一篇 <span>→</span></a>`;
+        <a class="text-link" href="#diary">写下第一篇</a>`;
       return;
     }
     root.innerHTML = `
       <div class="card-head">
         <h3 class="card-title">最近的手记</h3>
-        <a class="text-link" href="#diary">全部 →</a>
+        <a class="text-link" href="#diary">全部</a>
       </div>
       <div class="mini-diary">
         <p class="mini-diary-date">${esc(fmtDateFull(latest.date))} · ${esc(latest.mood || '')}</p>
         <h4 class="mini-diary-title">${esc(latest.title || '未命名的一天')}</h4>
         <p class="mini-diary-text">${esc(latest.content)}</p>
-        <button class="text-link" type="button" data-action="read-diary" data-id="${esc(latest.id)}">继续读 <span>→</span></button>
+        <button class="text-link" type="button" data-action="read-diary" data-id="${esc(latest.id)}">继续读</button>
       </div>`;
   }
 
@@ -1249,7 +1079,7 @@
           <p class="eyebrow">收藏 · THE ARCHIVE</p>
           <h3 class="collection-mini-title">喜欢的东西，放在这里。</h3>
         </div>
-        <a class="text-link" href="#collection">进入收藏馆 <span>→</span></a>
+        <a class="text-link" href="#collection">进入收藏馆</a>
       </div>
       <div class="collection-mini-row">
         <div class="collection-mini-stat"><strong>${data.anime.length}</strong><span>动画</span></div>
@@ -1351,15 +1181,15 @@
     const index = $('#collectionIndex');
     if (index) {
       index.innerHTML = [
-        ['I', '动画', 'ANIMATION', 'collection-anime'],
-        ['II', '游戏', 'GAMES', 'collection-game'],
-        ['III', '音乐', 'MUSIC', 'collection-music']
+        ['01', '动画', 'ANIMATION', 'collection-anime'],
+        ['02', '游戏', 'GAMES', 'collection-game'],
+        ['03', '音乐', 'MUSIC', 'collection-music']
       ].map(([no, label, en, target]) => `<button type="button" class="collection-index-link" data-action="collection-jump" data-target="${target}"><span>${no}</span><b>${label}</b><small>${en}</small></button>`).join('');
     }
 
     const animeSection = $('#collection-anime');
     if (animeSection) {
-      animeSection.innerHTML = `${collectionChapterHead('I', '动画', 'ANIMATION', '被反复打开的世界，和留在里面的自己。', `${data.anime.length} ENTRIES`)}
+      animeSection.innerHTML = `${collectionChapterHead('01', '动画', 'ANIMATION', '被反复打开的世界，和留在里面的自己。', `${data.anime.length} ENTRIES`)}
         <div class="anime-grid">
           ${data.anime.map((item, index) => {
             const [a1, a2, a3, a4] = item.palette;
@@ -1370,12 +1200,10 @@
                   ? `<img class="anime-cover" src="${esc(item.cover)}" alt="${esc(item.title)} 动画封面" decoding="async">`
                   : ''}
                 <span class="anime-no">${esc(item.no || String(index + 1).padStart(2, '0'))}</span>
-                <span class="anime-year">${esc(item.year)}</span>
-                <span class="anime-format">${esc(item.format)}</span>
                 <span class="anime-jp" lang="ja">${esc(item.jp)}</span>
-                <div class="anime-title"><h3>${esc(item.title)}</h3><p>${esc(item.en)}</p></div>
               </div>
               <div class="anime-info">
+                <div class="anime-title"><h3>${esc(item.title)}</h3><p><span>${esc(item.en)}</span><span>${esc(item.year)}</span><span>${esc(item.format)}</span></p></div>
                 <div class="anime-tags">${item.tags.map((tag) => `<span>${esc(tag)}</span>`).join('')}</div>
                 <p class="anime-maker">${esc(item.maker)}</p>
                 <p class="anime-note">${esc(item.note)}</p>
@@ -1394,7 +1222,7 @@
 
     const gameSection = $('#collection-game');
     if (gameSection) {
-      gameSection.innerHTML = `${collectionChapterHead('II', '游戏', 'STEAM / TOTAL HOURS', '按总时长排的游戏墙，每一次打开都是一段时间。', `STEAM · ${data.games.reduce((sum, game) => sum + Number(game.hours || 0), 0).toFixed(1)} H`)}
+      gameSection.innerHTML = `${collectionChapterHead('02', '游戏', 'STEAM / TOTAL HOURS', '按总时长排的游戏墙，每一次打开都是一段时间。', `STEAM · ${data.games.reduce((sum, game) => sum + Number(game.hours || 0), 0).toFixed(1)} H`)}
         <div class="game-shelf">
           ${data.games.map((game) => `<a class="game-card" href="https://store.steampowered.com/app/${esc(game.appid)}/" target="_blank" rel="noopener">
             <div class="game-cover">
@@ -1417,9 +1245,9 @@
     if (musicSection) {
       const active = data.music.find((track) => track.mid === activeCollectionTrack) || data.music[0];
       if (!active) {
-        musicSection.innerHTML = collectionChapterHead('III', '音乐', 'MUSIC', '最近循环的声音。', '0 TRACKS');
+        musicSection.innerHTML = collectionChapterHead('03', '音乐', 'MUSIC', '最近循环的声音。', '0 TRACKS');
       } else {
-        musicSection.innerHTML = `${collectionChapterHead('III', '音乐', 'QQ MUSIC / 我的收藏', `最近循环的 ${data.music.length} 首，黑胶不转，但耳机里一直在转。`, `${data.music.length} TRACKS`)}
+        musicSection.innerHTML = `${collectionChapterHead('03', '音乐', 'QQ MUSIC / 我的收藏', `最近循环的 ${data.music.length} 首，黑胶不转，但耳机里一直在转。`, `${data.music.length} TRACKS`)}
           <div class="music-stage">
             <div class="music-feature">
               <div class="record-wrap">
@@ -1481,7 +1309,7 @@
           : '共享快照里还没有照片。';
       } else {
         sub.textContent = count
-          ? `共 ${count} 张照片。照片保存在本机浏览器的照片库里（IndexedDB），可以随时删掉。`
+          ? `共 ${count} 张照片，都存在这台设备的浏览器里。`
           : '把喜欢的瞬间贴在这里。';
       }
     }
@@ -1974,7 +1802,7 @@
     const view = viewFromHash();
     currentView = view;
     document.title = view === 'dashboard'
-      ? '小刘吧 · 把日子过成喜欢的样子'
+      ? '小刘吧 · 一间房，一盏灯'
       : `${VIEW_META[view].name} · 小刘吧`;
     $$('.view').forEach((section) => {
       section.hidden = section.dataset.view !== view;
@@ -2019,6 +1847,11 @@
     if (clock) {
       const d = new Date();
       clock.textContent = `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+      const rule = $('.day-rule');
+      if (rule) {
+        const pct = (d.getHours() * 60 + d.getMinutes()) / 1440 * 100;
+        rule.style.setProperty('--day', pct.toFixed(2) + '%');
+      }
     }
     const day = todayISO();
     if (day !== tickDay) {
@@ -2026,7 +1859,7 @@
       renderChrome();
       renderView(currentView);
       document.title = currentView === 'dashboard'
-        ? '小刘吧 · 把日子过成喜欢的样子'
+        ? '小刘吧 · 一间房，一盏灯'
         : `${VIEW_META[currentView].name} · 小刘吧`;
     }
     $$('[data-live-target]').forEach((el) => {
@@ -2069,6 +1902,7 @@
     const panel = $('#modalPanel');
     if (!panel) return;
     panel.innerHTML = html;
+    panel.classList.toggle('is-paper', html.includes('class="reader-body"'));
     if (typeof onMount === 'function') onMount(panel);
     if (!modal.open) modal.showModal();
     document.body.classList.add('modal-open');
@@ -2083,7 +1917,7 @@
       if (modal.open) return;
       document.body.classList.remove('modal-open');
       const panel = $('#modalPanel');
-      if (panel) panel.innerHTML = '';
+      if (panel) { panel.innerHTML = ''; panel.className = 'sheet-panel'; }
       const notifyBtn = $('#notifyBtn');
       if (notifyBtn) notifyBtn.setAttribute('aria-expanded', 'false');
       flushPendingSync();
@@ -3432,8 +3266,7 @@
       case 'select-track':
         activeCollectionTrack = String(actionEl.dataset.trackId || '') || null;
         renderCollection();
-        setupPointerMotion($('#view-collection'));
-        break;
+            break;
       case 'reminder-action': {
         if (actionEl.dataset.export) { closeModal(); exportData(); break; }
         const target = String(actionEl.dataset.target || '');
@@ -3652,7 +3485,7 @@
     if (tools && !$('.shared-badge')) {
       tools.insertAdjacentHTML('afterbegin', '<span class="shared-badge">只读共享</span>');
     }
-    const foot = $('.site-foot p');
+    const foot = $('.foot p');
     if (foot) foot.textContent = '小刘吧 · 共享只读页 · 内容由小刘发布';
     if (state.meta.sharedLoaded) return;
     const content = $('.content');
@@ -3671,80 +3504,12 @@
      16. 动效系统：Split Text / Blur / Reveal / Spotlight / Specular / Tilt
      灵感来自 MotionSites 的整页节奏、Pinterest 的材质与 React Bits 的交互原语。
      --------------------------------------------------------------------- */
-  let motionObserver = null;
-  let motionRaf = 0;
-  const motionSeen = new WeakSet();
-  const pointerSeen = new WeakSet();
-
+  /* ---------------------------------------------------------------------
+     17. 动效：一次入场，就够。
+     --------------------------------------------------------------------- */
   function initMotion() {
     if (MOTION_REDUCED.matches) return;
-    document.body.classList.add('motion-ready');
-
-    const updateScroll = () => {
-      const progress = $('#scrollProgress');
-      if (progress) {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        progress.style.width = `${max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0}%`;
-      }
-      const mark = $('.hero-mark');
-      if (mark) mark.style.setProperty('--hero-parallax', `${Math.min(56, window.scrollY * 0.055)}px`);
-    };
-    const onScroll = () => {
-      if (motionRaf) return;
-      motionRaf = requestAnimationFrame(() => {
-        motionRaf = 0;
-        updateScroll();
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    updateScroll();
-
-    if ('IntersectionObserver' in window) {
-      motionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-in');
-            motionObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
-    }
-  }
-
-  function splitTextElement(el) {
-    if (!el || MOTION_REDUCED.matches) return;
-    let source = el.dataset.splitSource;
-    if (!source) {
-      source = el.textContent || '';
-      el.dataset.splitSource = source;
-    }
-    if (!source || source.length > 90) return;
-    const chars = Array.from(source);
-    el.classList.add('split-text');
-    el.classList.remove('is-in');
-    el.setAttribute('aria-label', source);
-    el.innerHTML = chars.map((char, index) => {
-      if (char === ' ') return '<span class="split-space" aria-hidden="true">&nbsp;</span>';
-      return `<span class="split-char" aria-hidden="true" style="--i:${index}">${esc(char)}</span>`;
-    }).join('');
-    void el.offsetWidth;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => el.classList.add('is-in'));
-    });
-  }
-
-  function revealCurrentView(root) {
-    if (!root) return;
-    const selector = '.card, .collection-chapter, .anime-card, .game-card, .music-feature, .collection-mini, .entry, .shot, .profile-card, .data-card, .about-card, .next-event, .todo-panel';
-    root.querySelectorAll(selector).forEach((el, index) => {
-      if (motionSeen.has(el)) return;
-      motionSeen.add(el);
-      el.classList.add('motion-reveal');
-      el.style.setProperty('--reveal-delay', `${Math.min(index * 42, 300)}ms`);
-      if (motionObserver) motionObserver.observe(el);
-      else el.classList.add('is-in');
-    });
+    document.documentElement.style.scrollBehavior = 'smooth';
   }
 
   function animateCounters(root) {
@@ -3754,67 +3519,27 @@
       if (!Number.isFinite(target)) return;
       if (MOTION_REDUCED.matches) { el.textContent = String(target); return; }
       const start = performance.now();
-      const duration = 760;
-      const tick = (now) => {
+      const duration = 700;
+      const step = (now) => {
         const p = Math.min(1, (now - start) / duration);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.round(target * eased));
-        if (p < 1) requestAnimationFrame(tick);
+        el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(step);
       };
       el.textContent = '0';
-      requestAnimationFrame(tick);
-    });
-  }
-
-  function setupPointerMotion(root) {
-    if (!root || !FINE_POINTER.matches || MOTION_REDUCED.matches) return;
-    root.querySelectorAll('.btn, .card, .anime-card, .game-card, .music-feature, .collection-mini, .collection-index-link, .shot').forEach((el) => {
-      if (pointerSeen.has(el)) return;
-      pointerSeen.add(el);
-      if (!el.matches('.btn')) el.classList.add('motion-spotlight');
-      if (el.matches('.btn')) el.classList.add('motion-specular');
-      if (el.matches('.anime-card, .game-card, .collection-mini')) el.classList.add('motion-tilt');
-
-      el.addEventListener('pointermove', (event) => {
-        const rect = el.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        el.style.setProperty('--mx', `${x}px`);
-        el.style.setProperty('--my', `${y}px`);
-        el.style.setProperty('--sx', `${x}px`);
-        el.style.setProperty('--sy', `${y}px`);
-        if (el.classList.contains('motion-tilt')) {
-          el.style.setProperty('--rx', `${((y / rect.height) - .5) * -3.6}deg`);
-          el.style.setProperty('--ry', `${((x / rect.width) - .5) * 3.6}deg`);
-        }
-        el.classList.add('is-pointer');
-      }, { passive: true });
-
-      el.addEventListener('pointerleave', () => {
-        el.classList.remove('is-pointer');
-        el.style.setProperty('--rx', '0deg');
-        el.style.setProperty('--ry', '0deg');
-      });
+      requestAnimationFrame(step);
     });
   }
 
   function applyMotion(view) {
     const root = document.querySelector(`.view[data-view="${view}"]`);
     if (!root) return;
-    if (MOTION_REDUCED.matches) {
-      root.querySelectorAll('[data-count]').forEach((el) => { el.textContent = el.dataset.count; });
-      return;
+    root.classList.remove('is-entering');
+    if (!MOTION_REDUCED.matches) {
+      root.querySelectorAll('.block').forEach((el, index) => el.style.setProperty('--b', index));
+      void root.offsetWidth;
+      root.classList.add('is-entering');
     }
-    root.querySelectorAll('.page-title, .collection-title, .hero-title-main, .hero-title-sub').forEach(splitTextElement);
-    root.querySelectorAll('.page-sub, .collection-intro, .hero-sub, .collection-aside').forEach((el, index) => {
-      el.classList.remove('motion-blur-in');
-      void el.offsetWidth;
-      el.style.animationDelay = `${Math.min(index * 80, 220)}ms`;
-      el.classList.add('motion-blur-in');
-    });
-    revealCurrentView(root);
     animateCounters(root);
-    setupPointerMotion(root);
   }
 
   async function init() {
